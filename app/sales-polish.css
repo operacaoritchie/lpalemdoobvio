@@ -92,3 +92,10 @@
 @keyframes ao-zoom { from { opacity: 0; transform: scale(1.07); } }
 @keyframes ao-shine { 0%, 70% { transform: translateX(-120%); } 100% { transform: translateX(120%); } }
 @keyframes ao-progress { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+
+/* Celular: botão do topo ocupa a largura toda, com o texto centralizado */
+@media (max-width: 859px) {
+  .ao .hero .cta { width: 100%; text-align: center; font-size: 13px; padding: 17px 16px; letter-spacing: 0.1em; }
+  .ao .hero .proof { text-align: center; }
+}
+.ao .nav a.mini { white-space: nowrap; }
