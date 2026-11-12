@@ -1,6 +1,7 @@
 'use client';
 
-import { useEffect, useRef } from 'react';
+import { useCallback, useEffect, useState } from 'react';
+import LeadModal, { type LeadResult } from './lead-modal';
 import { salesPageHtml } from './alem-do-obvio/source';
 
 const TRACKING_KEYS = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term', 'angulo', 'campaign_name', 'campaign_id', 'adset_name', 'adset_id', 'ad_name', 'ad_id', 'campaign.name', 'campaign.id', 'adset.name', 'adset.id', 'ad.name', 'ad.id', 'fbclid'];
@@ -77,53 +78,80 @@ function invisibleToken(value: Record<string, string>) {
   return out + '\u2063';
 }
 
+function whatsappUrl(tracking: Record<string, string>, fields: Record<string, string>, reference: string, cta: string) {
+  const intro = fields.name ? `Sou ${fields.name}${fields.profession ? `, ${fields.profession}` : ''}${fields.city ? `, de ${fields.city}` : ''}.` : '';
+  const lines = [
+    `Olá!${invisibleToken({ ...tracking, ref: reference, cta })} Quero saber valores e condições do Além do Óbvio.`,
+    intro,
+    fields.difficulty ? `Minha maior dificuldade hoje: ${fields.difficulty}.` : '',
+    `Ref: ${reference}`,
+  ].filter(Boolean);
+  return `https://wa.me/${TEAM_WHATSAPP}?text=${encodeURIComponent(lines.join('\n'))}`;
+}
+
 export default function SalesPage() {
-  const trackingRef = useRef<Record<string, string>>({});
+  const [modal, setModal] = useState<{ cta: string; tracking: Record<string, string>; reference: string } | null>(null);
+  const closeModal = useCallback(() => setModal(null), []);
 
   useEffect(() => {
     const tracking = readTracking();
     applyAngle(tracking);
-    trackingRef.current = tracking;
     loadPixel(PIXEL_ID);
     const pageEventId = `pv-${crypto.randomUUID().replaceAll('-', '').slice(0, 12)}`;
     try { window.fbq?.('track', 'PageView', pageViewParams(tracking), { eventID: pageEventId }); } catch { /* pixel optional */ }
     if (window.dataLayer) window.dataLayer.push({ event: 'ao_page_view', event_id: pageEventId, ...tracking });
     const reference = `AO-${crypto.randomUUID().replaceAll('-', '').slice(0, 4).toUpperCase()}`;
     const links = Array.from(document.querySelectorAll<HTMLAnchorElement>('[data-evt]'));
-    const original = new Map<HTMLAnchorElement, string>();
-    const trackingText = Object.entries(tracking).map(([key, value]) => `${key}=${value}`).join(' | ');
 
+    // Os botões abrem o formulário; sem JavaScript continuam levando direto ao WhatsApp.
     const onClick = (event: MouseEvent) => {
-      const link = event.currentTarget as HTMLAnchorElement;
-      const cta = link.dataset.evt || 'cta';
-      const message = [`Olá!${invisibleToken({ ...tracking, ref: reference, cta })} Quero saber valores e condições do Além do Óbvio.`, `Ref: ${reference}`].join('\n');
-      link.href = `https://wa.me/${TEAM_WHATSAPP}?text=${encodeURIComponent(message)}`;
-      void fetch('/api/alem-do-obvio', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ type: 'cta_click', reference, cta, tracking, tracking_text: trackingText, page: window.location.href }), keepalive: true }).catch(() => undefined);
-      if (window.dataLayer) window.dataLayer.push({ event: 'click_whatsapp', cta, reference, ...tracking });
-      if (window.fbq) {
-        try {
-          window.fbq('track', 'Contact', { content_name: 'Além do Óbvio', cta }, { eventID: `${reference}-contact` });
-          window.fbq('trackCustom', 'LeadWhatsApp', { content_name: 'Além do Óbvio', cta, reference, ...tracking }, { eventID: `${reference}-leadwhatsapp` });
-        } catch { /* pixel optional */ }
-      }
-      if (window.gtag) { try { window.gtag('event', 'generate_lead', { cta, event_id: reference, ...tracking }); } catch { /* analytics optional */ } }
+      event.preventDefault();
+      const cta = (event.currentTarget as HTMLAnchorElement).dataset.evt || 'cta';
+      if (window.dataLayer) window.dataLayer.push({ event: 'ao_form_open', cta, ...tracking });
+      setModal({ cta, tracking, reference });
     };
 
-    for (const link of links) {
-      original.set(link, link.href);
-      link.addEventListener('click', onClick);
-    }
+    for (const link of links) link.addEventListener('click', onClick);
     const sticky = document.querySelector<HTMLElement>('.sticky');
     const updateSticky = () => sticky?.classList.toggle('is-visible', window.scrollY > 600);
     updateSticky();
     window.addEventListener('scroll', updateSticky, { passive: true });
     return () => {
       window.removeEventListener('scroll', updateSticky);
-      for (const link of links) { link.removeEventListener('click', onClick); const href = original.get(link); if (href) link.href = href; }
+      for (const link of links) link.removeEventListener('click', onClick);
     };
   }, []);
 
-  return <div dangerouslySetInnerHTML={{ __html: salesPageHtml }} />;
+  const onSuccess = useCallback((result: LeadResult, fields: Record<string, string>) => {
+    const { reference, cta, tracking } = result;
+    if (window.dataLayer) window.dataLayer.push({ event: 'click_whatsapp', cta, reference, ...tracking });
+    if (window.fbq) {
+      try {
+        window.fbq('track', 'Lead', { content_name: 'Além do Óbvio', cta }, { eventID: `${reference}-lead` });
+        window.fbq('track', 'Contact', { content_name: 'Além do Óbvio', cta }, { eventID: `${reference}-contact` });
+        window.fbq('trackCustom', 'LeadWhatsApp', { content_name: 'Além do Óbvio', cta, reference, ...tracking }, { eventID: `${reference}-leadwhatsapp` });
+      } catch { /* pixel optional */ }
+    }
+    if (window.gtag) { try { window.gtag('event', 'generate_lead', { cta, event_id: reference, ...tracking }); } catch { /* analytics optional */ } }
+    setModal(null);
+    // Pequena espera para o Pixel disparar antes de sair da página.
+    window.setTimeout(() => { window.location.href = whatsappUrl(tracking, fields, reference, cta); }, 250);
+  }, []);
+
+  return (
+    <>
+      <div dangerouslySetInnerHTML={{ __html: salesPageHtml }} />
+      <LeadModal
+        open={!!modal}
+        cta={modal?.cta || 'cta'}
+        tracking={modal?.tracking || {}}
+        reference={modal?.reference || ''}
+        onClose={closeModal}
+        onSuccess={onSuccess}
+        buildWhatsappUrl={(fields, reference, cta) => whatsappUrl(modal?.tracking || {}, fields, reference, cta)}
+      />
+    </>
+  );
 }
 
 declare global {

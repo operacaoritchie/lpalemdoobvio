@@ -31,20 +31,30 @@ export async function POST(request: Request) {
     }
   }
   if (!webhookUrl) return json({ error: 'O webhook ainda não foi configurado.' }, 503);
-  const required = ['name', 'whatsapp', 'instagram', 'revenue', 'difficultyOne', 'difficultyTwo'];
-  if (required.some(field => typeof data[field] !== 'string' || !String(data[field]).trim()) || data.consent !== true) return json({ error: 'Preencha todos os campos obrigatórios e aceite o contato pelo WhatsApp.' }, 422);
+  const text = (key: string, max = 200) => (typeof data[key] === 'string' ? String(data[key]).trim().slice(0, max) : '');
+  const required = ['name', 'whatsapp', 'email', 'city', 'profession', 'experience', 'fullFace', 'difficulty', 'attended'];
+  if (required.some(field => !text(field)) || data.consent !== true) return json({ error: 'Preencha todos os campos obrigatórios e aceite o contato pelo WhatsApp.' }, 422);
+  const phone = text('whatsapp', 30).replace(/\D/g, '');
+  if (phone.length < 10 || phone.length > 15) return json({ error: 'Informe um WhatsApp válido, com DDD.' }, 422);
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(text('email'))) return json({ error: 'Informe um e-mail válido.' }, 422);
 
-  const ref = reference();
+  const ref = typeof data.reference === 'string' && /^AO-[0-9A-F]{4}$/.test(data.reference) ? data.reference : reference();
   const tracking = data.tracking && typeof data.tracking === 'object' ? data.tracking : {};
   const payload = {
-    nome_completo: String(data.name).trim(),
-    whatsapp: String(data.whatsapp).trim(),
-    instagram: String(data.instagram).trim(),
-    faturamento_mensal: String(data.revenue),
-    principal_dificuldade: String(data.difficultyOne),
-    segunda_dificuldade: String(data.difficultyTwo),
-    outra_dificuldade: typeof data.other === 'string' ? data.other.trim() : '',
+    nome_completo: text('name'),
+    whatsapp: phone,
+    email: text('email'),
+    cidade: text('city'),
+    profissao: text('profession'),
+    tempo_de_atuacao: text('experience'),
+    faz_harmonizacao_facial: text('fullFace'),
+    maior_dificuldade: text('difficulty'),
+    ja_fez_curso_com_dr_ritchie: text('attended'),
+    instagram: text('instagram'),
+    registro_profissional: text('registry'),
     consentimento_whatsapp: true,
+    cta: text('cta', 60),
+    pagina: text('page', 500),
     codigo_de_referencia: ref,
     data_e_hora: new Date().toISOString(),
     rastreio: tracking,
