@@ -64,7 +64,6 @@
 
 @media(prefers-color-scheme:dark){:root{--background:#080808;--foreground:#f7f3ea;--card:#11100e;--card-foreground:#f7f3ea;--popover:#15130f;--popover-foreground:#f7f3ea;--primary:#d7a84b;--primary-foreground:#080808;--secondary:#201b13;--secondary-foreground:#f7f3ea;--muted:#211e18;--muted-foreground:#bdb5a7;--accent:#2c2416;--accent-foreground:#f2d28b;--destructive:#f99d92;--border:#d7a84b30;--input:#d7a84b4a;--ring:#d7a84b;--radius:.65rem;}}
 
-@font-face{font-family:"Cormorant Garamond";font-style:normal;font-weight:600;font-display:swap;src:url("/assets/cormorant-600.woff") format("woff")}
 @font-face{font-family:"Inter";font-style:normal;font-weight:400;font-display:swap;src:url("/assets/inter-400.woff") format("woff")}
 @font-face{font-family:"Inter";font-style:normal;font-weight:700;font-display:swap;src:url("/assets/inter-700.woff") format("woff")}
 :root{color-scheme:dark;--black:#080808;--surface:#11100e;--gold:#d7a84b;--champagne:#f2d28b;--ivory:#f7f3ea;--text-muted:#bdb5a7;--burgundy:#6d0f1c;--sans:"Inter",Arial,sans-serif;--serif:"Cormorant Garamond",Georgia,serif;--gutter:clamp(32px,5.55vw,100px)}

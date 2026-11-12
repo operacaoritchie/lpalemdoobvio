@@ -230,6 +230,9 @@ export default function LeadModal({ open, cta, tracking, reference, onClose, onS
 const CSS = `
 .lm-back{position:fixed;inset:0;z-index:2147483000;background:rgba(0,0,0,.78);backdrop-filter:blur(4px);display:flex;align-items:flex-start;justify-content:center;overflow-y:auto;padding:24px 16px}
 .lm{position:relative;width:100%;max-width:560px;margin:auto;background:var(--bg2,#100e0b);color:var(--fg,#f3efe8);border:1px solid var(--line,rgba(201,168,106,.22));border-radius:16px;padding:32px 28px;font-family:var(--sans,Arial,sans-serif)}
+@media (prefers-reduced-motion:no-preference){.lm-back{animation:lm-fade .25s ease both}.lm{animation:lm-rise .35s cubic-bezier(.2,.7,.2,1) both}}
+@keyframes lm-fade{from{opacity:0}}
+@keyframes lm-rise{from{opacity:0;transform:translateY(18px) scale(.985)}}
 .lm-x{position:absolute;top:10px;right:12px;width:40px;height:40px;background:none;border:0;color:var(--mute,#b0aa9f);font-size:28px;line-height:1;cursor:pointer}
 .lm-kicker{margin:0 0 6px;font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--gold,#c9a86a)}
 .lm h2{margin:0 0 8px;font-family:var(--serif,Georgia,serif);font-weight:600;font-size:30px;line-height:1.1}

@@ -1,0 +1,94 @@
+/* Acabamento da página Além do Óbvio: tipografia, alinhamentos e movimento discreto. */
+:root { interpolate-size: allow-keywords; }
+
+.ao h1, .ao h2, .ao h3 { font-weight: 500; letter-spacing: -0.005em; }
+.ao em { font-weight: 500; }
+.ao ::selection { background: rgba(201, 168, 106, 0.35); color: #fff; }
+
+/* Feixe de luz dourada atrás do topo */
+.ao .hero { position: relative; }
+.ao .hero::before {
+  content: ""; position: absolute; z-index: -1; pointer-events: none;
+  top: -120px; right: -18%; width: 78%; height: 640px;
+  background: radial-gradient(closest-side, rgba(201, 168, 106, 0.17), rgba(201, 168, 106, 0.04) 60%, transparent);
+}
+.ao .hero .ph { overflow: hidden; }
+
+/* Correções de alinhamento */
+.ao .day .d { padding: 0; }
+.ao .day p { color: var(--mute); }
+.ao .nums { grid-template-columns: repeat(2, minmax(0, 1fr)); max-width: 440px; }
+.ao .nums strong { white-space: nowrap; font-size: clamp(34px, 9vw, 44px); }
+.ao .depo figure { display: flex; flex-direction: column; }
+.ao .depo blockquote { flex: 1; }
+.ao .gal figure, .ao .depo figure { isolation: isolate; }
+.ao .proof i { opacity: 0.9; }
+
+/* Botão: brilho que atravessa de tempos em tempos */
+.ao .cta { position: relative; overflow: hidden; }
+.ao .cta::after {
+  content: ""; position: absolute; inset: 0; pointer-events: none;
+  background: linear-gradient(105deg, transparent 35%, rgba(255, 255, 255, 0.55) 50%, transparent 65%);
+  transform: translateX(-120%);
+}
+
+/* Perguntas frequentes */
+.ao summary { transition: color 0.2s; align-items: center; }
+.ao summary::after { transition: transform 0.3s; }
+.ao details[open] summary { color: var(--gold2); }
+
+@media (hover: hover) {
+  .ao summary:hover { color: var(--gold2); }
+  .ao .nav a.mini { transition: background 0.25s, color 0.25s, border-color 0.25s; }
+  .ao .nav a.mini:hover { background: var(--gold); border-color: var(--gold); color: #090909; }
+  .ao .cards li, .ao .day, .ao .nums div, .ao .facts div { transition: border-color 0.3s, transform 0.3s, background 0.3s; }
+  .ao .cards li:hover, .ao .day:hover, .ao .nums div:hover { border-color: rgba(201, 168, 106, 0.6); transform: translateY(-3px); }
+  .ao .cta:hover { box-shadow: 0 16px 50px -10px rgba(201, 168, 106, 0.7); }
+}
+
+@media (min-width: 860px) {
+  /* Menu acompanha a rolagem */
+  .ao .nav { position: sticky; top: 0; z-index: 30; }
+  /* A coluna do título acompanha a lista de cartões em vez de deixar um vazio */
+  .ao .cols > div:has(+ .cards) { position: sticky; top: 110px; }
+  .ao .hero .ph { box-shadow: 0 50px 90px -50px rgba(0, 0, 0, 0.9), 0 0 0 1px var(--line); border-radius: 6px; }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  /* Entrada do topo */
+  .ao .hero > div:first-child > * { animation: ao-up 0.9s cubic-bezier(0.2, 0.7, 0.2, 1) backwards; }
+  .ao .hero > div:first-child > :nth-child(2) { animation-delay: 0.08s; }
+  .ao .hero > div:first-child > :nth-child(3) { animation-delay: 0.16s; }
+  .ao .hero > div:first-child > :nth-child(4) { animation-delay: 0.24s; }
+  .ao .hero > div:first-child > :nth-child(5) { animation-delay: 0.32s; }
+  .ao .hero > div:first-child > :nth-child(n + 6) { animation-delay: 0.4s; }
+  .ao .hero .ph img { animation: ao-zoom 2.2s cubic-bezier(0.2, 0.7, 0.2, 1) backwards; }
+  .ao .nav { animation: ao-fade 0.8s ease backwards; }
+
+  /* Entrada dos blocos ao rolar */
+  .ao .rv { opacity: 0; }
+  .ao .rv.in { opacity: 1; animation: ao-up 0.85s cubic-bezier(0.2, 0.7, 0.2, 1) backwards; animation-delay: var(--d, 0ms); }
+
+  .ao .cta::after { animation: ao-shine 6s ease-in-out 2s infinite; }
+
+  .ao .gal img, .ao .depo img { transition: transform 1.2s cubic-bezier(0.2, 0.7, 0.2, 1); }
+  .ao .gal figure:hover img, .ao .depo figure:hover img { transform: scale(1.045); }
+
+  .ao details::details-content { block-size: 0; overflow: hidden; transition: block-size 0.35s ease, content-visibility 0.35s allow-discrete; }
+  .ao details[open]::details-content { block-size: auto; }
+
+  /* Linha dourada de progresso de leitura no topo */
+  @supports (animation-timeline: scroll()) {
+    .ao::before {
+      content: ""; position: fixed; top: 0; left: 0; right: 0; height: 2px; z-index: 40;
+      background: linear-gradient(90deg, var(--gold), var(--gold2));
+      transform-origin: 0 50%; animation: ao-progress linear both; animation-timeline: scroll(root);
+    }
+  }
+}
+
+@keyframes ao-up { from { opacity: 0; transform: translateY(24px); } }
+@keyframes ao-fade { from { opacity: 0; } }
+@keyframes ao-zoom { from { opacity: 0; transform: scale(1.07); } }
+@keyframes ao-shine { 0%, 70% { transform: translateX(-120%); } 100% { transform: translateX(120%); } }
+@keyframes ao-progress { from { transform: scaleX(0); } to { transform: scaleX(1); } }

@@ -1,6 +1,7 @@
 'use client';
 
 import { useCallback, useEffect, useState } from 'react';
+import './sales-polish.css';
 import LeadModal, { type LeadResult } from './lead-modal';
 import { salesPageHtml } from './alem-do-obvio/source';
 
@@ -134,12 +135,35 @@ export default function SalesPage() {
     };
     for (const box of boxes) box.addEventListener('change', updateChecklist);
     updateChecklist();
+    // Entrada suave dos blocos ao rolar. Sem JavaScript ou com "reduzir movimento", tudo aparece direto.
+    const revealTargets = Array.from(document.querySelectorAll<HTMLElement>(
+      '.ao section > .eyebrow, .ao section h2, .ao section > p, .ao .cols > div > p, .ao .cards li, .ao .gal figure, .ao .day, .ao .depo figure, .ao .chk li, .ao details, .ao .price, .ao .nums div, .ao .cols > div > img, .ao .final-t > *',
+    ));
+    let observer: IntersectionObserver | null = null;
+    if ('IntersectionObserver' in window && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      observer = new IntersectionObserver(entries => {
+        for (const entry of entries) {
+          if (!entry.isIntersecting) continue;
+          entry.target.classList.add('in');
+          observer?.unobserve(entry.target);
+        }
+      }, { rootMargin: '0px 0px -8% 0px', threshold: 0.08 });
+      for (const el of revealTargets) {
+        const index = el.parentElement ? Array.from(el.parentElement.children).indexOf(el) : 0;
+        el.style.setProperty('--d', `${Math.min(index, 5) * 70}ms`);
+        el.classList.add('rv');
+        observer.observe(el);
+      }
+    }
+
     const sticky = document.querySelector<HTMLElement>('.sticky');
     const updateSticky = () => sticky?.classList.toggle('is-visible', window.scrollY > 600);
     updateSticky();
     window.addEventListener('scroll', updateSticky, { passive: true });
     return () => {
       window.removeEventListener('scroll', updateSticky);
+      observer?.disconnect();
+      for (const el of revealTargets) el.classList.remove('rv', 'in');
       for (const link of links) link.removeEventListener('click', onClick);
       for (const box of boxes) box.removeEventListener('change', updateChecklist);
     };
@@ -163,7 +187,7 @@ export default function SalesPage() {
 
   return (
     <>
-      <div dangerouslySetInnerHTML={{ __html: salesPageHtml }} />
+      <div className="ao" dangerouslySetInnerHTML={{ __html: salesPageHtml }} />
       <LeadModal
         open={!!modal}
         cta={modal?.cta || 'cta'}
