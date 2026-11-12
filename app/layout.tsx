@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import "./form.css";
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || (process.env.VERCEL_PROJECT_PRODUCTION_URL ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}` : "http://localhost:3000");
 export const metadata: Metadata = {
+ metadataBase: new URL(siteUrl),
  title: "Além do Óbvio — Imersão com Dr. Ritchie",
  description: "A técnica você aprende. A visão você desenvolve. Três dias de imersão presencial em Full Face com o Dr. Ritchie.",
  icons: { icon: "/favicon.svg", shortcut: "/favicon.svg" },

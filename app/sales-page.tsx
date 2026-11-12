@@ -112,6 +112,28 @@ export default function SalesPage() {
     };
 
     for (const link of links) link.addEventListener('click', onClick);
+    // Checklist "Marque o que você vive hoje": mostra o resultado e o botão conforme a quantidade marcada.
+    const boxes = Array.from(document.querySelectorAll<HTMLInputElement>('.chk input[type="checkbox"]'));
+    const checkText = document.getElementById('chkt');
+    const checkCta = document.getElementById('chkc');
+    const updateChecklist = () => {
+      const count = boxes.filter(box => box.checked).length;
+      if (checkText) {
+        checkText.textContent = count === 0
+          ? 'Marque ao menos um item para ver o resultado.'
+          : count <= 2
+            ? `Você marcou ${count} de ${boxes.length}. Já existe um ponto claro para evoluir, e é exatamente isso que trabalhamos de perto nos três dias.`
+            : count <= 5
+              ? `Você marcou ${count} de ${boxes.length}. O Além do Óbvio foi desenhado para esse momento: prática em pacientes reais e o raciocínio por trás de cada decisão.`
+              : `Você marcou ${count} de ${boxes.length}. Esse é o perfil de quem mais aproveita a imersão. Vale conversar com a equipe sobre a turma de dezembro.`;
+      }
+      if (checkCta) {
+        checkCta.style.display = count ? '' : 'none';
+        checkCta.textContent = count ? 'Quero conversar sobre a minha vaga' : 'Falar com a equipe';
+      }
+    };
+    for (const box of boxes) box.addEventListener('change', updateChecklist);
+    updateChecklist();
     const sticky = document.querySelector<HTMLElement>('.sticky');
     const updateSticky = () => sticky?.classList.toggle('is-visible', window.scrollY > 600);
     updateSticky();
@@ -119,6 +141,7 @@ export default function SalesPage() {
     return () => {
       window.removeEventListener('scroll', updateSticky);
       for (const link of links) link.removeEventListener('click', onClick);
+      for (const box of boxes) box.removeEventListener('change', updateChecklist);
     };
   }, []);
 
