@@ -1,0 +1,1125 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Além do Óbvio — Imersão com Dr. Ritchie</title>
+<meta name="description" content="Imersão presencial de três dias em Full Face com o Dr. Ritchie, com prática em pacientes reais. 4, 5 e 6 de dezembro, em São Paulo. A técnica você aprende. A visão você desenvolve.">
+<meta name="theme-color" content="#050505">
+<link rel="icon" href="/favicon.svg">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="pt_BR">
+<meta property="og:title" content="Além do Óbvio — Imersão com Dr. Ritchie">
+<meta property="og:description" content="A técnica você aprende. A visão você desenvolve. Três dias de imersão presencial em Full Face com o Dr. Ritchie.">
+<meta property="og:image" content="https://lpalemdoobvio.vercel.app/opengraph-image.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..700;1,6..96,400..700&family=IBM+Plex+Mono:wght@400;500&family=Manrope:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/v2/sites-incriveis.css">
+<style>
+:root{
+  --preto:#050505; --superficie:#0F0E0C; --osso:#EDE6D8; --tinta:#EDE6D8; --suave:#A39A8B;
+  --ouro:#C9A35A; --ouro-escuro:#9C7A3C; --linha:rgba(237,230,216,.14);
+  --display:"Bodoni Moda","Didot","Bodoni 72",Georgia,serif;
+  --texto:"Manrope",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,"SFMono-Regular",Menlo,monospace;
+  --m:clamp(20px,4.4vw,72px);
+  --ease:cubic-bezier(.22,1,.36,1);
+}
+*{box-sizing:border-box}
+html{background:var(--preto);-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--preto);color:var(--tinta);font-family:var(--texto);font-size:17px;line-height:1.65;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+img{display:block;max-width:100%}
+a{color:inherit}
+::selection{background:var(--ouro);color:var(--preto)}
+h1,h2,h3{font-family:var(--display);font-weight:400;margin:0;letter-spacing:-.01em;line-height:1.02}
+h2{font-size:clamp(40px,6.2vw,96px)}
+h2 em,h1 em{font-style:italic}
+.visao-final h2 em{color:var(--ouro)}
+p{margin:0 0 1em}
+.mono{font-family:var(--mono)}
+.rotulo{white-space:nowrap;font-family:var(--display);font-style:italic;font-size:clamp(17px,1.35vw,20px);line-height:1.3;color:var(--suave);display:block;margin:0 0 20px}
+.suave{color:var(--suave)}
+.medida{max-width:62ch}
+
+/* botões */
+.btn{display:inline-flex;align-items:center;justify-content:space-between;gap:20px;text-decoration:none;font-family:var(--texto);font-size:15px;font-weight:600;line-height:1.25;letter-spacing:.005em;text-align:left;padding:8px 8px 8px 28px;min-height:60px;border:0;border-radius:999px;color:#15110A;background:linear-gradient(180deg,#D9BC7C,#C9A35A 48%,#B8924A);box-shadow:inset 0 1px 0 rgba(255,255,255,.42),inset 0 -1px 0 rgba(0,0,0,.2),0 14px 34px -18px rgba(201,163,90,.45);cursor:pointer;transform:translate(var(--mx,0px),var(--my,0px));transition:transform .5s var(--ease),box-shadow .5s var(--ease),filter .5s var(--ease)}
+.btn:hover{filter:brightness(1.06);box-shadow:inset 0 1px 0 rgba(255,255,255,.5),inset 0 -1px 0 rgba(0,0,0,.2),0 18px 40px -16px rgba(201,163,90,.55)}
+.btn:active{filter:brightness(.96)}
+.btn-mira{flex:0 0 auto;width:44px;height:44px;border-radius:50%;background:#0C0A07;display:grid;place-items:center}
+.btn-mira svg{width:20px;height:20px;overflow:visible;transition:transform .8s var(--ease)}
+.btn-mira circle,.btn-mira path{fill:none;stroke:var(--ouro);stroke-width:1.2}
+.btn-mira .nucleo{fill:var(--ouro);stroke:none;transform-box:fill-box;transform-origin:center;transform:scale(0);transition:transform .5s var(--ease)}
+.btn:hover .btn-mira svg{transform:rotate(90deg) scale(.86)}
+.btn:hover .btn-mira .nucleo{transform:scale(1)}
+.btn-fantasma{min-height:0;padding:11px 22px;font-size:14px;font-weight:500;color:var(--tinta);background:rgba(5,5,5,.35);box-shadow:inset 0 0 0 1px rgba(237,230,216,.32);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
+.btn-fantasma:hover{filter:none;color:var(--ouro);box-shadow:inset 0 0 0 1px var(--ouro)}
+.btn.credito{transition:opacity 1.4s ease,transform .5s var(--ease),filter .5s var(--ease),box-shadow .5s var(--ease)}
+.btn:focus-visible,a:focus-visible,button:focus-visible,summary:focus-visible{outline:2px solid var(--ouro);outline-offset:4px}
+
+/* topo */
+.topo{position:fixed;inset:0 0 auto 0;z-index:50;display:flex;align-items:center;justify-content:space-between;padding:18px var(--m);transition:background .5s,border-color .5s,padding .5s;border-bottom:1px solid transparent}
+.topo.rolou{background:rgba(5,5,5,.93);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-color:var(--linha);padding-top:12px;padding-bottom:12px}
+.topo img{height:34px;width:auto}
+
+main>section:not(.dias),.rodape{background:var(--preto);color:var(--tinta)}
+.dias{background:#EDE6D8;color:#17130E}
+body::after{content:"";position:fixed;inset:0;z-index:45;pointer-events:none;background:url(/v2/img/grao.png);opacity:.34}
+.pm{display:inline-block;overflow:hidden;vertical-align:bottom;padding:.14em .16em .24em;margin:-.14em -.16em -.24em}
+.pi{display:inline-block;transform:translateY(118%);transition:transform 1.1s var(--ease)}
+.revelado .pi{transform:none}
+/* ---------- cena 1: créditos ---------- */
+.abertura::after{content:"";position:absolute;inset:auto 0 0 0;height:44%;background:linear-gradient(to top,var(--preto) 4%,transparent);z-index:1;pointer-events:none}
+.abertura{position:relative;min-height:100vh;min-height:100svh;display:grid;align-items:end;padding:140px var(--m) 64px;overflow:hidden}
+.abertura-foto{position:absolute;top:0;right:0;width:64vw;height:100%;margin:0;
+  -webkit-mask-image:linear-gradient(to right,transparent 0,#000 34%);mask-image:linear-gradient(to right,transparent 0,#000 34%)}
+.abertura-foto .paralaxe{position:absolute;inset:-6% 0}
+.abertura-foto img.base{width:100%;height:100%;object-fit:cover;object-position:62% 30%;opacity:0;transform:scale(1.08);animation:emergir 3.2s .2s var(--ease) forwards}
+@keyframes emergir{to{opacity:1;transform:none}}
+.abertura-texto{position:relative;z-index:2;max-width:640px}
+.titulo-abertura{font-size:clamp(64px,10.4vw,176px);line-height:.86;letter-spacing:-.035em;margin:0 0 34px;margin-left:-.04em}
+.titulo-abertura .linha{display:block}
+.titulo-abertura em{color:var(--ouro);padding-left:.55em}
+.letra{display:inline-block;opacity:0}
+.creditos-prontos .letra{animation:credito .9s steps(1,end) forwards}
+@keyframes credito{0%{opacity:0}18%{opacity:.85;transform:translateX(.02em)}30%{opacity:.15}46%{opacity:1;transform:none}62%{opacity:.6}78%,100%{opacity:1}}
+.credito{opacity:0;transition:opacity 1.4s ease}
+.creditos-prontos .credito{opacity:1}
+.data-abertura{font-family:var(--display);font-style:italic;font-size:clamp(24px,2.4vw,34px);color:var(--tinta);margin-bottom:14px}
+.lead{font-size:clamp(17px,1.35vw,20px);max-width:44ch;color:var(--tinta)}
+.abertura .btn{margin:16px 0 26px}
+.numeros-linha{display:flex;flex-wrap:wrap;gap:6px 0;font-size:13.5px;color:var(--suave);margin:0}
+.numeros-linha span+span{margin-left:16px;padding-left:16px;border-left:1px solid var(--linha)}
+.numeros-linha b{color:var(--tinta);font-weight:600}
+.ficha{position:absolute;right:var(--m);bottom:64px;z-index:2;display:grid;grid-template-columns:auto 1fr;gap:8px 20px;margin:0;font-size:14.5px;line-height:1.5;width:min(30vw,390px)}
+.ficha dt{font-family:var(--display);font-style:italic;font-size:17px;line-height:1.3;color:var(--suave)}
+.ficha dd{margin:0;color:var(--tinta)}
+.creditos-canto{position:absolute;right:var(--m);bottom:64px;z-index:2;font-family:var(--mono);font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--suave);text-align:right;line-height:2}
+
+/* ---------- cena 2: a visão (pico) ---------- */
+.palco-visao{justify-content:flex-start;align-items:stretch}
+.visao-foto{position:absolute;inset:0 auto 0 0;width:70vw;overflow:hidden;
+  -webkit-mask-image:linear-gradient(to left,transparent 0,#000 30%);mask-image:linear-gradient(to left,transparent 0,#000 30%)}
+.visao-foto .camada{position:absolute;inset:0}
+.visao-foto img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 30%}
+.visao-foto svg{position:absolute;inset:0;width:100%;height:100%;overflow:visible}
+.visao-texto{position:relative;z-index:3;margin-left:auto;width:min(46vw,720px);padding:0 var(--m) 0 0;display:flex;flex-direction:column;justify-content:center;height:100%}
+.empilha{display:grid}
+.empilha>*{grid-area:1/1}
+.tese{font-family:var(--display);font-size:clamp(40px,5.4vw,92px);line-height:1;letter-spacing:-.02em;margin:0}
+.tese-a{color:var(--tinta)}
+.tese-b{margin-top:.12em}
+.tese-b .fantasma{color:transparent;text-shadow:0 0 22px rgba(201,163,90,.95),0 0 46px rgba(201,163,90,.5)}
+.tese-b .nitida{color:var(--ouro);font-style:italic}
+.visao-final h2{font-size:clamp(32px,3.5vw,58px);line-height:1.08}
+.medidor{position:absolute;left:var(--m);bottom:40px;z-index:4;display:flex;align-items:center;gap:16px;font-family:var(--mono);font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--suave)}
+.medidor .trilha{width:160px;height:1px;background:var(--linha);position:relative;overflow:hidden}
+.medidor .trilha i{position:absolute;inset:0;background:var(--ouro);transform-origin:left;transform:scaleX(var(--progresso,0))}
+
+.visao-corrido{padding:120px var(--m) 110px;display:grid;grid-template-columns:repeat(12,1fr);gap:24px}
+.visao-corrido .grande{grid-column:2/8;font-family:var(--display);font-size:clamp(28px,3vw,46px);line-height:1.15;margin:0}
+.visao-corrido .colunas{grid-column:8/12;padding-top:.6em;color:var(--suave)}
+.visao-corrido .colunas p:last-child{color:var(--tinta);font-family:var(--display);font-style:italic;font-size:22px;line-height:1.35;border-left:1px solid var(--ouro);padding-left:22px;margin-top:32px}
+
+/* ---------- cena 3: na cadeira ---------- */
+.pratica{padding:140px var(--m);display:grid;grid-template-columns:5fr 7fr;gap:clamp(40px,7vw,120px);border-top:1px solid var(--linha)}
+.pratica-cabeca{position:sticky;top:120px;align-self:start}
+.pratica-cabeca h2{font-size:clamp(40px,5vw,80px);margin-bottom:28px}
+.placar{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin:0 0 72px;border-bottom:1px solid var(--linha);padding-bottom:48px}
+.placar .num{font-family:var(--display);font-size:clamp(84px,11vw,180px);line-height:.9;letter-spacing:-.04em;display:flex;align-items:baseline;gap:.12em;font-variant-numeric:lining-nums tabular-nums}
+.placar .num small{font-size:.32em;font-style:italic;color:var(--suave)}
+.placar .num .alto{color:var(--ouro)}
+.placar .leg{font-size:14px;color:var(--suave);margin-top:14px;display:block}
+.itens{list-style:none;margin:0;padding:0;counter-reset:item}
+.itens li{display:grid;grid-template-columns:72px 1fr;gap:8px 24px;padding:34px 0;border-bottom:1px solid var(--linha)}
+.itens .n{font-family:var(--display);font-style:italic;font-size:22px;color:var(--suave);padding-top:7px;font-variant-numeric:lining-nums}
+.itens h3{font-size:clamp(28px,2.6vw,40px);line-height:1.1;margin-bottom:10px}
+.itens p{color:var(--suave);margin:0;max-width:52ch}
+.itens .risco{font-style:italic;color:var(--ouro)}
+
+/* ---------- cena 4: três dias (osso) ---------- */
+.dias{padding:160px var(--m) 140px}
+.dias .rotulo{color:rgba(23,19,14,.62)}
+.dias-lista{margin-top:80px;border-top:1px solid color-mix(in srgb,currentColor 22%,transparent)}
+.dia{display:grid;grid-template-columns:minmax(0,5fr) 3fr 4fr;align-items:end;gap:24px;padding:28px 0 34px;border-bottom:1px solid color-mix(in srgb,currentColor 22%,transparent)}
+.dia .grande-num{font-family:var(--display);font-size:clamp(110px,19vw,320px);line-height:.78;letter-spacing:-.05em;font-variant-numeric:lining-nums}
+.dia:nth-child(2) .grande-num{font-style:italic;color:var(--ouro-escuro);padding-left:.3em}
+.dia:nth-child(3) .grande-num{padding-left:.6em}
+.dia .quando{font-size:14px;line-height:1.5;color:rgba(23,19,14,.66)}
+.dia .quando b{display:block;font-family:var(--display);font-style:italic;font-weight:400;font-size:22px;color:#17130E}
+.dia p{margin:0;font-size:19px;line-height:1.5;max-width:30ch}
+.dias .nota{margin-top:40px;font-size:14px;color:rgba(23,19,14,.66);max-width:70ch}
+
+/* ---------- cena 5: quem conduz ---------- */
+.doutor{position:relative;padding:0 0 140px}
+.doutor-palco{position:relative;height:92vh;min-height:560px;overflow:hidden;margin:0}
+.doutor-palco .paralaxe{position:absolute;inset:-12% 0}
+.doutor-palco img.base{width:100%;height:100%;object-fit:cover;object-position:58% 30%}
+.doutor-palco::after{content:"";position:absolute;inset:auto 0 0 0;height:55%;background:linear-gradient(to top,var(--preto),transparent);pointer-events:none}
+.doutor-texto{position:relative;z-index:2;margin:-260px var(--m) 0;display:grid;grid-template-columns:7fr 4fr;gap:clamp(32px,6vw,100px);align-items:end}
+.doutor-texto h2{font-size:clamp(64px,10vw,170px);line-height:.86;letter-spacing:-.04em;margin-bottom:34px}
+.doutor .rotulo{color:var(--tinta)}
+.doutor-texto .bio{max-width:52ch}
+.doutor-texto .bio p:first-child{font-size:20px;color:var(--tinta)}
+.doutor-texto .bio p{color:var(--suave)}
+.doutor-numeros{display:grid;gap:28px;border-left:1px solid var(--linha);padding-left:32px}
+.doutor-numeros strong{display:block;white-space:nowrap;font-family:var(--display);font-weight:400;font-size:clamp(56px,6vw,96px);line-height:1;color:var(--ouro);font-variant-numeric:lining-nums tabular-nums}
+.doutor-numeros span.leg{font-size:14px;color:var(--suave)}
+.retrato-lateral{position:absolute;right:var(--m);top:46vh;width:min(19vw,260px);z-index:3;margin:0;border:1px solid var(--linha)}
+.retrato-lateral img.base{aspect-ratio:3/4;object-fit:cover;width:100%}
+
+/* ---------- cena 6: prova (rolo de filme) ---------- */
+.prova{background:transparent}
+.palco-filme{flex-direction:column;align-items:stretch;justify-content:center;gap:40px}
+.filme-cabeca{padding:0 var(--m);display:flex;justify-content:space-between;align-items:end;gap:40px}
+.filme-cabeca h2{font-size:clamp(40px,5.4vw,88px)}
+.filme-cabeca p{max-width:34ch;color:var(--suave);margin:0}
+.rolo{position:relative;padding:22px 0;background:#070605;border-block:1px solid var(--linha)}
+.rolo::before,.rolo::after{content:"";position:absolute;left:0;right:0;height:10px;background:repeating-linear-gradient(to right,transparent 0 14px,rgba(237,230,216,.16) 14px 26px);}
+.rolo::before{top:6px}.rolo::after{bottom:6px}
+.rolo [data-fx="trilho"]{gap:18px;padding:0 0 0 var(--m);width:100%}
+.rolo [data-fx="trilho"]::after{content:"";flex:0 0 calc(var(--m) - 18px)}
+.quadro{flex:0 0 auto;width:min(46vw,640px);margin:0;position:relative}
+.quadro .olhar{aspect-ratio:3/2;overflow:hidden}
+.quadro .olhar img.base{width:100%;height:100%;object-fit:cover}
+.quadro figcaption{font-family:var(--display);font-style:italic;font-size:17px;color:var(--suave);padding-top:12px}
+
+.cases{padding:140px var(--m) 120px}
+.cases-cabeca{display:flex;flex-direction:column;align-items:flex-end;text-align:right;margin-bottom:64px}
+.cases-cabeca .rotulo{flex-direction:row-reverse}
+.case{display:grid;grid-template-columns:repeat(12,1fr);gap:24px;align-items:center;margin:0 0 72px}
+.case .olhar{grid-column:1/5;aspect-ratio:4/5;overflow:hidden}
+.case .olhar img.base{width:100%;height:100%;object-fit:cover;object-position:50% 30%}
+.case blockquote{grid-column:6/13;margin:0}
+.case:nth-of-type(even) .olhar{grid-column:9/13;grid-row:1}
+.case:nth-of-type(even) blockquote{grid-column:1/8;grid-row:1;text-align:right}
+.case:nth-of-type(3) .olhar{grid-column:2/6}
+.case:nth-of-type(3) blockquote{grid-column:7/13}
+.case blockquote p{font-family:var(--display);font-style:italic;font-size:clamp(26px,2.7vw,44px);line-height:1.2;margin:0 0 22px}
+.case blockquote p::first-letter{color:var(--ouro)}
+.case cite{font-style:normal;font-size:13.5px;color:var(--suave)}
+
+/* ---------- cena 7: você ---------- */
+.voce{padding:140px var(--m);display:grid;grid-template-columns:7fr 5fr;gap:clamp(40px,7vw,120px);border-top:1px solid var(--linha)}
+.voce h2{font-size:clamp(40px,5vw,80px);margin-bottom:24px}
+.voce .intro{color:var(--suave);max-width:48ch;margin-bottom:48px}
+.marcas{list-style:none;margin:0;padding:0}
+.marcas li{border-bottom:1px solid var(--linha)}
+.marcas label{display:grid;grid-template-columns:28px 1fr;gap:20px;padding:22px 4px;cursor:pointer;font-size:18px;line-height:1.5;transition:color .3s}
+.marcas input{appearance:none;-webkit-appearance:none;width:22px;height:22px;margin:3px 0 0;border:1px solid var(--ouro);border-radius:50%;position:relative;cursor:pointer;transition:background .3s}
+.marcas input::after{content:"";position:absolute;inset:5px;border-radius:50%;background:var(--preto);transform:scale(0);transition:transform .3s var(--ease)}
+.marcas input:checked{background:var(--ouro)}
+.marcas input:checked::after{transform:scale(1)}
+.marcas label:has(input:checked){color:var(--ouro)}
+.marcas label:hover{color:var(--tinta)}
+.voce .pre{font-size:14px;color:var(--suave);margin-top:28px}
+.leitura{position:sticky;top:120px;align-self:start;display:flex;flex-direction:column;align-items:flex-start;gap:28px}
+.anel{position:relative;width:min(100%,320px);aspect-ratio:1}
+.anel svg{width:100%;height:100%;transform:rotate(-90deg)}
+.anel circle{fill:none;stroke-width:1}
+.anel .fundo-anel{stroke:var(--linha)}
+.anel .arco{stroke:var(--ouro);stroke-dasharray:var(--c);stroke-dashoffset:var(--c);transition:stroke-dashoffset .8s var(--ease)}
+.anel .contagem{position:absolute;inset:0;display:grid;place-content:center;text-align:center}
+.anel .contagem b{font-family:var(--display);font-weight:400;font-size:96px;line-height:1;font-variant-numeric:lining-nums}
+.anel .contagem span{font-size:14px;color:var(--suave)}
+.devolutiva{font-family:var(--display);font-size:24px;line-height:1.35;max-width:30ch;min-height:4.2em;margin:0}
+.devolutiva.vazia{font-family:var(--texto);font-size:15px;color:var(--suave);min-height:0}
+.leitura .btn[hidden]{display:none}
+
+/* ---------- cena 8: decisão ---------- */
+.incluido{padding:140px var(--m) 80px;display:grid;grid-template-columns:5fr 7fr;gap:clamp(40px,7vw,120px);border-top:1px solid var(--linha)}
+.incluido h2{font-size:clamp(40px,5vw,80px)}
+.grade-inclui{display:grid;grid-template-columns:1fr 1fr;gap:0;border-top:1px solid var(--linha)}
+.grade-inclui div{padding:30px 28px 34px 0;border-bottom:1px solid var(--linha)}
+.grade-inclui div:nth-child(odd){border-right:1px solid var(--linha)}
+.grade-inclui div:nth-child(even){padding-left:28px}
+.grade-inclui .n{font-family:var(--display);font-style:italic;font-size:20px;color:var(--suave);font-variant-numeric:lining-nums}
+.grade-inclui h3{font-size:28px;margin:14px 0 10px}
+.grade-inclui p{color:var(--suave);margin:0;font-size:16px}
+
+.investimento{padding:100px var(--m) 140px}
+.investimento h2{margin-bottom:56px}
+.investimento-grade{display:grid;grid-template-columns:6fr 5fr;gap:clamp(32px,6vw,100px);align-items:start}
+.cartao{padding:36px 0 0;border-top:1px solid var(--linha)}
+.cartao .pergunta{font-family:var(--display);font-size:clamp(26px,2.4vw,36px);line-height:1.2;margin-bottom:26px}
+.cartao ul{list-style:none;padding:0;margin:0 0 34px}
+.cartao li{padding:10px 0;border-bottom:1px solid var(--linha);color:var(--suave)}
+.cartao li::before{content:"— ";color:var(--ouro)}
+.investimento-lado p{color:var(--suave)}
+.investimento-lado p:first-child{color:var(--tinta);font-family:var(--display);font-size:24px;line-height:1.3}
+.investimento-lado a{color:var(--ouro);text-decoration:none;border-bottom:1px solid currentColor}
+
+.faq{padding:40px var(--m) 160px;display:grid;grid-template-columns:4fr 8fr;gap:clamp(40px,7vw,120px);border-top:1px solid var(--linha);padding-top:140px}
+.faq h2{font-size:clamp(40px,4.6vw,72px);position:sticky;top:120px}
+.faq details{border-bottom:1px solid var(--linha)}
+.faq details:first-child{border-top:1px solid var(--linha)}
+.faq summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:24px;padding:26px 0;font-family:var(--display);font-size:clamp(21px,1.9vw,28px);line-height:1.25;transition:color .3s}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"";flex:0 0 14px;height:14px;background:linear-gradient(var(--ouro),var(--ouro)) center/100% 1px no-repeat,linear-gradient(var(--ouro),var(--ouro)) center/1px 100% no-repeat;transition:transform .4s var(--ease)}
+.faq details[open] summary{color:var(--ouro)}
+.faq details[open] summary::after{transform:rotate(45deg)}
+.faq details p{color:var(--suave);margin:0 0 28px;max-width:62ch}
+
+.convite{position:relative;min-height:100vh;display:grid;align-items:end;overflow:hidden}
+.convite-foto{position:absolute;inset:0;margin:0}
+.convite-foto .paralaxe{position:absolute;inset:-14% 0}
+.convite-foto img.base{width:100%;height:100%;object-fit:cover;object-position:50% 40%}
+.convite::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,var(--preto) 8%,rgba(5,5,5,.72) 46%,rgba(5,5,5,.2) 100%);pointer-events:none}
+.convite-texto{position:relative;z-index:2;padding:0 var(--m) 100px;max-width:1100px}
+.convite h2{font-size:clamp(44px,6.6vw,110px);margin-bottom:30px}
+.convite .datas{font-family:var(--display);font-style:italic;font-size:clamp(30px,3.4vw,52px);color:var(--ouro);margin-bottom:14px;min-height:1.2em}
+.convite .desc{max-width:48ch;font-size:19px;margin-bottom:38px}
+
+.rodape{padding:80px var(--m) 140px;border-top:1px solid var(--linha);display:grid;grid-template-columns:4fr 8fr;gap:48px}
+.rodape img{height:46px;width:auto;margin-bottom:22px}
+.rodape .assina{font-size:13.5px;color:var(--suave)}
+.rodape .legal p{font-size:13px;color:var(--suave);max-width:72ch}
+
+.barra{position:fixed;left:50%;bottom:20px;z-index:40;min-height:0;padding:7px 7px 7px 24px;font-size:14px;color:var(--tinta);background:#0E0D0A;box-shadow:inset 0 0 0 1px rgba(201,163,90,.5),0 20px 50px rgba(0,0,0,.6);transform:translate(-50%,160%);transition:transform .6s var(--ease),box-shadow .4s}
+.barra:hover{filter:none;box-shadow:inset 0 0 0 1px var(--ouro),0 20px 50px rgba(0,0,0,.6)}
+.barra .btn-mira{width:38px;height:38px;background:var(--ouro)}
+.barra .btn-mira circle,.barra .btn-mira path{stroke:#0C0A07}
+.barra .btn-mira .nucleo{fill:#0C0A07}
+.barra.ativa{transform:translate(-50%,0)}
+
+/* ---------- O olhar do Doutor (movimento-assinatura) ---------- */
+.olhar{position:relative;overflow:hidden;cursor:none}
+.olhar img.base{transition:filter .6s var(--ease)}
+.olhar.olhando img.base{filter:brightness(.42) saturate(.35)}
+.olhar .lente{position:absolute;inset:0;pointer-events:none;opacity:0;transition:opacity .35s ease;clip-path:circle(var(--r,120px) at var(--x,50%) var(--y,50%))}
+.olhar.olhando .lente{opacity:1}
+.olhar .lente img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:contrast(1.08) brightness(1.06)}
+.olhar .tracos{position:absolute;inset:0;width:100%;height:100%;overflow:visible;pointer-events:none}
+.tracos line,.tracos path,.tracos circle{fill:none;stroke:var(--ouro);stroke-width:1.2;vector-effect:non-scaling-stroke;filter:drop-shadow(0 0 2px rgba(0,0,0,.7))}
+.tracos .tracejado{stroke-dasharray:4 5}
+.tracos .ponto{fill:var(--ouro);stroke:none}
+.tracos text{fill:var(--ouro);font-family:var(--mono);font-size:10px;letter-spacing:.16em;text-transform:uppercase}
+.olhar .tracos .desenho{stroke-dasharray:1200;stroke-dashoffset:1200;transition:stroke-dashoffset 1.2s var(--ease)}
+.olhar.olhando .tracos .desenho{stroke-dashoffset:0}
+.olhar .anel-lente{position:absolute;left:0;top:0;width:calc(var(--r,120px)*2);height:calc(var(--r,120px)*2);margin:calc(var(--r,120px)*-1) 0 0 calc(var(--r,120px)*-1);border:1px solid var(--ouro);border-radius:50%;pointer-events:none;opacity:0;transform:translate(var(--x,50%),var(--y,50%));transition:opacity .35s}
+.olhar .anel-lente::before,.olhar .anel-lente::after{content:"";position:absolute;background:var(--ouro)}
+.olhar .anel-lente::before{left:50%;top:-8px;width:1px;height:calc(100% + 16px);background:linear-gradient(var(--ouro) 0 12px,transparent 12px calc(100% - 12px),var(--ouro) calc(100% - 12px))}
+.olhar .anel-lente::after{top:50%;left:-8px;height:1px;width:calc(100% + 16px);background:linear-gradient(to right,var(--ouro) 0 12px,transparent 12px calc(100% - 12px),var(--ouro) calc(100% - 12px))}
+.olhar.olhando .anel-lente{opacity:1}
+.olhar .tracos-lente{clip-path:circle(var(--r,120px) at var(--x,50%) var(--y,50%));opacity:0;transition:opacity .35s}
+.olhar.olhando .tracos-lente{opacity:1}
+
+/* ---------- celular ---------- */
+@media (max-width:860px){
+  body{font-size:16px}
+  .rotulo{white-space:normal;line-height:1.6}
+  .topo img{height:28px}
+  .abertura{padding:0 var(--m) 56px;align-items:end}
+  .abertura-foto{position:relative;width:calc(100% + 2*var(--m));height:62svh;margin:0 calc(-1*var(--m)) -70px;-webkit-mask-image:linear-gradient(to bottom,#000 55%,transparent);mask-image:linear-gradient(to bottom,#000 55%,transparent)}
+  .abertura-foto img.base{object-position:62% 30%}
+  .abertura{display:block}
+  .titulo-abertura{font-size:clamp(64px,20vw,110px)}
+  .ficha{position:static;width:auto;margin-top:28px}
+  .numeros-linha{flex-direction:column}
+  .numeros-linha span+span{margin:0;padding:0;border:0}
+  .btn{font-size:14.5px;padding-left:22px;gap:14px}
+  .visao-foto{width:100%;-webkit-mask-image:linear-gradient(to top,transparent 0,#000 52%);mask-image:linear-gradient(to top,transparent 0,#000 52%);height:68%}
+  .visao-foto img{object-position:58% 30%}
+  .visao-texto{width:100%;padding:0 var(--m) 96px;justify-content:flex-end}
+  .tese{font-size:clamp(38px,11vw,60px)}
+  .visao-final h2{font-size:clamp(28px,7.6vw,40px)}
+  .visao-corrido{display:block;padding:80px var(--m) 100px}
+  .visao-corrido .colunas{padding-top:32px}
+  .pratica,.voce,.incluido,.faq,.investimento-grade,.rodape,.doutor-texto{display:block}
+  .pratica-cabeca,.leitura,.faq h2{position:static}
+  .pratica-cabeca{margin-bottom:56px}
+  .itens li{grid-template-columns:44px 1fr}
+  .dia{grid-template-columns:1fr;gap:8px}
+  .dia:nth-child(n) .grande-num{padding-left:0}
+  .doutor-palco{height:70svh;min-height:420px}
+  .doutor-texto{margin-top:-140px}
+  .doutor-numeros strong{font-size:44px}
+  .doutor-numeros{border-left:0;padding-left:0;margin-top:40px;grid-template-columns:1fr 1fr}
+  .retrato-lateral{display:none}
+  .filme-cabeca{display:block}
+  .filme-cabeca p{margin-top:14px}
+  .quadro{width:80vw}
+  .case{display:block;margin-bottom:80px}
+  .case .olhar{width:72%;margin-bottom:24px}
+  .case:nth-of-type(even) .olhar{margin-left:auto}
+  .case:nth-of-type(even) blockquote{text-align:left}
+  .cases-cabeca{align-items:flex-start;text-align:left}
+  .cases-cabeca .rotulo{flex-direction:row}
+  .leitura{margin-top:56px}
+  .anel{width:220px}
+  .anel .contagem b{font-size:72px}
+  .grade-inclui{grid-template-columns:1fr}
+  .grade-inclui div:nth-child(n){border-right:0;padding-left:0}
+  .incluido h2,.faq h2{margin-bottom:48px}
+  .investimento-lado{margin-top:40px}
+  .convite-texto{padding-bottom:110px}
+  .barra{width:calc(100% - 32px);bottom:14px}
+  .olhar{cursor:auto}
+}
+
+/* ---------- formulário ---------- */
+dialog.form{width:min(640px,calc(100% - 24px));max-height:calc(100dvh - 24px);padding:0;border:1px solid rgba(237,230,216,.16);background:var(--superficie);color:var(--tinta);overflow:auto}
+dialog.form::backdrop{background:rgba(5,4,3,.82);backdrop-filter:blur(6px)}
+.form-dentro{padding:clamp(24px,5vw,48px)}
+.form .fechar{position:absolute;top:14px;right:14px;width:40px;height:40px;background:none;border:0;color:var(--tinta);font-size:26px;cursor:pointer;line-height:1}
+.form h2{font-size:clamp(30px,4vw,42px);margin:0 0 10px}
+.form .sub{color:var(--suave);font-size:15px;margin-bottom:30px}
+.campo{display:flex;flex-direction:column;gap:8px;margin-bottom:20px}
+.campo label,.campo legend{font-size:13.5px;font-weight:500;color:var(--suave)}
+.campo legend{margin-bottom:10px;padding:0}
+.campo em{font-style:normal;font-weight:400;color:var(--suave)}
+fieldset.campo{border:0;padding:0;margin:0 0 22px}
+.dupla{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.form input[type=text],.form input[type=tel],.form input[type=email]{width:100%;min-width:0;background:transparent;border:0;border-bottom:1px solid rgba(237,230,216,.28);border-radius:0;color:var(--tinta);font:inherit;font-size:17px;padding:8px 0 12px;transition:border-color .3s}
+.form input:focus{outline:none;border-bottom-color:var(--ouro)}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chips label{position:relative;font-weight:400}
+.chips input{position:absolute;opacity:0;inset:0;cursor:pointer}
+.chips span{display:block;padding:9px 17px;border-radius:999px;box-shadow:inset 0 0 0 1px rgba(237,230,216,.22);font-size:14px;color:var(--tinta);cursor:pointer;transition:box-shadow .25s,background .25s,color .25s}
+.chips input:checked+span{box-shadow:inset 0 0 0 1px var(--ouro);background:rgba(201,163,90,.14);color:var(--ouro)}
+.chips input:focus-visible+span{outline:2px solid var(--ouro);outline-offset:2px}
+.aceite{display:grid;grid-template-columns:20px 1fr;gap:12px;font-size:14px;color:var(--suave);margin:8px 0 26px;cursor:pointer}
+.aceite input{accent-color:var(--ouro);width:18px;height:18px;margin-top:2px}
+.form .btn{width:100%}
+.titulo-abertura.titulo-angulo{font-size:clamp(34px,4.6vw,76px);line-height:1.04;letter-spacing:-.02em;margin-left:0}
+.titulo-abertura.titulo-angulo em{padding-left:0}
+.campo[hidden]{display:none}
+.btn[disabled]{opacity:.6;cursor:wait}
+.erro{color:#E29A86;font-size:14px;min-height:1.2em;margin:0 0 12px}
+@media (max-width:560px){.dupla{grid-template-columns:1fr}}
+
+/* ---------- movimento reduzido ---------- */
+.fx-reduzido .letra,.fx-reduzido .credito{opacity:1!important;animation:none!important;transition:none!important}
+.fx-reduzido .abertura-foto img.base{opacity:1;transform:none;animation:none}
+.fx-reduzido .visao-foto{position:relative;height:70vh;width:100%}
+.fx-reduzido .visao-texto{width:100%;padding:60px var(--m)}
+.fx-reduzido .empilha{display:block}
+.fx-reduzido .empilha .fantasma{display:none}
+.fx-reduzido .visao-final{margin-top:48px}
+.fx-reduzido .visao-foto .desfoque{display:none}
+.fx-reduzido .medidor{display:none}
+.fx-reduzido .barra{transition:none}
+.fx-reduzido .pi{transform:none;transition:none}
+</style>
+</head>
+<body>
+
+<header class="topo" id="topo">
+  <a href="#abertura" aria-label="Dr. Ritchie, A Verdadeira Harmonia — início"><img src="/v2/img/logo-dr-ritchie.png" alt="Dr. Ritchie, A Verdadeira Harmonia" width="900" height="180"></a>
+  <a data-evt="cta_topo" class="btn btn-fantasma abre-form" href="https://wa.me/5511936206406?text=EU%20QUERO%20-%20Al%C3%A9m%20do%20%C3%93bvio%20(4%2C%205%20e%206%20de%20dezembro)">Garantir vaga</a>
+</header>
+
+<main>
+
+<!-- CENA 1 — CRÉDITOS -->
+<section class="abertura" id="abertura">
+  <figure class="abertura-foto">
+    <div class="paralaxe" data-fx-paralaxe="0.12">
+      <div class="olhar" style="position:absolute;inset:0" data-face="39,73,11,26,47,70,61">
+        <img class="base" src="/v2/img/hero.webp" alt="Dr. Ritchie" width="1080" height="720" fetchpriority="high">
+      </div>
+    </div>
+  </figure>
+  <div class="abertura-texto">
+    <p class="rotulo credito">Última turma de 2026 · Somente 12 vagas</p>
+    <h1 class="titulo-abertura" aria-label="Além do Óbvio"><span class="linha" data-credito>Além do</span><em class="linha" data-credito>Óbvio</em></h1>
+    <p class="data-abertura credito">4, 5 e 6 de dezembro, em São Paulo</p>
+    <p class="lead credito">Três dias de imersão presencial em Full Face com o Dr. Ritchie, com prática em pacientes reais.</p>
+    <a data-evt="cta_hero" class="btn abre-form credito" href="https://wa.me/5511936206406"><span>Quero garantir minha vaga na próxima turma</span><span class="btn-mira" aria-hidden="true"><svg viewBox="0 0 20 20"><circle cx="10" cy="10" r="6.2"/><path d="M10 0v4M10 16v4M0 10h4M16 10h4"/><circle class="nucleo" cx="10" cy="10" r="1.7"/></svg></span></a>
+    <p class="numeros-linha credito"><span><b>+12 mil</b> pacientes atendidos</span><span><b>+60 mil</b> alunos impactados</span><span>somente <b>12</b> vagas</span></p>
+  </div>
+  <dl class="ficha credito">
+    <dt>Onde</dt><dd>Av. Magalhães de Castro, 4800, Cidade Jardim, São Paulo</dd>
+    <dt>Formato</dt><dd>Presencial, os três dias inteiros, em turma de no máximo 12 alunos</dd>
+  </dl>
+</section>
+
+<!-- CENA 2 — A VISÃO (PICO) -->
+<section class="visao" id="visao" data-fx-fixa data-fx-altura="5" aria-label="Não é apenas mais um curso">
+  <div class="fx-palco palco-visao">
+    <div class="visao-foto">
+      <div class="camada" data-fx-escala="1.22,1" data-fx-faixa="0,0.7">
+        <img class="desfoque" src="/v2/img/gesto-desfoque.webp" alt="" aria-hidden="true">
+        <img class="nitida" src="/v2/img/gesto.webp" alt="Dr. Ritchie" data-fx-opacidade="0,1" data-fx-faixa="0.12,0.55">
+        <svg class="tracos" id="tracos-visao" aria-hidden="true" data-fx-opacidade="0,1" data-fx-faixa="0.42,0.62"></svg>
+      </div>
+    </div>
+    <div class="visao-texto">
+      <p class="rotulo">Não é apenas mais um curso</p>
+      <div class="empilha">
+        <div class="teses" data-fx-opacidade="1,0" data-fx-faixa="0.66,0.76">
+          <p class="tese tese-a" data-fx-y="40,0" data-fx-faixa="0,0.12">A técnica você aprende.</p>
+          <p class="tese tese-b empilha">
+            <span class="fantasma" aria-hidden="true" data-fx-opacidade="0.9,0" data-fx-faixa="0.15,0.55">A visão você desenvolve.</span>
+            <span class="nitida" data-fx-opacidade="0,1" data-fx-faixa="0.18,0.55">A visão você desenvolve.</span>
+          </p>
+        </div>
+        <div class="visao-final" data-fx-opacidade="0,1" data-fx-faixa="0.76,0.92">
+          <h2>Existe diferença entre conhecer uma técnica e <em>compreender o raciocínio</em> por trás de cada decisão.</h2>
+        </div>
+      </div>
+    </div>
+    <div class="medidor" aria-hidden="true"><span>Foco</span><span class="trilha"><i></i></span></div>
+  </div>
+</section>
+
+<section class="visao-corrido">
+  <p class="grande">O Além do Óbvio não foi criado para ensinar protocolos prontos.</p>
+  <div class="colunas">
+    <p>É a técnica artesanal de Full Face do Dr. Ritchie, ensinada de perto, com planejamento, avaliação e condução clínica discutidos lado a lado. Você aprofunda a visão ao lado de um profissional experiente e troca com outros colegas da Harmonização.</p>
+    <p>Resultados que fazem pacientes de alto padrão atravessarem cidades para serem atendidos por você nascem de visão, não de receita.</p>
+  </div>
+</section>
+
+<!-- CENA 3 — NA CADEIRA -->
+<section class="pratica" id="pratica">
+  <div class="pratica-cabeca">
+    <p class="rotulo">O que você vai viver</p>
+    <h2 data-mascara>Prática em <em>pacientes reais</em>, com supervisão.</h2>
+    <p class="suave medida">Você não assiste de longe. Atende, é acompanhado e discute cada decisão clínica no mesmo dia.</p>
+  </div>
+  <div>
+    <div class="placar" aria-hidden="true">
+      <div>
+        <div class="num"><span>3</span><small>a</small><span class="alto" data-fx="contar" data-fx-inicio="3" data-fx-fim="6" data-fx-duracao="1400">6</span></div>
+        <span class="leg">full faces por aluno</span>
+      </div>
+      <div>
+        <div class="num"><span>2</span><small>a</small><span class="alto" data-fx="contar" data-fx-inicio="2" data-fx-fim="3" data-fx-duracao="1200">3</span></div>
+        <span class="leg">práticas por dia</span>
+      </div>
+    </div>
+    <ol class="itens">
+      <li><span class="n">01</span><div><h3>Full Face na prática</h3><p>De 3 a 6 full faces completas por aluno, em pacientes reais, com supervisão do Dr. Ritchie, que acompanha as salas.</p></div></li>
+      <li><span class="n">02</span><div><h3>De 2 a 3 práticas por dia</h3><p>Você sai tendo feito, não só assistido.</p></div></li>
+      <li><span class="n">03</span><div><h3>Áreas de <span class="risco">maior risco</span></h3><p>Têmpora, glabela, nariz e crow lifting, com o raciocínio por trás de cada decisão.</p></div></li>
+      <li><span class="n">04</span><div><h3>Planejamento e condução</h3><p>Da avaliação ao plano de tratamento, para conduzir o paciente com segurança e posicionamento.</p></div></li>
+    </ol>
+  </div>
+</section>
+
+<!-- CENA 4 — TRÊS DIAS (OSSO) -->
+<section class="dias" id="dias">
+  <p class="rotulo">Como serão os três dias</p>
+  <h2 data-mascara>Do primeiro encontro ao <em>certificado.</em></h2>
+  <div class="dias-lista">
+    <div class="dia">
+      <div class="grande-num" aria-hidden="true" data-fx="esquerda">04</div>
+      <div class="quando"><b>Dia 1</b>04 de dezembro</div>
+      <p>Início da imersão, com coquetel exclusivo para a turma.</p>
+    </div>
+    <div class="dia">
+      <div class="grande-num" aria-hidden="true" data-fx="esquerda">05</div>
+      <div class="quando"><b>Dia 2</b>05 de dezembro</div>
+      <p>Parte prática com pacientes reais e acompanhamento próximo.</p>
+    </div>
+    <div class="dia">
+      <div class="grande-num" aria-hidden="true" data-fx="esquerda">06</div>
+      <div class="quando"><b>Dia 3</b>06 de dezembro</div>
+      <p>Certificação, troféu e a foto da turma.</p>
+    </div>
+  </div>
+  <p class="nota">Carga horária: três dias, o dia todo. A programação detalhada de cada dia é enviada aos inscritos.</p>
+</section>
+
+<!-- CENA 5 — QUEM CONDUZ -->
+<section class="doutor" id="doutor">
+  <figure class="doutor-palco">
+    <div class="paralaxe" data-fx-paralaxe="0.18">
+      <div class="olhar" style="position:absolute;inset:0">
+        <img class="base" src="/v2/img/palco-wide.webp" alt="Dr. Ritchie no palco do Além do Óbvio" width="1600" height="1000" loading="lazy">
+      </div>
+    </div>
+  </figure>
+  <div class="doutor-texto">
+    <div>
+      <p class="rotulo">Quem conduz</p>
+      <h2 data-mascara>Dr. <em>Ritchie</em></h2>
+      <div class="bio">
+        <p>Cirurgião-dentista, professor e referência na Harmonização Facial, fundador do Além do Óbvio.</p>
+        <p>A experiência de quem atende, ensina e treina profissionais todos os dias. É esse método que ele abre, ao vivo, dentro da sala.</p>
+      </div>
+    </div>
+    <div class="doutor-numeros">
+      <div><strong><span data-fx="contar" data-fx-fim="12" data-fx-prefixo="+" data-fx-sufixo=" mil">+12 mil</span></strong><span class="leg">pacientes atendidos</span></div>
+      <div><strong><span data-fx="contar" data-fx-fim="60" data-fx-prefixo="+" data-fx-sufixo=" mil" data-fx-duracao="2000">+60 mil</span></strong><span class="leg">alunos impactados</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- CENA 6 — PROVA -->
+<section class="prova" id="prova" data-fx-fixa data-fx-altura="3.4">
+  <div class="fx-palco palco-filme">
+    <div class="filme-cabeca">
+      <div>
+        <p class="rotulo">A experiência Além do Óbvio</p>
+        <h2>Assim foi a <em>última edição.</em></h2>
+      </div>
+      <p>Registros reais da turma de agosto de 2026: consulta, prática, reconhecimento e celebração.</p>
+    </div>
+    <div class="rolo">
+      <div data-fx="trilho">
+        <figure class="quadro"><div class="olhar"><img class="base" src="/v2/img/turma.webp" alt="Turma do Além do Óbvio reunida" loading="lazy"></div><figcaption><span>A turma de agosto</span></figcaption></figure>
+        <figure class="quadro"><div class="olhar"><img class="base" src="/v2/img/prof.webp" alt="Dr. Ritchie planejando o caso" loading="lazy"></div><figcaption><span>Planejamento do caso</span></figcaption></figure>
+        <figure class="quadro"><div class="olhar"><img class="base" src="/v2/img/palco.webp" alt="Dr. Ritchie no palco durante a imersão" loading="lazy" style="object-position:50% 30%"></div><figcaption><span>Nos bastidores da imersão</span></figcaption></figure>
+        <figure class="quadro"><div class="olhar"><img class="base" src="/v2/img/turma2.webp" alt="Turma comemorando com o Dr. Ritchie" loading="lazy"></div><figcaption><span>Celebração</span></figcaption></figure>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cases" id="cases">
+  <div class="cases-cabeca">
+    <p class="rotulo">Quem já viveu, conta</p>
+    <h2 data-mascara>Cases de <em>sucesso.</em></h2>
+  </div>
+  <figure class="case">
+    <div class="olhar" data-fx="esquerda"><img class="base" src="/v2/img/premio1.webp" alt="Case de sucesso · turma de agosto de 2026" loading="lazy"></div>
+    <blockquote><p>“A técnica do Ritchie é genial, pra mim é um divisor de águas. Ele não tem medo de mostrar a técnica dele. Ele quer que a gente aprenda pra andar junto com ele.”</p><cite>Case de sucesso · turma de agosto de 2026</cite></blockquote>
+  </figure>
+  <figure class="case">
+    <div class="olhar" data-fx="direita"><img class="base" src="/v2/img/premio2.webp" alt="Case de sucesso · turma de agosto de 2026" loading="lazy"></div>
+    <blockquote><p>“Ele faz tudo com muita calma, explicando milimetricamente, bem devagar. Eu consegui pegar vários insights que vou aplicar no meu dia a dia.”</p><cite>Case de sucesso · turma de agosto de 2026</cite></blockquote>
+  </figure>
+  <figure class="case">
+    <div class="olhar" data-fx="esquerda"><img class="base" src="/v2/img/premio3.webp" alt="Case de sucesso · turma de agosto de 2026" loading="lazy"></div>
+    <blockquote><p>“É diferente de tudo que eu já vi. Ele traz um linguajar muito fácil da gente entender, e faz com que tudo fique mais fácil.”</p><cite>Case de sucesso · turma de agosto de 2026</cite></blockquote>
+  </figure>
+</section>
+
+<!-- CENA 7 — VOCÊ -->
+<section class="voce" id="voce">
+  <div>
+    <p class="rotulo">Faz sentido para você?</p>
+    <h2>Marque o que <em>você vive hoje.</em></h2>
+    <p class="intro">Sem pressa, sem pegadinha. É só para você enxergar se o Além do Óbvio é o seu próximo passo.</p>
+    <ul class="marcas" id="marcas">
+      <li><label><input type="checkbox"><span>Sinto que domino a técnica, mas não o raciocínio por trás de cada decisão.</span></label></li>
+      <li><label><input type="checkbox"><span>Tenho receio de intercorrências em áreas de maior risco, como têmpora, glabela e nariz.</span></label></li>
+      <li><label><input type="checkbox"><span>Meus Full Faces ficam corretos, mas ainda não tenho a visão de harmonia que quero.</span></label></li>
+      <li><label><input type="checkbox"><span>Já fiz cursos em que só assisti demonstração e saí sem praticar o suficiente.</span></label></li>
+      <li><label><input type="checkbox"><span>Sigo protocolos prontos sem saber adaptar ao rosto de cada paciente.</span></label></li>
+      <li><label><input type="checkbox"><span>Tenho dificuldade em planejar o tratamento completo, não só o procedimento isolado.</span></label></li>
+      <li><label><input type="checkbox"><span>Sinto insegurança para posicionar meu trabalho e conduzir pacientes de alto padrão.</span></label></li>
+      <li><label><input type="checkbox"><span>Quero aprender de perto, com quem atende e ensina todos os dias.</span></label></li>
+    </ul>
+    <p class="pre">O curso é voltado a profissionais da Harmonização Facial que atendem pacientes. A equipe confirma os pré-requisitos na inscrição.</p>
+  </div>
+  <aside class="leitura" aria-live="polite">
+    <div class="anel" aria-hidden="true">
+      <svg viewBox="0 0 200 200"><circle class="fundo-anel" cx="100" cy="100" r="96"/><circle class="arco" id="arco" cx="100" cy="100" r="96" style="--c:603.19"/></svg>
+      <div class="contagem"><b id="contagem">0</b><span>de 8</span></div>
+    </div>
+    <p class="devolutiva vazia" id="devolutiva">Marque ao menos um item para ver o resultado.</p>
+    <a data-evt="cta_checklist" class="btn abre-form" id="btn-devolutiva" hidden href="https://wa.me/5511936206406?text=EU%20QUERO%20-%20Al%C3%A9m%20do%20%C3%93bvio%20(4%2C%205%20e%206%20de%20dezembro)"><span>Quero conversar sobre a minha vaga</span><span class="btn-mira" aria-hidden="true"><svg viewBox="0 0 20 20"><circle cx="10" cy="10" r="6.2"/><path d="M10 0v4M10 16v4M0 10h4M16 10h4"/><circle class="nucleo" cx="10" cy="10" r="1.7"/></svg></span></a>
+  </aside>
+</section>
+
+<!-- CENA 8 — DECISÃO -->
+<section class="incluido" id="incluido">
+  <div>
+    <p class="rotulo">O que está incluído</p>
+    <h2 data-mascara>Você <em>não precisa levar nada.</em></h2>
+  </div>
+  <div class="grade-inclui">
+    <div><span class="n">01</span><h3>Os três dias de imersão</h3><p>Aulas, demonstrações e prática supervisionada.</p></div>
+    <div><span class="n">02</span><h3>Material e kit</h3><p>Material didático impresso e Press Kit personalizado premium. Scrub, jaleco e pantufa entregues a você.</p></div>
+    <div><span class="n">03</span><h3>Alimentação</h3><p>Welcome coffee, almoço, lanche da tarde e jantar nos três dias, mais o coquetel exclusivo do dia 1.</p></div>
+    <div><span class="n">04</span><h3>Certificação e troféu</h3><p>Certificado de conclusão e troféu.</p></div>
+  </div>
+</section>
+
+<section class="investimento" id="investimento">
+  <p class="rotulo">Investimento e inscrição</p>
+  <h2 data-mascara>A última turma <em>de 2026.</em></h2>
+  <div class="investimento-grade">
+    <div class="cartao">
+      <p class="pergunta">Quer saber o investimento e as condições da última turma de 2026?</p>
+      <ul>
+        <li>Os três dias, o kit e a alimentação incluídos</li>
+        <li>Somente 12 vagas nesta turma</li>
+      </ul>
+      <a data-evt="cta_investimento" class="btn abre-form" href="https://wa.me/5511936206406?text=EU%20QUERO%20-%20Al%C3%A9m%20do%20%C3%93bvio%20(4%2C%205%20e%206%20de%20dezembro)"><span>Saber mais</span><span class="btn-mira" aria-hidden="true"><svg viewBox="0 0 20 20"><circle cx="10" cy="10" r="6.2"/><path d="M10 0v4M10 16v4M0 10h4M16 10h4"/><circle class="nucleo" cx="10" cy="10" r="1.7"/></svg></span></a>
+    </div>
+    <div class="investimento-lado">
+      <p>Turmas pequenas, de no máximo 12 alunos, para que o Dr. Ritchie acompanhe cada sala.</p>
+      <p>A inscrição é feita com a nossa equipe no WhatsApp. Ela confirma sua habilitação profissional, tira dúvidas e apresenta o investimento, as condições e as regras de inscrição e cancelamento.</p>
+      <p>Contato: <a href="https://wa.me/5511936206406">(11) 93620-6406</a></p>
+    </div>
+  </div>
+</section>
+
+<section class="faq" id="faq">
+  <div>
+    <p class="rotulo">Perguntas frequentes</p>
+    <h2>O que você <em>precisa saber.</em></h2>
+  </div>
+  <div>
+    <details><summary>O que é o Além do Óbvio?</summary><p>Uma imersão presencial de três dias em Full Face com o Dr. Ritchie, para profissionais da Harmonização Facial que querem aprofundar o raciocínio clínico.</p></details>
+    <details><summary>Para quem é indicado?</summary><p>Para profissionais da Harmonização Facial que atendem pacientes e querem evoluir tecnicamente e na visão clínica. A equipe confirma os pré-requisitos na inscrição.</p></details>
+    <details><summary>Quando e onde será?</summary><p>Nos dias 4, 5 e 6 de dezembro de 2026, na Av. Magalhães de Castro, 4800, Cidade Jardim, São Paulo. Local sujeito a alterações.</p></details>
+    <details><summary>É presencial? Qual é a carga horária?</summary><p>É presencial. São três dias, o dia todo.</p></details>
+    <details><summary>Haverá prática com pacientes?</summary><p>Sim. Cada aluno realiza de 3 a 6 full faces completas em pacientes reais, com supervisão do Dr. Ritchie.</p></details>
+    <details><summary>Receberei certificado?</summary><p>Sim, certificado de conclusão e troféu.</p></details>
+    <details><summary>O que está incluído?</summary><p>Os três dias de imersão, material didático impresso, Press Kit, scrub, jaleco e pantufa, alimentação (welcome coffee, almoço, lanche da tarde e jantar), coquetel do dia 1 certificado e troféu.</p></details>
+    <details><summary>Qual é o investimento?</summary><p>Clique em “Saber mais” e a equipe envia o valor e as condições de pagamento pelo WhatsApp.</p></details>
+    <details><summary>Como funcionam transferência e cancelamento?</summary><p>A equipe envia as regras de inscrição, transferência e cancelamento junto com as condições de pagamento, antes de você confirmar.</p></details>
+    <details><summary>Como falo com a equipe e confirmo minha participação?</summary><p>Pelo WhatsApp (11) 93620-6406. Clique em qualquer botão desta página, preencha o formulário rápido e continue a conversa com a equipe no WhatsApp.</p></details>
+  </div>
+</section>
+
+<section class="convite" id="convite">
+  <figure class="convite-foto">
+    <div class="paralaxe" data-fx-paralaxe="0.16">
+      <div class="olhar" style="position:absolute;inset:0"><img class="base" src="/v2/img/festa.webp" alt="Turma do Além do Óbvio celebrando" loading="lazy"></div>
+    </div>
+  </figure>
+  <div class="convite-texto">
+    <p class="rotulo">Convite final</p>
+    <h2 data-mascara>A próxima experiência Além do Óbvio <em>já tem data.</em></h2>
+    <p class="datas" data-fx="digitar" data-fx-duracao="1300">4, 5 e 6 de dezembro</p>
+    <p class="desc">Três dias para aprofundar seu conhecimento, ampliar sua visão e viver uma experiência presencial com o Dr. Ritchie.</p>
+    <a data-evt="cta_final" class="btn abre-form" href="https://wa.me/5511936206406?text=EU%20QUERO%20-%20Al%C3%A9m%20do%20%C3%93bvio%20(4%2C%205%20e%206%20de%20dezembro)"><span>Quero estar nessa turma</span><span class="btn-mira" aria-hidden="true"><svg viewBox="0 0 20 20"><circle cx="10" cy="10" r="6.2"/><path d="M10 0v4M10 16v4M0 10h4M16 10h4"/><circle class="nucleo" cx="10" cy="10" r="1.7"/></svg></span></a>
+  </div>
+</section>
+
+</main>
+
+<footer class="rodape">
+  <div>
+    <img src="/v2/img/logo-dr-ritchie.png" alt="Dr. Ritchie, A Verdadeira Harmonia" width="900" height="180" loading="lazy">
+    <p class="assina">Dr. Ritchie · Além do Óbvio · A verdadeira harmonia</p>
+  </div>
+  <div class="legal">
+    <p>Os dados que você informa no formulário (nome, contato e informações profissionais) são usados apenas para o atendimento sobre o curso, conforme a LGPD. Você pode pedir a exclusão a qualquer momento.</p>
+    <p>Os aprendizados e resultados variam conforme cada profissional. Este material não promete faturamento nem resultado clínico específico. Imagens de edições anteriores, usadas com autorização.</p>
+  </div>
+</footer>
+
+<a data-evt="cta_fixo" class="btn barra abre-form" id="barra" href="https://wa.me/5511936206406?text=EU%20QUERO%20-%20Al%C3%A9m%20do%20%C3%93bvio%20(4%2C%205%20e%206%20de%20dezembro)"><span>Quero participar da próxima turma</span><span class="btn-mira" aria-hidden="true"><svg viewBox="0 0 20 20"><circle cx="10" cy="10" r="6.2"/><path d="M10 0v4M10 16v4M0 10h4M16 10h4"/><circle class="nucleo" cx="10" cy="10" r="1.7"/></svg></span></a>
+
+<dialog class="form" id="form" aria-labelledby="form-titulo">
+  <button class="fechar" type="button" aria-label="Fechar" data-fechar>×</button>
+  <form class="form-dentro" id="form-lead" novalidate>
+    <p class="rotulo">Além do Óbvio</p>
+    <h2 id="form-titulo">Conte um pouco sobre você</h2>
+    <p class="sub">Leva 1 minuto. Em seguida, você continua a conversa com a nossa equipe no WhatsApp.</p>
+    <div class="campo"><label for="f-nome">Nome completo</label><input id="f-nome" name="name" type="text" autocomplete="name" required></div>
+    <div class="dupla">
+      <div class="campo"><label for="f-whats">WhatsApp</label><input id="f-whats" name="whatsapp" type="tel" autocomplete="tel" placeholder="(11) 99999-9999" required></div>
+      <div class="campo"><label for="f-email">E-mail</label><input id="f-email" name="email" type="email" autocomplete="email" required></div>
+    </div>
+    <div class="campo"><label for="f-cidade">Cidade</label><input id="f-cidade" name="city" type="text" autocomplete="address-level2" required></div>
+    <fieldset class="campo"><legend>Profissão</legend><div class="chips">
+      <label><input type="radio" name="profession" value="Dentista" required><span>Dentista</span></label>
+      <label><input type="radio" name="profession" value="Biomédico(a)"><span>Biomédico(a)</span></label>
+      <label><input type="radio" name="profession" value="Médico(a)"><span>Médico(a)</span></label>
+      <label><input type="radio" name="profession" value="Outra"><span>Outra</span></label>
+    </div></fieldset>
+    <div class="campo" id="campo-outra" hidden><label for="f-outra">Qual?</label><input id="f-outra" name="professionOther" type="text"></div>
+    <fieldset class="campo"><legend>Há quanto tempo você atua no mercado?</legend><div class="chips">
+      <label><input type="radio" name="experience" value="Ainda não atuo" required><span>Ainda não atuo</span></label>
+      <label><input type="radio" name="experience" value="Menos de 1 ano"><span>Menos de 1 ano</span></label>
+      <label><input type="radio" name="experience" value="1 a 2 anos"><span>1 a 2 anos</span></label>
+      <label><input type="radio" name="experience" value="3 a 5 anos"><span>3 a 5 anos</span></label>
+      <label><input type="radio" name="experience" value="Mais de 5 anos"><span>Mais de 5 anos</span></label>
+    </div></fieldset>
+    <fieldset class="campo"><legend>Você já faz harmonização facial?</legend><div class="chips">
+      <label><input type="radio" name="fullFace" value="Ainda não faço" required><span>Ainda não faço</span></label>
+      <label><input type="radio" name="fullFace" value="Faço alguns procedimentos"><span>Faço alguns procedimentos</span></label>
+      <label><input type="radio" name="fullFace" value="Já faço Full Face"><span>Já faço Full Face</span></label>
+    </div></fieldset>
+    <fieldset class="campo"><legend>Qual é a sua maior dificuldade hoje?</legend><div class="chips">
+      <label><input type="radio" name="difficulty" value="Segurança técnica" required><span>Segurança técnica</span></label>
+      <label><input type="radio" name="difficulty" value="Posicionamento"><span>Posicionamento</span></label>
+      <label><input type="radio" name="difficulty" value="Captação de pacientes"><span>Captação de pacientes</span></label>
+      <label><input type="radio" name="difficulty" value="Faturamento"><span>Faturamento</span></label>
+    </div></fieldset>
+    <fieldset class="campo"><legend>Você já fez algum curso com o Dr. Ritchie?</legend><div class="chips">
+      <label><input type="radio" name="attended" value="Sim" required><span>Sim</span></label>
+      <label><input type="radio" name="attended" value="Não"><span>Não</span></label>
+    </div></fieldset>
+    <div class="dupla">
+      <div class="campo"><label for="f-insta">Instagram <em>(opcional)</em></label><input id="f-insta" name="instagram" type="text" placeholder="@seuperfil"></div>
+      <div class="campo"><label for="f-registro">Registro profissional <em>(opcional)</em></label><input id="f-registro" name="registry" type="text" placeholder="CRO / CRM / CRBM"></div>
+    </div>
+    <label class="aceite"><input type="checkbox" id="f-aceite" required><span>Aceito receber contato da equipe do Dr. Ritchie pelo WhatsApp sobre o Além do Óbvio.</span></label>
+    <p class="erro" id="form-erro" role="alert"></p>
+    <button class="btn" type="submit" id="form-enviar"><span>Continuar no WhatsApp</span><span class="btn-mira" aria-hidden="true"><svg viewBox="0 0 20 20"><circle cx="10" cy="10" r="6.2"/><path d="M10 0v4M10 16v4M0 10h4M16 10h4"/><circle class="nucleo" cx="10" cy="10" r="1.7"/></svg></span></button>
+  </form>
+</dialog>
+
+<script>
+/* ===== Página Além do Óbvio — comportamento sob medida (o motor não é editado) ===== */
+(function(){
+  "use strict";
+  var reduzido = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var WA = "https://wa.me/5511936206406";
+
+  /* --- 0. Rastreamento (igual ao site anterior): UTMs, ângulo do anúncio e Pixel da Meta --- */
+  var TRACKING_KEYS = ["utm_source","utm_medium","utm_campaign","utm_content","utm_term","angulo","campaign_name","campaign_id","adset_name","adset_id","ad_name","ad_id","campaign.name","campaign.id","adset.name","adset.id","ad.name","ad.id","fbclid"];
+  var PIXEL_ID = "28204701035866392";
+  function hex(n){
+    try { return crypto.randomUUID().replace(/-/g, "").slice(0, n); }
+    catch (e) { var o = ""; while (o.length < n) o += Math.floor(Math.random()*16).toString(16); return o; }
+  }
+  function lerRastreio(){
+    var t = {};
+    try {
+      var params = new URLSearchParams(window.location.search);
+      TRACKING_KEYS.forEach(function(k){ if (params.get(k)) t[k] = params.get(k); });
+      document.cookie.split(";").forEach(function(item){
+        var partes = item.trim().split("="), k = partes.shift();
+        if ((k === "_fbp" || k === "_fbc") && partes.length) t[k] = partes.join("=");
+      });
+    } catch (e) {}
+    try {
+      var anterior = JSON.parse(sessionStorage.getItem("ao_tracking") || "{}"), junto = {}, k;
+      for (k in anterior) junto[k] = anterior[k];
+      for (k in t) junto[k] = t[k];
+      t = junto;
+      sessionStorage.setItem("ao_tracking", JSON.stringify(t));
+      document.cookie = "ao_tracking=" + encodeURIComponent(JSON.stringify(t)) + "; Max-Age=1800; Path=/; SameSite=Lax";
+    } catch (e) {}
+    return t;
+  }
+  var rastreio = lerRastreio();
+  var referencia = "AO-" + hex(4).toUpperCase();
+
+  // Teste dinâmico: a headline do topo muda conforme o ângulo do anúncio (utm_content, utm_term ou angulo).
+  var ANGULOS = {
+    dualidade: { h1: "Conhecer a técnica é uma coisa. <em>Compreender o raciocínio</em> é outra.", lead: "Três dias de imersão presencial em Full Face com o Dr. Ritchie, com prática em pacientes reais." },
+    pergunta: { h1: "Você já atende. <em>Mas o Full Face ainda não sai do papel?</em>", lead: "Em três dias, com o Dr. Ritchie ao seu lado e pacientes reais, você aprende a planejar, avaliar e conduzir." },
+    consciencia: { h1: "O resultado do Full Face não está só na técnica. <em>Está na decisão clínica.</em>", lead: "É essa decisão que o Dr. Ritchie ensina de perto, no Além do Óbvio." },
+    historia: { h1: "Três dias ao lado do Dr. Ritchie, <em>com pacientes reais.</em>", lead: "Uma turma de no máximo 12 alunos, para você sair do curso executando com segurança." }
+  };
+  (function(){
+    var bruto = (rastreio.angulo || rastreio.utm_content || rastreio.utm_term || "").toLowerCase();
+    var chave = Object.keys(ANGULOS).filter(function(k){ return bruto.indexOf(k) >= 0; })[0];
+    if (!chave) return;
+    var h1 = document.querySelector(".titulo-abertura"), lead = document.querySelector(".abertura .lead");
+    if (h1) { h1.innerHTML = ANGULOS[chave].h1; h1.removeAttribute("aria-label"); h1.classList.add("titulo-angulo", "credito"); }
+    if (lead && ANGULOS[chave].lead) lead.textContent = ANGULOS[chave].lead;
+    rastreio.angulo = chave;
+  })();
+
+  (function(f, b, e, v){
+    if (f.fbq) return;
+    var n = f.fbq = function(){ n.callMethod ? n.callMethod.apply(n, arguments) : n.queue.push(arguments); };
+    if (!f._fbq) f._fbq = n;
+    n.push = n; n.loaded = true; n.version = "2.0"; n.queue = [];
+    var t = b.createElement(e); t.async = true; t.src = v;
+    var s0 = b.getElementsByTagName(e)[0]; s0.parentNode.insertBefore(t, s0);
+  })(window, document, "script", "https://connect.facebook.net/en_US/fbevents.js");
+  var idPagina = "pv-" + hex(12);
+  try {
+    window.fbq("init", PIXEL_ID);
+    var pv = { content_name: "Além do Óbvio", content_category: "Imersão presencial", page_url: window.location.href, referrer: document.referrer || undefined };
+    for (var kr in rastreio) pv[kr] = rastreio[kr];
+    window.fbq("track", "PageView", pv, { eventID: idPagina });
+  } catch (e) {}
+  function camada(evento, extra){
+    if (!window.dataLayer) return;
+    var o = { event: evento }, k;
+    for (k in extra) o[k] = extra[k];
+    for (k in rastreio) o[k] = rastreio[k];
+    window.dataLayer.push(o);
+  }
+  camada("ao_page_view", { event_id: idPagina });
+
+  /* --- 1. Créditos de abertura: letras que acendem como película --- */
+  document.querySelectorAll("[data-credito]").forEach(function(linha, li){
+    var texto = linha.textContent; linha.textContent = "";
+    linha.setAttribute("aria-hidden","true");
+    Array.from(texto).forEach(function(ch, i){
+      if (ch === " ") { linha.appendChild(document.createTextNode(" ")); return; }
+      var s = document.createElement("span"); s.className = "letra"; s.textContent = ch;
+      s.style.animationDelay = (380 + li*520 + i*70 + Math.random()*160).toFixed(0) + "ms";
+      linha.appendChild(s);
+    });
+  });
+  var creditos = document.querySelectorAll(".abertura .credito");
+  creditos.forEach(function(el, i){ el.style.transitionDelay = (1500 + i*140) + "ms"; });
+  requestAnimationFrame(function(){ requestAnimationFrame(function(){ document.documentElement.classList.add("creditos-prontos"); }); });
+  setTimeout(function(){ creditos.forEach(function(el){ el.style.transitionDelay = ""; }); }, 5200);
+
+  /* --- 1b. Títulos: cada linha sobe de trás de uma máscara --- */
+  if (!reduzido) document.querySelectorAll("[data-mascara]").forEach(function(h){
+    var ultimo = null;
+    (function envolver(no){
+      Array.from(no.childNodes).forEach(function(f){
+        if (f.nodeType === 1) { envolver(f); return; }
+        if (f.nodeType !== 3) return;
+        var frag = document.createDocumentFragment();
+        f.textContent.split(/(\s+)/).forEach(function(t, i){
+          if (!t) return;
+          if (/^\s+$/.test(t)) { frag.appendChild(document.createTextNode(" ")); return; }
+          if (i === 0 && ultimo && /^[,.;:!?]+$/.test(t)) { ultimo.textContent += t; return; }
+          var pm = document.createElement("span"); pm.className = "pm";
+          var pi = document.createElement("span"); pi.className = "pi"; pi.textContent = t;
+          pm.appendChild(pi); frag.appendChild(pm); ultimo = pi;
+        });
+        no.replaceChild(frag, f);
+      });
+    })(h);
+    new IntersectionObserver(function(e, obs){
+      if (!e[0].isIntersecting) return;
+      obs.disconnect();
+      var tops = [];
+      h.querySelectorAll(".pm").forEach(function(pm){
+        var t = pm.offsetTop; if (tops.indexOf(t) < 0) tops.push(t);
+        pm.firstChild.style.transitionDelay = (tops.indexOf(t) * 110) + "ms";
+      });
+      h.classList.add("revelado");
+    }, {threshold:.35}).observe(h);
+  });
+
+  /* --- 2. Topo e barra fixa --- */
+  var topo = document.getElementById("topo"), barra = document.getElementById("barra");
+  var abertura = document.getElementById("abertura"), visao = document.getElementById("visao"), convite = document.getElementById("convite");
+  var noFim = false;
+  new IntersectionObserver(function(e){ noFim = e[0].isIntersecting; atualizarTopo(); }, {threshold:.25}).observe(convite);
+  function atualizarTopo(){
+    var y = window.scrollY;
+    topo.classList.toggle("rolou", y > 40);
+    var rv = visao.getBoundingClientRect(), noPico = rv.top < window.innerHeight*0.5 && rv.bottom > window.innerHeight*0.5;
+    barra.classList.toggle("ativa", y > abertura.offsetHeight * 0.9 && !noFim && !noPico && !document.getElementById("form").open);
+  }
+  window.addEventListener("scroll", atualizarTopo, {passive:true}); atualizarTopo();
+
+  /* --- 3. O olhar do Doutor (movimento-assinatura) --- */
+  var NS = "http://www.w3.org/2000/svg";
+  function el(tag, attrs, pai){ var n = document.createElementNS(NS, tag); for (var k in attrs) n.setAttribute(k, attrs[k]); if (pai) pai.appendChild(n); return n; }
+
+  // mapeia % da imagem para px do quadro, respeitando object-fit: cover e object-position
+  function mapa(img, caixa){
+    var iw = img.naturalWidth || 1600, ih = img.naturalHeight || 1000;
+    var fw = caixa.offsetWidth, fh = caixa.offsetHeight;
+    var esc = Math.max(fw/iw, fh/ih), rw = iw*esc, rh = ih*esc;
+    var pos = getComputedStyle(img).objectPosition.split(" ");
+    var px = parseFloat(pos[0])/100, py = parseFloat(pos[1] || "50")/100;
+    if (isNaN(px)) px = .5; if (isNaN(py)) py = .5;
+    var ox = (fw - rw)*px, oy = (fh - rh)*py;
+    return { w:fw, h:fh, x:function(p){ return ox + rw*p/100; }, y:function(p){ return oy + rh*p/100; } };
+  }
+
+  // desenha a análise: terços faciais, eixo e linhas de harmonia; sem rosto, a grade de proporção
+  function desenhar(svg, img, caixa, face, comDesenho){
+    while (svg.firstChild) svg.removeChild(svg.firstChild);
+    var m = mapa(img, caixa);
+    svg.setAttribute("viewBox", "0 0 " + m.w + " " + m.h);
+    var c = comDesenho ? "desenho" : "";
+    if (face){
+      var x0 = m.x(face[0]), x1 = m.x(face[1]), ys = [m.y(face[2]), m.y(face[3]), m.y(face[4]), m.y(face[5])], xm = m.x(face[6]);
+      var pad = (x1 - x0)*0.32, a = x0 - pad, b = x1 + pad*0.6;
+      ys.forEach(function(y){ el("line", {x1:a, y1:y, x2:b, y2:y, "class":c}, svg); });
+      el("line", {x1:xm, y1:ys[0] - (ys[3]-ys[0])*.12, x2:xm, y2:ys[3] + (ys[3]-ys[0])*.1, "class":"tracejado"}, svg);
+      el("path", {d:"M"+x0+" "+ys[1]+" L"+xm+" "+ys[3]+" L"+x1+" "+ys[1], "class":c}, svg);
+      el("path", {d:"M"+(x0+(xm-x0)*.18)+" "+ys[2]+" Q"+xm+" "+(ys[2]+(ys[3]-ys[2])*.55)+" "+(x1-(x1-xm)*.18)+" "+ys[2], "class":c}, svg);
+      [[x0,ys[1]],[x1,ys[1]],[xm,ys[3]],[xm,ys[0]],[xm,ys[2]]].forEach(function(p){ el("circle", {cx:p[0], cy:p[1], r:2.6, "class":"ponto"}, svg); });
+      var rotulos = ["Terço superior","Terço médio","Terço inferior"];
+      for (var i=0;i<3;i++){ var t = el("text", {x:a-10, y:(ys[i]+ys[i+1])/2+3, "text-anchor":"end"}, svg); t.textContent = rotulos[i]; }
+      var e = el("text", {x:xm+8, y:ys[0]-(ys[3]-ys[0])*.06}, svg); e.textContent = "Eixo";
+    } else {
+      [1/3, 2/3].forEach(function(f){
+        el("line", {x1:m.w*f, y1:0, x2:m.w*f, y2:m.h, "class":c}, svg);
+        el("line", {x1:0, y1:m.h*f, x2:m.w, y2:m.h*f, "class":c}, svg);
+      });
+      el("line", {x1:0, y1:0, x2:m.w, y2:m.h, "class":"tracejado"}, svg);
+      el("line", {x1:m.w, y1:0, x2:0, y2:m.h, "class":"tracejado"}, svg);
+      [[1/3,1/3],[2/3,1/3],[1/3,2/3],[2/3,2/3]].forEach(function(p){ el("circle", {cx:m.w*p[0], cy:m.h*p[1], r:2.6, "class":"ponto"}, svg); });
+      var t2 = el("text", {x:m.w/3+8, y:m.h/3-8}, svg); t2.textContent = "Proporção";
+    }
+  }
+
+  var finoPonteiro = window.matchMedia("(pointer: fine)").matches;
+  document.querySelectorAll(".olhar").forEach(function(caixa){
+    var img = caixa.querySelector("img.base"); if (!img) return;
+    var face = caixa.dataset.face ? caixa.dataset.face.split(",").map(parseFloat) : null;
+    var lente = document.createElement("div"); lente.className = "lente"; lente.setAttribute("aria-hidden","true");
+    var copia = img.cloneNode(); copia.className = ""; copia.removeAttribute("loading"); copia.alt = ""; copia.removeAttribute("fetchpriority");
+    lente.appendChild(copia); caixa.appendChild(lente);
+    var svg = el("svg", {"class":"tracos tracos-lente", "aria-hidden":"true"}); caixa.appendChild(svg);
+    var anel = document.createElement("div"); anel.className = "anel-lente"; anel.setAttribute("aria-hidden","true"); caixa.appendChild(anel);
+    var alvo = {x:0,y:0}, atual = {x:0,y:0}, ativo = false, laco = null, soltar = null;
+    function raio(){ return Math.max(64, Math.min(150, caixa.offsetWidth*0.16)); }
+    function redesenhar(){ desenhar(svg, img, caixa, face, true); }
+    if (img.complete) redesenhar(); else img.addEventListener("load", redesenhar);
+    window.addEventListener("resize", redesenhar);
+    function aplicar(){
+      caixa.style.setProperty("--x", atual.x.toFixed(1) + "px");
+      caixa.style.setProperty("--y", atual.y.toFixed(1) + "px");
+    }
+    function seguir(){
+      atual.x += (alvo.x - atual.x)*0.2; atual.y += (alvo.y - atual.y)*0.2; aplicar();
+      if (ativo) laco = requestAnimationFrame(seguir); else laco = null;
+    }
+    function posicionar(ev, direto){
+      var r = caixa.getBoundingClientRect();
+      var ex = caixa.offsetWidth / r.width || 1, ey = caixa.offsetHeight / r.height || 1;
+      alvo.x = (ev.clientX - r.left)*ex; alvo.y = (ev.clientY - r.top)*ey;
+      if (direto || reduzido){ atual.x = alvo.x; atual.y = alvo.y; aplicar(); }
+    }
+    function entrar(ev){
+      clearTimeout(soltar);
+      caixa.style.setProperty("--r", raio().toFixed(0) + "px");
+      posicionar(ev, !ativo); ativo = true; caixa.classList.add("olhando");
+      if (!reduzido && !laco) laco = requestAnimationFrame(seguir);
+    }
+    function sair(){ ativo = false; caixa.classList.remove("olhando"); }
+    caixa.addEventListener("pointerenter", function(ev){ if (ev.pointerType === "mouse") entrar(ev); });
+    caixa.addEventListener("pointermove", function(ev){ if (ev.pointerType === "mouse"){ if (!ativo) entrar(ev); else posicionar(ev); } });
+    caixa.addEventListener("pointerleave", function(ev){ if (ev.pointerType === "mouse") sair(); });
+    // toque: a lente aparece onde o dedo encosta e some sozinha
+    caixa.addEventListener("pointerdown", function(ev){
+      if (ev.pointerType === "mouse") return;
+      entrar(ev);
+      soltar = setTimeout(sair, 2200);
+    });
+  });
+
+  /* botões levemente magnéticos (só com mouse) */
+  if (finoPonteiro && !reduzido) document.querySelectorAll(".btn:not(.barra)").forEach(function(b){
+    b.addEventListener("pointermove", function(ev){
+      var r = b.getBoundingClientRect();
+      b.style.setProperty("--mx", ((ev.clientX - r.left - r.width/2) * 0.12).toFixed(1) + "px");
+      b.style.setProperty("--my", ((ev.clientY - r.top - r.height/2) * 0.26).toFixed(1) + "px");
+    });
+    b.addEventListener("pointerleave", function(){ b.style.setProperty("--mx", "0px"); b.style.setProperty("--my", "0px"); });
+  });
+
+  /* análise desenhada sobre o rosto no pico (cena 2) */
+  var svgVisao = document.getElementById("tracos-visao");
+  var imgVisao = document.querySelector(".visao-foto img.nitida");
+  var caixaVisao = document.querySelector(".visao-foto .camada");
+  function tracarVisao(){ desenhar(svgVisao, imgVisao, caixaVisao, [38,69,8,23,44,64,59], false); }
+  if (imgVisao.complete) tracarVisao(); else imgVisao.addEventListener("load", tracarVisao);
+  window.addEventListener("resize", tracarVisao);
+
+  /* --- 4. Autoavaliação: devolutiva real da página original --- */
+  var marcas = document.querySelectorAll("#marcas input");
+  var contagem = document.getElementById("contagem"), devol = document.getElementById("devolutiva");
+  var arco = document.getElementById("arco"), btnDev = document.getElementById("btn-devolutiva");
+  var C = 603.19;
+  function ler(){
+    var n = 0; marcas.forEach(function(m){ if (m.checked) n++; });
+    contagem.textContent = n;
+    arco.style.strokeDashoffset = (C - C*n/8).toFixed(2);
+    if (n === 0){ devol.textContent = "Marque ao menos um item para ver o resultado."; devol.classList.add("vazia"); btnDev.hidden = true; return; }
+    devol.classList.remove("vazia"); btnDev.hidden = false;
+    var pre = "Você marcou " + n + " de 8. ";
+    if (n <= 2) devol.textContent = pre + "Já existe um ponto claro para evoluir, e é exatamente isso que trabalhamos de perto nos três dias.";
+    else if (n <= 5) devol.textContent = pre + "O Além do Óbvio foi desenhado para esse momento: prática em pacientes reais e o raciocínio por trás de cada decisão.";
+    else devol.textContent = pre + "Esse é o perfil de quem mais aproveita a imersão. Vale conversar com a equipe sobre a turma de dezembro.";
+  }
+  marcas.forEach(function(m){ m.addEventListener("change", ler); });
+
+  /* --- 5. Formulário → grava o lead (webhook da equipe) e segue para o WhatsApp --- */
+  var dialogo = document.getElementById("form"), form = document.getElementById("form-lead"), erro = document.getElementById("form-erro");
+  var enviar = document.getElementById("form-enviar"), rotuloEnviar = enviar.querySelector("span"), campoOutra = document.getElementById("campo-outra");
+  var ctaAtual = "cta", enviando = false;
+  document.querySelectorAll(".abre-form").forEach(function(a){
+    a.addEventListener("click", function(ev){
+      if (typeof dialogo.showModal !== "function") return; // sem suporte: segue o link direto
+      ev.preventDefault(); erro.textContent = "";
+      ctaAtual = a.dataset.evt || "cta";
+      camada("ao_form_open", { cta: ctaAtual });
+      dialogo.showModal(); atualizarTopo();
+    });
+  });
+  dialogo.querySelector("[data-fechar]").addEventListener("click", function(){ dialogo.close(); });
+  dialogo.addEventListener("click", function(ev){ if (ev.target === dialogo) dialogo.close(); });
+  dialogo.addEventListener("close", atualizarTopo);
+  form.querySelectorAll('input[name="profession"]').forEach(function(r){
+    r.addEventListener("change", function(){ campoOutra.hidden = form.elements.profession.value !== "Outra"; });
+  });
+
+  function telefone(bruto){
+    var v = String(bruto).trim(), d = v.replace(/\D/g, "");
+    if (v.charAt(0) === "+") return d.length >= 10 && d.length <= 15 ? d : null;
+    d = d.replace(/^0+/, "");
+    if (d.length === 10 || d.length === 11) return "55" + d;
+    if ((d.length === 12 || d.length === 13) && d.indexOf("55") === 0) return d;
+    return null;
+  }
+  function valor(nome){ var c = form.elements[nome]; return c ? String(c.value || "").trim() : ""; }
+  function validar(){
+    var escolhas = [["profession"],["experience"],["fullFace"],["difficulty"],["attended"]];
+    if (valor("name").split(/\s+/).filter(Boolean).length < 2) return ["Informe nome e sobrenome.", form.elements.name];
+    if (!telefone(valor("whatsapp"))) return ["Informe um WhatsApp válido, com DDD.", form.elements.whatsapp];
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(valor("email"))) return ["Informe um e-mail válido.", form.elements.email];
+    if (valor("city").length < 2) return ["Informe sua cidade.", form.elements.city];
+    for (var i = 0; i < escolhas.length; i++) {
+      if (!valor(escolhas[i][0])) return ["Escolha uma opção em cada pergunta para continuar.", form.querySelector('input[name="' + escolhas[i][0] + '"]')];
+      if (escolhas[i][0] === "profession" && valor("profession") === "Outra" && !valor("professionOther")) return ["Conte qual é a sua profissão.", form.elements.professionOther];
+    }
+    if (!document.getElementById("f-aceite").checked) return ["Aceite para continuarmos pelo WhatsApp.", document.getElementById("f-aceite")];
+    return null;
+  }
+
+  // Codifica o rastreio em caracteres de largura zero (4 por byte): nada aparece na mensagem do WhatsApp.
+  var LARGURA_ZERO = ["​", "‌", "‍", "⁠"];
+  function fichaInvisivel(obj){
+    var bytes = new TextEncoder().encode(JSON.stringify(obj)), out = "⁣";
+    bytes.forEach(function(b){ out += LARGURA_ZERO[(b >> 6) & 3] + LARGURA_ZERO[(b >> 4) & 3] + LARGURA_ZERO[(b >> 2) & 3] + LARGURA_ZERO[b & 3]; });
+    return out + "⁣";
+  }
+  function urlWhatsapp(d, ref, cta, gravou){
+    var ficha = {}, k; for (k in rastreio) ficha[k] = rastreio[k]; ficha.ref = ref; ficha.cta = cta;
+    var linhas = [
+      "Olá!" + fichaInvisivel(ficha) + " Quero saber valores e condições do Além do Óbvio.",
+      d.name ? "Sou " + d.name + (d.profession ? ", " + d.profession : "") + (d.city ? ", de " + d.city : "") + "." : "",
+      d.difficulty ? "Minha maior dificuldade hoje: " + d.difficulty + "." : ""
+    ];
+    if (!gravou) linhas.push( // o envio automático falhou: as respostas seguem na própria mensagem
+      "WhatsApp: " + d.whatsapp, "E-mail: " + d.email, "Tempo de atuação: " + d.experience,
+      "Harmonização facial: " + d.fullFace, "Já fez curso com o Dr. Ritchie: " + d.attended,
+      d.instagram ? "Instagram: " + d.instagram : "", d.registry ? "Registro profissional: " + d.registry : "");
+    linhas.push("Ref: " + ref);
+    return WA + "?text=" + encodeURIComponent(linhas.filter(Boolean).join("\n"));
+  }
+
+  form.addEventListener("submit", function(ev){
+    ev.preventDefault();
+    if (enviando) return;
+    var falha = validar();
+    if (falha){ erro.textContent = falha[0]; if (falha[1]) falha[1].focus(); return; }
+    erro.textContent = "";
+    var d = {
+      name: valor("name"), whatsapp: telefone(valor("whatsapp")), email: valor("email"), city: valor("city"),
+      profession: valor("profession") === "Outra" ? "Outra: " + valor("professionOther") : valor("profession"),
+      experience: valor("experience"), fullFace: valor("fullFace"), difficulty: valor("difficulty"), attended: valor("attended"),
+      instagram: valor("instagram"), registry: valor("registry")
+    };
+    var corpo = { type: "lead", reference: referencia, cta: ctaAtual, tracking: rastreio, page: window.location.href, consent: true }, k;
+    for (k in d) corpo[k] = d[k];
+    enviando = true; enviar.disabled = true; rotuloEnviar.textContent = "Enviando…";
+    var ctrl = typeof AbortController === "function" ? new AbortController() : null;
+    var prazo = setTimeout(function(){ if (ctrl) ctrl.abort(); }, 9000);
+    fetch("/api/alem-do-obvio", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(corpo), signal: ctrl ? ctrl.signal : undefined })
+      .then(function(r){ return r.json().catch(function(){ return {}; }).then(function(b){ return { ok: r.ok && b.ok === true, ref: b.reference }; }); })
+      .catch(function(){ return { ok: false }; })
+      .then(function(res){
+        clearTimeout(prazo);
+        var ref = res.ref || referencia, cta = ctaAtual;
+        camada("click_whatsapp", { cta: cta, reference: ref });
+        try {
+          window.fbq("track", "Lead", { content_name: "Além do Óbvio", cta: cta }, { eventID: ref + "-lead" });
+          window.fbq("track", "Contact", { content_name: "Além do Óbvio", cta: cta }, { eventID: ref + "-contact" });
+          var lw = { content_name: "Além do Óbvio", cta: cta, reference: ref }; for (var kk in rastreio) lw[kk] = rastreio[kk];
+          window.fbq("trackCustom", "LeadWhatsApp", lw, { eventID: ref + "-leadwhatsapp" });
+        } catch (e) {}
+        if (window.gtag) { try { var g = { cta: cta, event_id: ref }; for (var kg in rastreio) g[kg] = rastreio[kg]; window.gtag("event", "generate_lead", g); } catch (e) {} }
+        var destino = urlWhatsapp(d, ref, cta, res.ok);
+        enviando = false; enviar.disabled = false; rotuloEnviar.textContent = "Continuar no WhatsApp";
+        dialogo.close(); form.reset(); campoOutra.hidden = true;
+        // Pequena espera para o Pixel disparar antes de sair da página.
+        setTimeout(function(){ window.location.href = destino; }, 250);
+      });
+  });
+})();
+</script>
+<script src="/v2/sites-incriveis.js" defer></script>
+</body>
+</html>
