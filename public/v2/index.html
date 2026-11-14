@@ -6,7 +6,7 @@
 <title>Além do Óbvio — Imersão com Dr. Ritchie</title>
 <meta name="description" content="Imersão presencial de três dias em Full Face com o Dr. Ritchie, com prática em pacientes reais. 4, 5 e 6 de dezembro, em São Paulo. A técnica você aprende. A visão você desenvolve.">
 <meta name="theme-color" content="#050505">
-<link rel="icon" href="/favicon.svg">
+<link rel="icon" href="/v2/favicon.svg">
 <meta property="og:type" content="website">
 <meta property="og:locale" content="pt_BR">
 <meta property="og:title" content="Além do Óbvio — Imersão com Dr. Ritchie">
@@ -15,31 +15,34 @@
 <meta name="twitter:card" content="summary_large_image">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..700;1,6..96,400..700&family=IBM+Plex+Mono:wght@400;500&family=Manrope:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=IBM+Plex+Mono:wght@400;500&family=Manrope:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/v2/sites-incriveis.css">
 <style>
 :root{
   --preto:#050505; --superficie:#0F0E0C; --osso:#EDE6D8; --tinta:#EDE6D8; --suave:#A39A8B;
   --ouro:#C9A35A; --ouro-escuro:#9C7A3C; --linha:rgba(237,230,216,.14);
-  --display:"Bodoni Moda","Didot","Bodoni 72",Georgia,serif;
+  --display:"EB Garamond","Garamond",Georgia,serif;
   --texto:"Manrope",system-ui,-apple-system,"Segoe UI",sans-serif;
   --mono:"IBM Plex Mono",ui-monospace,"SFMono-Regular",Menlo,monospace;
   --m:clamp(20px,4.4vw,72px);
   --ease:cubic-bezier(.22,1,.36,1);
 }
 *{box-sizing:border-box}
-html{background:var(--preto);-webkit-text-size-adjust:100%}
-body{margin:0;background:var(--preto);color:var(--tinta);font-family:var(--texto);font-size:17px;line-height:1.65;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+html{background:var(--preto);-webkit-text-size-adjust:100%;overflow-x:clip}
+body{margin:0;background:var(--preto);color:var(--tinta);font-family:var(--texto);font-size:17px;line-height:1.65;-webkit-font-smoothing:antialiased;overflow-x:clip}
+@supports not (overflow:clip){body{overflow-x:hidden}}
 img{display:block;max-width:100%}
 a{color:inherit}
 ::selection{background:var(--ouro);color:var(--preto)}
-h1,h2,h3{font-family:var(--display);font-weight:400;margin:0;letter-spacing:-.01em;line-height:1.02}
+h1,h2,h3{font-family:var(--display);font-weight:400;margin:0;letter-spacing:-.005em;line-height:1.02}
 h2{font-size:clamp(40px,6.2vw,96px)}
 h2 em,h1 em{font-style:italic}
+h1,h2,h3{text-wrap:balance}
+p,li,dd,blockquote{text-wrap:pretty}
 .visao-final h2 em{color:var(--ouro)}
 p{margin:0 0 1em}
 .mono{font-family:var(--mono)}
-.rotulo{white-space:nowrap;font-family:var(--display);font-style:italic;font-size:clamp(17px,1.35vw,20px);line-height:1.3;color:var(--suave);display:block;margin:0 0 20px}
+.rotulo{white-space:nowrap;font-family:var(--display);font-style:italic;font-weight:400;font-size:clamp(19px,1.5vw,23px);line-height:1.3;color:var(--suave);display:block;margin:0 0 20px}
 .suave{color:var(--suave)}
 .medida{max-width:62ch}
 
@@ -75,15 +78,15 @@ body::after{content:"";position:fixed;inset:0;z-index:45;pointer-events:none;bac
 .abertura-foto{position:absolute;top:0;right:0;width:64vw;height:100%;margin:0;
   -webkit-mask-image:linear-gradient(to right,transparent 0,#000 34%);mask-image:linear-gradient(to right,transparent 0,#000 34%)}
 .abertura-foto .paralaxe{position:absolute;inset:-6% 0}
-.abertura-foto img.base{width:100%;height:100%;object-fit:cover;object-position:62% 30%;opacity:0;transform:scale(1.08);animation:emergir 3.2s .2s var(--ease) forwards}
+.abertura-foto img.base{width:100%;height:100%;object-fit:cover;object-position:60% 28%;opacity:0;transform:scale(1.08);animation:emergir 3.2s .2s var(--ease) forwards}
 @keyframes emergir{to{opacity:1;transform:none}}
 .abertura-texto{position:relative;z-index:2;max-width:640px}
-.titulo-abertura{font-size:clamp(64px,10.4vw,176px);line-height:.86;letter-spacing:-.035em;margin:0 0 34px;margin-left:-.04em}
+.marca-abertura{font-family:var(--display);font-size:clamp(26px,2.4vw,36px);line-height:1;letter-spacing:-.01em;color:var(--tinta);margin:0 0 26px}
+.marca-abertura em{color:var(--ouro)}
+.titulo-abertura{font-size:clamp(46px,5.6vw,96px);line-height:1.06;letter-spacing:-.015em;margin:0 0 30px;margin-left:-.03em;max-width:12ch}
 .titulo-abertura .linha{display:block}
-.titulo-abertura em{color:var(--ouro);padding-left:.55em}
-.letra{display:inline-block;opacity:0}
-.creditos-prontos .letra{animation:credito .9s steps(1,end) forwards}
-@keyframes credito{0%{opacity:0}18%{opacity:.85;transform:translateX(.02em)}30%{opacity:.15}46%{opacity:1;transform:none}62%{opacity:.6}78%,100%{opacity:1}}
+.titulo-abertura .palavra{display:inline-block;white-space:nowrap}
+.titulo-abertura em{color:var(--ouro);padding-left:.6em}
 .credito{opacity:0;transition:opacity 1.4s ease}
 .creditos-prontos .credito{opacity:1}
 .data-abertura{font-family:var(--display);font-style:italic;font-size:clamp(24px,2.4vw,34px);color:var(--tinta);margin-bottom:14px}
@@ -93,7 +96,7 @@ body::after{content:"";position:fixed;inset:0;z-index:45;pointer-events:none;bac
 .numeros-linha span+span{margin-left:16px;padding-left:16px;border-left:1px solid var(--linha)}
 .numeros-linha b{color:var(--tinta);font-weight:600}
 .ficha{position:absolute;right:var(--m);bottom:64px;z-index:2;display:grid;grid-template-columns:auto 1fr;gap:8px 20px;margin:0;font-size:14.5px;line-height:1.5;width:min(30vw,390px)}
-.ficha dt{font-family:var(--display);font-style:italic;font-size:17px;line-height:1.3;color:var(--suave)}
+.ficha dt{font-family:var(--display);font-style:italic;font-weight:400;font-size:20px;line-height:1.3;color:var(--suave)}
 .ficha dd{margin:0;color:var(--tinta)}
 .creditos-canto{position:absolute;right:var(--m);bottom:64px;z-index:2;font-family:var(--mono);font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--suave);text-align:right;line-height:2}
 
@@ -110,7 +113,7 @@ body::after{content:"";position:fixed;inset:0;z-index:45;pointer-events:none;bac
 .tese{font-family:var(--display);font-size:clamp(40px,5.4vw,92px);line-height:1;letter-spacing:-.02em;margin:0}
 .tese-a{color:var(--tinta)}
 .tese-b{margin-top:.12em}
-.tese-b .fantasma{color:transparent;text-shadow:0 0 22px rgba(201,163,90,.95),0 0 46px rgba(201,163,90,.5)}
+.tese-b .fantasma{color:rgba(201,163,90,.7);filter:blur(9px)}
 .tese-b .nitida{color:var(--ouro);font-style:italic}
 .visao-final h2{font-size:clamp(32px,3.5vw,58px);line-height:1.08}
 .medidor{position:absolute;left:var(--m);bottom:40px;z-index:4;display:flex;align-items:center;gap:16px;font-family:var(--mono);font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--suave)}
@@ -120,26 +123,26 @@ body::after{content:"";position:fixed;inset:0;z-index:45;pointer-events:none;bac
 .visao-corrido{padding:120px var(--m) 110px;display:grid;grid-template-columns:repeat(12,1fr);gap:24px}
 .visao-corrido .grande{grid-column:2/8;font-family:var(--display);font-size:clamp(28px,3vw,46px);line-height:1.15;margin:0}
 .visao-corrido .colunas{grid-column:8/12;padding-top:.6em;color:var(--suave)}
-.visao-corrido .colunas p:last-child{color:var(--tinta);font-family:var(--display);font-style:italic;font-size:22px;line-height:1.35;border-left:1px solid var(--ouro);padding-left:22px;margin-top:32px}
+.visao-corrido .colunas p:last-child{color:var(--tinta);font-family:var(--display);font-style:italic;font-weight:400;font-size:25px;line-height:1.35;border-left:1px solid var(--ouro);padding-left:22px;margin-top:32px}
 
 /* ---------- cena 3: na cadeira ---------- */
 .pratica{padding:140px var(--m);display:grid;grid-template-columns:5fr 7fr;gap:clamp(40px,7vw,120px);border-top:1px solid var(--linha)}
 .pratica-cabeca{position:sticky;top:120px;align-self:start}
 .pratica-cabeca h2{font-size:clamp(40px,5vw,80px);margin-bottom:28px}
-.placar{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin:0 0 72px;border-bottom:1px solid var(--linha);padding-bottom:48px}
+.placar{display:grid;grid-template-columns:1fr 1fr;gap:24px 40px;margin:0 0 72px;border-bottom:1px solid var(--linha);padding-bottom:48px}
 .placar .num{font-family:var(--display);font-size:clamp(84px,11vw,180px);line-height:.9;letter-spacing:-.04em;display:flex;align-items:baseline;gap:.12em;font-variant-numeric:lining-nums tabular-nums}
-.placar .num small{font-size:.32em;font-style:italic;color:var(--suave)}
+.placar .num small{font-size:.32em;font-style:italic;color:var(--suave);letter-spacing:.005em;white-space:nowrap}
 .placar .num .alto{color:var(--ouro)}
 .placar .leg{font-size:14px;color:var(--suave);margin-top:14px;display:block}
 .itens{list-style:none;margin:0;padding:0;counter-reset:item}
 .itens li{display:grid;grid-template-columns:72px 1fr;gap:8px 24px;padding:34px 0;border-bottom:1px solid var(--linha)}
-.itens .n{font-family:var(--display);font-style:italic;font-size:22px;color:var(--suave);padding-top:7px;font-variant-numeric:lining-nums}
+.itens .n{font-family:var(--display);font-style:italic;font-weight:400;font-size:25px;color:var(--suave);padding-top:7px;font-variant-numeric:lining-nums}
 .itens h3{font-size:clamp(28px,2.6vw,40px);line-height:1.1;margin-bottom:10px}
 .itens p{color:var(--suave);margin:0;max-width:52ch}
 .itens .risco{font-style:italic;color:var(--ouro)}
 
 /* ---------- cena 4: três dias (osso) ---------- */
-.dias{padding:160px var(--m) 140px}
+.dias{padding:160px var(--m) 110px}
 .dias .rotulo{color:rgba(23,19,14,.62)}
 .dias-lista{margin-top:80px;border-top:1px solid color-mix(in srgb,currentColor 22%,transparent)}
 .dia{display:grid;grid-template-columns:minmax(0,5fr) 3fr 4fr;align-items:end;gap:24px;padding:28px 0 34px;border-bottom:1px solid color-mix(in srgb,currentColor 22%,transparent)}
@@ -147,15 +150,15 @@ body::after{content:"";position:fixed;inset:0;z-index:45;pointer-events:none;bac
 .dia:nth-child(2) .grande-num{font-style:italic;color:var(--ouro-escuro);padding-left:.3em}
 .dia:nth-child(3) .grande-num{padding-left:.6em}
 .dia .quando{font-size:14px;line-height:1.5;color:rgba(23,19,14,.66)}
-.dia .quando b{display:block;font-family:var(--display);font-style:italic;font-weight:400;font-size:22px;color:#17130E}
+.dia .quando b{display:block;font-family:var(--display);font-style:italic;font-weight:400;font-size:25px;color:#17130E}
 .dia p{margin:0;font-size:19px;line-height:1.5;max-width:30ch}
 .dias .nota{margin-top:40px;font-size:14px;color:rgba(23,19,14,.66);max-width:70ch}
 
 /* ---------- cena 5: quem conduz ---------- */
-.doutor{position:relative;padding:0 0 140px}
+.doutor{position:relative;padding:0 0 72px}
 .doutor-palco{position:relative;height:92vh;min-height:560px;overflow:hidden;margin:0}
 .doutor-palco .paralaxe{position:absolute;inset:-12% 0}
-.doutor-palco img.base{width:100%;height:100%;object-fit:cover;object-position:58% 30%}
+.doutor-palco img.base{width:100%;height:100%;object-fit:cover;object-position:50% 22%}
 .doutor-palco::after{content:"";position:absolute;inset:auto 0 0 0;height:55%;background:linear-gradient(to top,var(--preto),transparent);pointer-events:none}
 .doutor-texto{position:relative;z-index:2;margin:-260px var(--m) 0;display:grid;grid-template-columns:7fr 4fr;gap:clamp(32px,6vw,100px);align-items:end}
 .doutor-texto h2{font-size:clamp(64px,10vw,170px);line-height:.86;letter-spacing:-.04em;margin-bottom:34px}
@@ -183,15 +186,15 @@ body::after{content:"";position:fixed;inset:0;z-index:45;pointer-events:none;bac
 .quadro{flex:0 0 auto;width:min(46vw,640px);margin:0;position:relative}
 .quadro .olhar{aspect-ratio:3/2;overflow:hidden}
 .quadro .olhar img.base{width:100%;height:100%;object-fit:cover}
-.quadro figcaption{font-family:var(--display);font-style:italic;font-size:17px;color:var(--suave);padding-top:12px}
+.quadro figcaption{font-family:var(--display);font-style:italic;font-weight:400;font-size:20px;color:var(--suave);padding-top:12px}
 
 .cases{padding:140px var(--m) 120px}
 .cases-cabeca{display:flex;flex-direction:column;align-items:flex-end;text-align:right;margin-bottom:64px}
 .cases-cabeca .rotulo{flex-direction:row-reverse}
-.case{display:grid;grid-template-columns:repeat(12,1fr);gap:24px;align-items:center;margin:0 0 72px}
+.case{display:grid;grid-template-columns:repeat(12,1fr);gap:24px;align-items:center;margin:0 0 56px}
 .case .olhar{grid-column:1/5;aspect-ratio:4/5;overflow:hidden}
 .case .olhar img.base{width:100%;height:100%;object-fit:cover;object-position:50% 30%}
-.case blockquote{grid-column:6/13;margin:0}
+.case blockquote{grid-column:6/13;margin:0;align-self:start;padding-top:clamp(24px,6vw,96px)}
 .case:nth-of-type(even) .olhar{grid-column:9/13;grid-row:1}
 .case:nth-of-type(even) blockquote{grid-column:1/8;grid-row:1;text-align:right}
 .case:nth-of-type(3) .olhar{grid-column:2/6}
@@ -223,9 +226,10 @@ body::after{content:"";position:fixed;inset:0;z-index:45;pointer-events:none;bac
 .anel .contagem{position:absolute;inset:0;display:grid;place-content:center;text-align:center}
 .anel .contagem b{font-family:var(--display);font-weight:400;font-size:96px;line-height:1;font-variant-numeric:lining-nums}
 .anel .contagem span{font-size:14px;color:var(--suave)}
-.devolutiva{font-family:var(--display);font-size:24px;line-height:1.35;max-width:30ch;min-height:4.2em;margin:0}
+.devolutiva{font-family:var(--display);font-size:27px;line-height:1.35;max-width:30ch;min-height:4.2em;margin:0}
 .devolutiva.vazia{font-family:var(--texto);font-size:15px;color:var(--suave);min-height:0}
 .leitura .btn[hidden]{display:none}
+.marcador{display:none}
 
 /* ---------- cena 8: decisão ---------- */
 .incluido{padding:140px var(--m) 80px;display:grid;grid-template-columns:5fr 7fr;gap:clamp(40px,7vw,120px);border-top:1px solid var(--linha)}
@@ -234,7 +238,7 @@ body::after{content:"";position:fixed;inset:0;z-index:45;pointer-events:none;bac
 .grade-inclui div{padding:30px 28px 34px 0;border-bottom:1px solid var(--linha)}
 .grade-inclui div:nth-child(odd){border-right:1px solid var(--linha)}
 .grade-inclui div:nth-child(even){padding-left:28px}
-.grade-inclui .n{font-family:var(--display);font-style:italic;font-size:20px;color:var(--suave);font-variant-numeric:lining-nums}
+.grade-inclui .n{font-family:var(--display);font-style:italic;font-weight:400;font-size:23px;color:var(--suave);font-variant-numeric:lining-nums}
 .grade-inclui h3{font-size:28px;margin:14px 0 10px}
 .grade-inclui p{color:var(--suave);margin:0;font-size:16px}
 
@@ -247,7 +251,7 @@ body::after{content:"";position:fixed;inset:0;z-index:45;pointer-events:none;bac
 .cartao li{padding:10px 0;border-bottom:1px solid var(--linha);color:var(--suave)}
 .cartao li::before{content:"— ";color:var(--ouro)}
 .investimento-lado p{color:var(--suave)}
-.investimento-lado p:first-child{color:var(--tinta);font-family:var(--display);font-size:24px;line-height:1.3}
+.investimento-lado p:first-child{color:var(--tinta);font-family:var(--display);font-size:27px;line-height:1.3}
 .investimento-lado a{color:var(--ouro);text-decoration:none;border-bottom:1px solid currentColor}
 
 .faq{padding:40px var(--m) 160px;display:grid;grid-template-columns:4fr 8fr;gap:clamp(40px,7vw,120px);border-top:1px solid var(--linha);padding-top:140px}
@@ -282,6 +286,7 @@ body::after{content:"";position:fixed;inset:0;z-index:45;pointer-events:none;bac
 .barra .btn-mira circle,.barra .btn-mira path{stroke:#0C0A07}
 .barra .btn-mira .nucleo{fill:#0C0A07}
 .barra.ativa{transform:translate(-50%,0)}
+@media (min-width:861px){.barra{left:auto;right:var(--m);transform:translateY(160%)}.barra.ativa{transform:none}}
 
 /* ---------- O olhar do Doutor (movimento-assinatura) ---------- */
 .olhar{position:relative;overflow:hidden;cursor:none}
@@ -311,10 +316,12 @@ body::after{content:"";position:fixed;inset:0;z-index:45;pointer-events:none;bac
   .rotulo{white-space:normal;line-height:1.6}
   .topo img{height:28px}
   .abertura{padding:0 var(--m) 56px;align-items:end}
-  .abertura-foto{position:relative;width:calc(100% + 2*var(--m));height:62svh;margin:0 calc(-1*var(--m)) -70px;-webkit-mask-image:linear-gradient(to bottom,#000 55%,transparent);mask-image:linear-gradient(to bottom,#000 55%,transparent)}
-  .abertura-foto img.base{object-position:62% 30%}
+  .abertura-foto{position:relative;width:calc(100% + 2*var(--m));height:40svh;margin:0 calc(-1*var(--m)) -36px;-webkit-mask-image:linear-gradient(to bottom,#000 55%,transparent);mask-image:linear-gradient(to bottom,#000 55%,transparent)}
+  .abertura-foto img.base{object-position:58% 26%}
   .abertura{display:block}
-  .titulo-abertura{font-size:clamp(64px,20vw,110px)}
+  .titulo-abertura{font-size:clamp(38px,11.4vw,64px);max-width:none}
+  .titulo-abertura em{padding-left:0}
+  .marca-abertura{margin-bottom:18px}
   .ficha{position:static;width:auto;margin-top:28px}
   .numeros-linha{flex-direction:column}
   .numeros-linha span+span{margin:0;padding:0;border:0}
@@ -346,7 +353,12 @@ body::after{content:"";position:fixed;inset:0;z-index:45;pointer-events:none;bac
   .case:nth-of-type(even) blockquote{text-align:left}
   .cases-cabeca{align-items:flex-start;text-align:left}
   .cases-cabeca .rotulo{flex-direction:row}
-  .leitura{margin-top:56px}
+  .leitura{margin-top:56px;scroll-margin-top:90px}
+  .visao .fx-palco,.prova .fx-palco{overflow:hidden}
+  .marcador{display:flex;position:sticky;bottom:14px;z-index:5;align-items:center;justify-content:space-between;gap:12px;margin-top:24px;padding:7px 7px 7px 20px;border-radius:999px;background:#0E0D0A;box-shadow:inset 0 0 0 1px rgba(201,163,90,.5),0 20px 50px rgba(0,0,0,.6);font-size:14px;color:var(--suave)}
+  .marcador b{font-family:var(--display);font-weight:400;font-size:24px;line-height:1;color:var(--ouro);margin-right:4px;font-variant-numeric:lining-nums tabular-nums}
+  .marcador a{display:inline-flex;align-items:center;min-height:44px;padding:0 18px;border-radius:999px;background:var(--ouro);color:#15110A;font-weight:600;text-decoration:none}
+  .marcador a[hidden]{display:none}
   .anel{width:220px}
   .anel .contagem b{font-size:72px}
   .grade-inclui{grid-template-columns:1fr}
@@ -362,7 +374,13 @@ body::after{content:"";position:fixed;inset:0;z-index:45;pointer-events:none;bac
 dialog.form{width:min(640px,calc(100% - 24px));max-height:calc(100dvh - 24px);padding:0;border:1px solid rgba(237,230,216,.16);background:var(--superficie);color:var(--tinta);overflow:auto}
 dialog.form::backdrop{background:rgba(5,4,3,.82);backdrop-filter:blur(6px)}
 .form-dentro{padding:clamp(24px,5vw,48px)}
-.form .fechar{position:absolute;top:14px;right:14px;width:40px;height:40px;background:none;border:0;color:var(--tinta);font-size:26px;cursor:pointer;line-height:1}
+.form .fechar{position:absolute;top:10px;right:10px;width:44px;height:44px;display:grid;place-items:center;background:none;border:0;border-radius:50%;color:var(--suave);cursor:pointer;transition:color .3s}
+.form .fechar svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.4}
+.form .fechar:hover{color:var(--ouro)}
+.erro-campo{color:#E29A86;font-size:13.5px;line-height:1.4;margin:2px 0 0}
+.form input[aria-invalid=true]{border-bottom-color:#E29A86}
+fieldset.campo[aria-invalid=true] .chips span{box-shadow:inset 0 0 0 1px rgba(226,154,134,.6)}
+.aceite.invalido{color:#E29A86}
 .form h2{font-size:clamp(30px,4vw,42px);margin:0 0 10px}
 .form .sub{color:var(--suave);font-size:15px;margin-bottom:30px}
 .campo{display:flex;flex-direction:column;gap:8px;margin-bottom:20px}
@@ -380,17 +398,48 @@ fieldset.campo{border:0;padding:0;margin:0 0 22px}
 .chips input:checked+span{box-shadow:inset 0 0 0 1px var(--ouro);background:rgba(201,163,90,.14);color:var(--ouro)}
 .chips input:focus-visible+span{outline:2px solid var(--ouro);outline-offset:2px}
 .aceite{display:grid;grid-template-columns:20px 1fr;gap:12px;font-size:14px;color:var(--suave);margin:8px 0 26px;cursor:pointer}
-.aceite input{accent-color:var(--ouro);width:18px;height:18px;margin-top:2px}
+.aceite input{appearance:none;-webkit-appearance:none;width:20px;height:20px;margin:1px 0 0;border:1px solid var(--ouro);border-radius:50%;position:relative;cursor:pointer;transition:background .3s}
+.aceite input::after{content:"";position:absolute;inset:4px;border-radius:50%;background:var(--superficie);transform:scale(0);transition:transform .3s var(--ease)}
+.aceite input:checked{background:var(--ouro)}
+.aceite input:checked::after{transform:scale(1)}
+.aceite input:focus-visible{outline:2px solid var(--ouro);outline-offset:3px}
 .form .btn{width:100%}
 .titulo-abertura.titulo-angulo{font-size:clamp(34px,4.6vw,76px);line-height:1.04;letter-spacing:-.02em;margin-left:0}
 .titulo-abertura.titulo-angulo em{padding-left:0}
 .campo[hidden]{display:none}
 .btn[disabled]{opacity:.6;cursor:wait}
-.erro{color:#E29A86;font-size:14px;min-height:1.2em;margin:0 0 12px}
+.erro{color:#E29A86;font-size:14px;margin:0}
+.erro:not(:empty){margin:-12px 0 24px;padding:12px 0 12px 16px;border-left:1px solid #E29A86}
+/* Formulário em etapas */
+.form-topo{display:grid;grid-template-columns:1fr auto;align-items:center;gap:14px 20px;margin:0 44px 30px 0}
+.form-topo .rotulo{margin:0}
+.progresso{grid-column:1/-1;grid-row:2;display:grid;grid-template-columns:repeat(4,1fr);gap:6px}
+.progresso i{position:relative;height:2px;background:rgba(237,230,216,.14);overflow:hidden}
+.progresso i::after{content:"";position:absolute;inset:0;background:var(--ouro);transform:scaleX(0);transform-origin:left;transition:transform .6s var(--ease)}
+.progresso i.feito::after{transform:none}
+.etapa{grid-column:2;grid-row:1;margin:0;font-size:13.5px;color:var(--suave);font-variant-numeric:tabular-nums}
+.passo h2:focus{outline:none}
+.passo .sub{margin-bottom:28px}
+.passo.entra{animation:passoEntra .5s var(--ease) both}
+.passo.entra.de-volta{animation-name:passoVolta}
+@keyframes passoEntra{from{opacity:0;transform:translateX(22px)}to{opacity:1;transform:none}}
+@keyframes passoVolta{from{opacity:0;transform:translateX(-22px)}to{opacity:1;transform:none}}
+.form-dentro{display:flex;flex-direction:column;min-height:min(720px,calc(100dvh - 26px))}
+.form-nav{display:flex;align-items:center;gap:10px;margin-top:auto;position:sticky;bottom:0;z-index:2;padding:22px 0 clamp(0px,2vw,6px);background:linear-gradient(to bottom,transparent,var(--superficie) 34%)}
+.form-nav::after{content:"";position:absolute;left:0;right:0;top:100%;height:clamp(24px,5vw,48px);background:var(--superficie)}
+.form-nav .btn{width:auto;flex:1}
+.form-nav [hidden]{display:none}
+.voltar{display:inline-flex;align-items:center;gap:6px;min-height:60px;padding:0 18px 0 10px;border:0;border-radius:999px;background:none;color:var(--suave);font:inherit;font-size:15px;font-weight:500;cursor:pointer;transition:color .3s,box-shadow .3s}
+.voltar svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.5;transition:transform .3s var(--ease)}
+.voltar:hover{color:var(--tinta);box-shadow:inset 0 0 0 1px rgba(237,230,216,.22)}
+.voltar:hover svg{transform:translateX(-3px)}
+.voltar:focus-visible{outline:2px solid var(--ouro);outline-offset:3px}
+.fx-reduzido .passo.entra,.fx-reduzido .progresso i::after{animation:none;transition:none}
+@media (prefers-reduced-motion:reduce){.passo.entra{animation:none}.progresso i::after{transition:none}}
 @media (max-width:560px){.dupla{grid-template-columns:1fr}}
 
 /* ---------- movimento reduzido ---------- */
-.fx-reduzido .letra,.fx-reduzido .credito{opacity:1!important;animation:none!important;transition:none!important}
+.fx-reduzido .credito{opacity:1!important;animation:none!important;transition:none!important}
 .fx-reduzido .abertura-foto img.base{opacity:1;transform:none;animation:none}
 .fx-reduzido .visao-foto{position:relative;height:70vh;width:100%}
 .fx-reduzido .visao-texto{width:100%;padding:60px var(--m)}
@@ -407,7 +456,7 @@ fieldset.campo{border:0;padding:0;margin:0 0 22px}
 
 <header class="topo" id="topo">
   <a href="#abertura" aria-label="Dr. Ritchie, A Verdadeira Harmonia — início"><img src="/v2/img/logo-dr-ritchie.png" alt="Dr. Ritchie, A Verdadeira Harmonia" width="900" height="180"></a>
-  <a data-evt="cta_topo" class="btn btn-fantasma abre-form" href="https://wa.me/5511936206406?text=EU%20QUERO%20-%20Al%C3%A9m%20do%20%C3%93bvio%20(4%2C%205%20e%206%20de%20dezembro)">Garantir vaga</a>
+  <a data-evt="cta_topo" class="btn btn-fantasma abre-form" href="https://wa.me/5511936206406?text=EU%20QUERO%20-%20Al%C3%A9m%20do%20%C3%93bvio%20(4%2C%205%20e%206%20de%20dezembro)">Quero minha vaga</a>
 </header>
 
 <main>
@@ -416,27 +465,27 @@ fieldset.campo{border:0;padding:0;margin:0 0 22px}
 <section class="abertura" id="abertura">
   <figure class="abertura-foto">
     <div class="paralaxe" data-fx-paralaxe="0.12">
-      <div class="olhar" style="position:absolute;inset:0" data-face="39,73,11,26,47,70,61">
-        <img class="base" src="/v2/img/hero.webp" alt="Dr. Ritchie" width="1080" height="720" fetchpriority="high">
+      <div class="olhar" style="position:absolute;inset:0">
+        <img class="base" src="/v2/img/palco-wide.webp" alt="Dr. Ritchie no palco do Além do Óbvio" width="1600" height="1000" fetchpriority="high">
       </div>
     </div>
   </figure>
   <div class="abertura-texto">
-    <p class="rotulo credito">Última turma de 2026 · Somente 12 vagas</p>
-    <h1 class="titulo-abertura" aria-label="Além do Óbvio"><span class="linha" data-credito>Além do</span><em class="linha" data-credito>Óbvio</em></h1>
+    <p class="marca-abertura credito">Além do <em>Óbvio</em></p>
+    <h1 class="titulo-abertura"><span class="linha">A técnica você aprende.</span><em class="linha">A visão você desenvolve.</em></h1>
     <p class="data-abertura credito">4, 5 e 6 de dezembro, em São Paulo</p>
-    <p class="lead credito">Três dias de imersão presencial em Full Face com o Dr. Ritchie, com prática em pacientes reais.</p>
-    <a data-evt="cta_hero" class="btn abre-form credito" href="https://wa.me/5511936206406"><span>Quero garantir minha vaga na próxima turma</span><span class="btn-mira" aria-hidden="true"><svg viewBox="0 0 20 20"><circle cx="10" cy="10" r="6.2"/><path d="M10 0v4M10 16v4M0 10h4M16 10h4"/><circle class="nucleo" cx="10" cy="10" r="1.7"/></svg></span></a>
-    <p class="numeros-linha credito"><span><b>+12 mil</b> pacientes atendidos</span><span><b>+60 mil</b> alunos impactados</span><span>somente <b>12</b> vagas</span></p>
+    <p class="lead credito">Três dias de imersão presencial em Full Face com o Dr. Ritchie, para profissionais da Harmonização Facial que já atendem, com prática em pacientes reais.</p>
+    <a data-evt="cta_hero" class="btn abre-form credito" href="https://wa.me/5511936206406?text=EU%20QUERO%20-%20Al%C3%A9m%20do%20%C3%93bvio%20(4%2C%205%20e%206%20de%20dezembro)"><span>Quero minha vaga em dezembro</span><span class="btn-mira" aria-hidden="true"><svg viewBox="0 0 20 20"><circle cx="10" cy="10" r="6.2"/><path d="M10 0v4M10 16v4M0 10h4M16 10h4"/><circle class="nucleo" cx="10" cy="10" r="1.7"/></svg></span></a>
+    <p class="numeros-linha credito"><span>Última turma de 2026</span><span>Somente <b>13</b> vagas</span></p>
   </div>
   <dl class="ficha credito">
     <dt>Onde</dt><dd>Av. Magalhães de Castro, 4800, Cidade Jardim, São Paulo</dd>
-    <dt>Formato</dt><dd>Presencial, os três dias inteiros, em turma de no máximo 12 alunos</dd>
+    <dt>Formato</dt><dd>Presencial, os três dias inteiros, em turma de no máximo 13 alunos</dd>
   </dl>
 </section>
 
 <!-- CENA 2 — A VISÃO (PICO) -->
-<section class="visao" id="visao" data-fx-fixa data-fx-altura="5" aria-label="Não é apenas mais um curso">
+<section class="visao" id="visao" data-fx-fixa data-fx-altura="1.6" aria-label="Não é apenas mais um curso">
   <div class="fx-palco palco-visao">
     <div class="visao-foto">
       <div class="camada" data-fx-escala="1.22,1" data-fx-faixa="0,0.7">
@@ -449,14 +498,14 @@ fieldset.campo{border:0;padding:0;margin:0 0 22px}
       <p class="rotulo">Não é apenas mais um curso</p>
       <div class="empilha">
         <div class="teses" data-fx-opacidade="1,0" data-fx-faixa="0.66,0.76">
-          <p class="tese tese-a" data-fx-y="40,0" data-fx-faixa="0,0.12">A técnica você aprende.</p>
+          <p class="tese tese-a" data-fx-y="14,0" data-fx-faixa="0,0.12">A técnica você aprende.</p>
           <p class="tese tese-b empilha">
             <span class="fantasma" aria-hidden="true" data-fx-opacidade="0.9,0" data-fx-faixa="0.15,0.55">A visão você desenvolve.</span>
-            <span class="nitida" data-fx-opacidade="0,1" data-fx-faixa="0.18,0.55">A visão você desenvolve.</span>
+            <span class="nitida" data-fx-opacidade="0.4,1" data-fx-faixa="0.1,0.5">A visão você desenvolve.</span>
           </p>
         </div>
         <div class="visao-final" data-fx-opacidade="0,1" data-fx-faixa="0.76,0.92">
-          <h2>Existe diferença entre conhecer uma técnica e <em>compreender o raciocínio</em> por trás de cada decisão.</h2>
+          <h2>Existe diferença entre conhecer uma técnica e compreender o <em>raciocínio</em> por trás de cada decisão.</h2>
         </div>
       </div>
     </div>
@@ -482,8 +531,8 @@ fieldset.campo{border:0;padding:0;margin:0 0 22px}
   <div>
     <div class="placar" aria-hidden="true">
       <div>
-        <div class="num"><span>3</span><small>a</small><span class="alto" data-fx="contar" data-fx-inicio="3" data-fx-fim="6" data-fx-duracao="1400">6</span></div>
-        <span class="leg">full faces por aluno</span>
+        <div class="num"><small>no mínimo</small><span class="alto">3</span></div>
+        <span class="leg">pacientes por aluno</span>
       </div>
       <div>
         <div class="num"><span>2</span><small>a</small><span class="alto" data-fx="contar" data-fx-inicio="2" data-fx-fim="3" data-fx-duracao="1200">3</span></div>
@@ -491,8 +540,8 @@ fieldset.campo{border:0;padding:0;margin:0 0 22px}
       </div>
     </div>
     <ol class="itens">
-      <li><span class="n">01</span><div><h3>Full Face na prática</h3><p>De 3 a 6 full faces completas por aluno, em pacientes reais, com supervisão do Dr. Ritchie, que acompanha as salas.</p></div></li>
-      <li><span class="n">02</span><div><h3>De 2 a 3 práticas por dia</h3><p>Você sai tendo feito, não só assistido.</p></div></li>
+      <li><span class="n">01</span><div><h3>Supervisão em cada sala</h3><p>O Dr. Ritchie acompanha as salas e discute com você cada decisão clínica no mesmo dia.</p></div></li>
+      <li><span class="n">02</span><div><h3>Você faz, não só assiste</h3><p>Full faces completas em pacientes reais. Você sai tendo feito, não só assistido.</p></div></li>
       <li><span class="n">03</span><div><h3>Áreas de <span class="risco">maior risco</span></h3><p>Têmpora, glabela, nariz e crow lifting, com o raciocínio por trás de cada decisão.</p></div></li>
       <li><span class="n">04</span><div><h3>Planejamento e condução</h3><p>Da avaliação ao plano de tratamento, para conduzir o paciente com segurança e posicionamento.</p></div></li>
     </ol>
@@ -527,8 +576,8 @@ fieldset.campo{border:0;padding:0;margin:0 0 22px}
 <section class="doutor" id="doutor">
   <figure class="doutor-palco">
     <div class="paralaxe" data-fx-paralaxe="0.18">
-      <div class="olhar" style="position:absolute;inset:0">
-        <img class="base" src="/v2/img/palco-wide.webp" alt="Dr. Ritchie no palco do Além do Óbvio" width="1600" height="1000" loading="lazy">
+      <div class="olhar" style="position:absolute;inset:0" data-face="39,73,11,26,47,70,61">
+        <img class="base" src="/v2/img/hero.webp" alt="Dr. Ritchie" width="1080" height="720" loading="lazy">
       </div>
     </div>
   </figure>
@@ -549,12 +598,12 @@ fieldset.campo{border:0;padding:0;margin:0 0 22px}
 </section>
 
 <!-- CENA 6 — PROVA -->
-<section class="prova" id="prova" data-fx-fixa data-fx-altura="3.4">
+<section class="prova" id="prova" data-fx-fixa data-fx-altura="2.4">
   <div class="fx-palco palco-filme">
     <div class="filme-cabeca">
       <div>
         <p class="rotulo">A experiência Além do Óbvio</p>
-        <h2>Assim foi a <em>última edição.</em></h2>
+        <h2>Assim foi a <em>última</em> edição.</h2>
       </div>
       <p>Registros reais da turma de agosto de 2026: consulta, prática, reconhecimento e celebração.</p>
     </div>
@@ -571,20 +620,20 @@ fieldset.campo{border:0;padding:0;margin:0 0 22px}
 
 <section class="cases" id="cases">
   <div class="cases-cabeca">
-    <p class="rotulo">Quem já viveu, conta</p>
-    <h2 data-mascara>Cases de <em>sucesso.</em></h2>
+    <p class="rotulo">Depoimentos da turma de agosto de 2026</p>
+    <h2 data-mascara>Quem já viveu, <em>conta.</em></h2>
   </div>
   <figure class="case">
-    <div class="olhar" data-fx="esquerda"><img class="base" src="/v2/img/premio1.webp" alt="Case de sucesso · turma de agosto de 2026" loading="lazy"></div>
-    <blockquote><p>“A técnica do Ritchie é genial, pra mim é um divisor de águas. Ele não tem medo de mostrar a técnica dele. Ele quer que a gente aprenda pra andar junto com ele.”</p><cite>Case de sucesso · turma de agosto de 2026</cite></blockquote>
+    <div class="olhar" data-fx="esquerda"><img class="base" src="/v2/img/premio1.webp" alt="Aluno da turma de agosto recebe o certificado e o troféu ao lado do Dr. Ritchie" loading="lazy"></div>
+    <blockquote><p>“A técnica do Ritchie é genial, pra mim é um divisor de águas. Ele não tem medo de mostrar a técnica dele. Ele quer que a gente aprenda pra andar junto com ele.”</p><cite>Turma de agosto de 2026</cite></blockquote>
   </figure>
   <figure class="case">
-    <div class="olhar" data-fx="direita"><img class="base" src="/v2/img/premio2.webp" alt="Case de sucesso · turma de agosto de 2026" loading="lazy"></div>
-    <blockquote><p>“Ele faz tudo com muita calma, explicando milimetricamente, bem devagar. Eu consegui pegar vários insights que vou aplicar no meu dia a dia.”</p><cite>Case de sucesso · turma de agosto de 2026</cite></blockquote>
+    <div class="olhar" data-fx="direita"><img class="base" src="/v2/img/premio2.webp" alt="Aluna da turma de agosto com o troféu e o certificado ao lado do Dr. Ritchie" loading="lazy"></div>
+    <blockquote><p>“Ele faz tudo com muita calma, explicando milimetricamente, bem devagar. Eu consegui pegar vários insights que vou aplicar no meu dia a dia.”</p><cite>Turma de agosto de 2026</cite></blockquote>
   </figure>
   <figure class="case">
-    <div class="olhar" data-fx="esquerda"><img class="base" src="/v2/img/premio3.webp" alt="Case de sucesso · turma de agosto de 2026" loading="lazy"></div>
-    <blockquote><p>“É diferente de tudo que eu já vi. Ele traz um linguajar muito fácil da gente entender, e faz com que tudo fique mais fácil.”</p><cite>Case de sucesso · turma de agosto de 2026</cite></blockquote>
+    <div class="olhar" data-fx="esquerda"><img class="base" src="/v2/img/premio3.webp" alt="Aluna da turma de agosto comemora a certificação com o Dr. Ritchie" loading="lazy"></div>
+    <blockquote><p>“É diferente de tudo que eu já vi. Ele traz um linguajar muito fácil da gente entender, e faz com que tudo fique mais fácil.”</p><cite>Turma de agosto de 2026</cite></blockquote>
   </figure>
 </section>
 
@@ -592,7 +641,7 @@ fieldset.campo{border:0;padding:0;margin:0 0 22px}
 <section class="voce" id="voce">
   <div>
     <p class="rotulo">Faz sentido para você?</p>
-    <h2>Marque o que <em>você vive hoje.</em></h2>
+    <h2>Marque o que você <em>vive</em> hoje.</h2>
     <p class="intro">Sem pressa, sem pegadinha. É só para você enxergar se o Além do Óbvio é o seu próximo passo.</p>
     <ul class="marcas" id="marcas">
       <li><label><input type="checkbox"><span>Sinto que domino a técnica, mas não o raciocínio por trás de cada decisão.</span></label></li>
@@ -604,15 +653,16 @@ fieldset.campo{border:0;padding:0;margin:0 0 22px}
       <li><label><input type="checkbox"><span>Sinto insegurança para posicionar meu trabalho e conduzir pacientes de alto padrão.</span></label></li>
       <li><label><input type="checkbox"><span>Quero aprender de perto, com quem atende e ensina todos os dias.</span></label></li>
     </ul>
+    <div class="marcador"><span><b id="contagem-movel">0</b> de 8 marcados</span><a href="#leitura" id="ver-resultado" hidden>Ver resultado</a></div>
     <p class="pre">O curso é voltado a profissionais da Harmonização Facial que atendem pacientes. A equipe confirma os pré-requisitos na inscrição.</p>
   </div>
-  <aside class="leitura" aria-live="polite">
+  <aside class="leitura" id="leitura" aria-live="polite">
     <div class="anel" aria-hidden="true">
       <svg viewBox="0 0 200 200"><circle class="fundo-anel" cx="100" cy="100" r="96"/><circle class="arco" id="arco" cx="100" cy="100" r="96" style="--c:603.19"/></svg>
       <div class="contagem"><b id="contagem">0</b><span>de 8</span></div>
     </div>
     <p class="devolutiva vazia" id="devolutiva">Marque ao menos um item para ver o resultado.</p>
-    <a data-evt="cta_checklist" class="btn abre-form" id="btn-devolutiva" hidden href="https://wa.me/5511936206406?text=EU%20QUERO%20-%20Al%C3%A9m%20do%20%C3%93bvio%20(4%2C%205%20e%206%20de%20dezembro)"><span>Quero conversar sobre a minha vaga</span><span class="btn-mira" aria-hidden="true"><svg viewBox="0 0 20 20"><circle cx="10" cy="10" r="6.2"/><path d="M10 0v4M10 16v4M0 10h4M16 10h4"/><circle class="nucleo" cx="10" cy="10" r="1.7"/></svg></span></a>
+    <a data-evt="cta_checklist" class="btn abre-form" id="btn-devolutiva" hidden href="https://wa.me/5511936206406?text=EU%20QUERO%20-%20Al%C3%A9m%20do%20%C3%93bvio%20(4%2C%205%20e%206%20de%20dezembro)"><span>Quero minha vaga em dezembro</span><span class="btn-mira" aria-hidden="true"><svg viewBox="0 0 20 20"><circle cx="10" cy="10" r="6.2"/><path d="M10 0v4M10 16v4M0 10h4M16 10h4"/><circle class="nucleo" cx="10" cy="10" r="1.7"/></svg></span></a>
   </aside>
 </section>
 
@@ -620,7 +670,7 @@ fieldset.campo{border:0;padding:0;margin:0 0 22px}
 <section class="incluido" id="incluido">
   <div>
     <p class="rotulo">O que está incluído</p>
-    <h2 data-mascara>Você <em>não precisa levar nada.</em></h2>
+    <h2 data-mascara>Você não precisa levar <em>nada.</em></h2>
   </div>
   <div class="grade-inclui">
     <div><span class="n">01</span><h3>Os três dias de imersão</h3><p>Aulas, demonstrações e prática supervisionada.</p></div>
@@ -632,20 +682,20 @@ fieldset.campo{border:0;padding:0;margin:0 0 22px}
 
 <section class="investimento" id="investimento">
   <p class="rotulo">Investimento e inscrição</p>
-  <h2 data-mascara>A última turma <em>de 2026.</em></h2>
+  <h2 data-mascara>A última turma de 2026.</h2>
   <div class="investimento-grade">
     <div class="cartao">
       <p class="pergunta">Quer saber o investimento e as condições da última turma de 2026?</p>
       <ul>
         <li>Os três dias, o kit e a alimentação incluídos</li>
-        <li>Somente 12 vagas nesta turma</li>
+        <li>Somente 13 vagas nesta turma</li>
       </ul>
-      <a data-evt="cta_investimento" class="btn abre-form" href="https://wa.me/5511936206406?text=EU%20QUERO%20-%20Al%C3%A9m%20do%20%C3%93bvio%20(4%2C%205%20e%206%20de%20dezembro)"><span>Saber mais</span><span class="btn-mira" aria-hidden="true"><svg viewBox="0 0 20 20"><circle cx="10" cy="10" r="6.2"/><path d="M10 0v4M10 16v4M0 10h4M16 10h4"/><circle class="nucleo" cx="10" cy="10" r="1.7"/></svg></span></a>
+      <a data-evt="cta_investimento" class="btn abre-form" href="https://wa.me/5511936206406?text=EU%20QUERO%20-%20Al%C3%A9m%20do%20%C3%93bvio%20(4%2C%205%20e%206%20de%20dezembro)"><span>Receber investimento e condições</span><span class="btn-mira" aria-hidden="true"><svg viewBox="0 0 20 20"><circle cx="10" cy="10" r="6.2"/><path d="M10 0v4M10 16v4M0 10h4M16 10h4"/><circle class="nucleo" cx="10" cy="10" r="1.7"/></svg></span></a>
     </div>
     <div class="investimento-lado">
-      <p>Turmas pequenas, de no máximo 12 alunos, para que o Dr. Ritchie acompanhe cada sala.</p>
+      <p>Turmas pequenas, para que o Dr. Ritchie acompanhe cada sala.</p>
       <p>A inscrição é feita com a nossa equipe no WhatsApp. Ela confirma sua habilitação profissional, tira dúvidas e apresenta o investimento, as condições e as regras de inscrição e cancelamento.</p>
-      <p>Contato: <a href="https://wa.me/5511936206406">(11) 93620-6406</a></p>
+      <p>Contato: <a data-evt="cta_contato" class="abre-form" href="https://wa.me/5511936206406?text=EU%20QUERO%20-%20Al%C3%A9m%20do%20%C3%93bvio%20(4%2C%205%20e%206%20de%20dezembro)">(11) 93620-6406</a></p>
     </div>
   </div>
 </section>
@@ -653,17 +703,17 @@ fieldset.campo{border:0;padding:0;margin:0 0 22px}
 <section class="faq" id="faq">
   <div>
     <p class="rotulo">Perguntas frequentes</p>
-    <h2>O que você <em>precisa saber.</em></h2>
+    <h2>O que você precisa saber.</h2>
   </div>
   <div>
     <details><summary>O que é o Além do Óbvio?</summary><p>Uma imersão presencial de três dias em Full Face com o Dr. Ritchie, para profissionais da Harmonização Facial que querem aprofundar o raciocínio clínico.</p></details>
     <details><summary>Para quem é indicado?</summary><p>Para profissionais da Harmonização Facial que atendem pacientes e querem evoluir tecnicamente e na visão clínica. A equipe confirma os pré-requisitos na inscrição.</p></details>
     <details><summary>Quando e onde será?</summary><p>Nos dias 4, 5 e 6 de dezembro de 2026, na Av. Magalhães de Castro, 4800, Cidade Jardim, São Paulo. Local sujeito a alterações.</p></details>
     <details><summary>É presencial? Qual é a carga horária?</summary><p>É presencial. São três dias, o dia todo.</p></details>
-    <details><summary>Haverá prática com pacientes?</summary><p>Sim. Cada aluno realiza de 3 a 6 full faces completas em pacientes reais, com supervisão do Dr. Ritchie.</p></details>
+    <details><summary>Haverá prática com pacientes?</summary><p>Sim. Cada aluno atende no mínimo 3 pacientes reais, com supervisão do Dr. Ritchie.</p></details>
     <details><summary>Receberei certificado?</summary><p>Sim, certificado de conclusão e troféu.</p></details>
-    <details><summary>O que está incluído?</summary><p>Os três dias de imersão, material didático impresso, Press Kit, scrub, jaleco e pantufa, alimentação (welcome coffee, almoço, lanche da tarde e jantar), coquetel do dia 1 certificado e troféu.</p></details>
-    <details><summary>Qual é o investimento?</summary><p>Clique em “Saber mais” e a equipe envia o valor e as condições de pagamento pelo WhatsApp.</p></details>
+    <details><summary>O que está incluído?</summary><p>Os três dias de imersão, material didático impresso, Press Kit, scrub, jaleco e pantufa, alimentação (welcome coffee, almoço, lanche da tarde e jantar), coquetel do dia 1, certificado e troféu.</p></details>
+    <details><summary>Qual é o investimento?</summary><p>Clique em “Receber investimento e condições” e a equipe envia o valor e as condições de pagamento pelo WhatsApp.</p></details>
     <details><summary>Como funcionam transferência e cancelamento?</summary><p>A equipe envia as regras de inscrição, transferência e cancelamento junto com as condições de pagamento, antes de você confirmar.</p></details>
     <details><summary>Como falo com a equipe e confirmo minha participação?</summary><p>Pelo WhatsApp (11) 93620-6406. Clique em qualquer botão desta página, preencha o formulário rápido e continue a conversa com a equipe no WhatsApp.</p></details>
   </div>
@@ -677,10 +727,10 @@ fieldset.campo{border:0;padding:0;margin:0 0 22px}
   </figure>
   <div class="convite-texto">
     <p class="rotulo">Convite final</p>
-    <h2 data-mascara>A próxima experiência Além do Óbvio <em>já tem data.</em></h2>
+    <h2 data-mascara>A próxima experiência Além do Óbvio já tem <em>data.</em></h2>
     <p class="datas" data-fx="digitar" data-fx-duracao="1300">4, 5 e 6 de dezembro</p>
     <p class="desc">Três dias para aprofundar seu conhecimento, ampliar sua visão e viver uma experiência presencial com o Dr. Ritchie.</p>
-    <a data-evt="cta_final" class="btn abre-form" href="https://wa.me/5511936206406?text=EU%20QUERO%20-%20Al%C3%A9m%20do%20%C3%93bvio%20(4%2C%205%20e%206%20de%20dezembro)"><span>Quero estar nessa turma</span><span class="btn-mira" aria-hidden="true"><svg viewBox="0 0 20 20"><circle cx="10" cy="10" r="6.2"/><path d="M10 0v4M10 16v4M0 10h4M16 10h4"/><circle class="nucleo" cx="10" cy="10" r="1.7"/></svg></span></a>
+    <a data-evt="cta_final" class="btn abre-form" href="https://wa.me/5511936206406?text=EU%20QUERO%20-%20Al%C3%A9m%20do%20%C3%93bvio%20(4%2C%205%20e%206%20de%20dezembro)"><span>Quero minha vaga em dezembro</span><span class="btn-mira" aria-hidden="true"><svg viewBox="0 0 20 20"><circle cx="10" cy="10" r="6.2"/><path d="M10 0v4M10 16v4M0 10h4M16 10h4"/><circle class="nucleo" cx="10" cy="10" r="1.7"/></svg></span></a>
   </div>
 </section>
 
@@ -697,56 +747,81 @@ fieldset.campo{border:0;padding:0;margin:0 0 22px}
   </div>
 </footer>
 
-<a data-evt="cta_fixo" class="btn barra abre-form" id="barra" href="https://wa.me/5511936206406?text=EU%20QUERO%20-%20Al%C3%A9m%20do%20%C3%93bvio%20(4%2C%205%20e%206%20de%20dezembro)"><span>Quero participar da próxima turma</span><span class="btn-mira" aria-hidden="true"><svg viewBox="0 0 20 20"><circle cx="10" cy="10" r="6.2"/><path d="M10 0v4M10 16v4M0 10h4M16 10h4"/><circle class="nucleo" cx="10" cy="10" r="1.7"/></svg></span></a>
+<a data-evt="cta_fixo" class="btn barra abre-form" id="barra" href="https://wa.me/5511936206406?text=EU%20QUERO%20-%20Al%C3%A9m%20do%20%C3%93bvio%20(4%2C%205%20e%206%20de%20dezembro)"><span>Quero minha vaga em dezembro</span><span class="btn-mira" aria-hidden="true"><svg viewBox="0 0 20 20"><circle cx="10" cy="10" r="6.2"/><path d="M10 0v4M10 16v4M0 10h4M16 10h4"/><circle class="nucleo" cx="10" cy="10" r="1.7"/></svg></span></a>
 
-<dialog class="form" id="form" aria-labelledby="form-titulo">
-  <button class="fechar" type="button" aria-label="Fechar" data-fechar>×</button>
+<dialog class="form" id="form" aria-label="Inscrição no Além do Óbvio">
+  <button class="fechar" type="button" aria-label="Fechar formulário" data-fechar><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M4 4l12 12M16 4L4 16"/></svg></button>
   <form class="form-dentro" id="form-lead" novalidate>
-    <p class="rotulo">Além do Óbvio</p>
-    <h2 id="form-titulo">Conte um pouco sobre você</h2>
-    <p class="sub">Leva 1 minuto. Em seguida, você continua a conversa com a nossa equipe no WhatsApp.</p>
-    <div class="campo"><label for="f-nome">Nome completo</label><input id="f-nome" name="name" type="text" autocomplete="name" required></div>
-    <div class="dupla">
-      <div class="campo"><label for="f-whats">WhatsApp</label><input id="f-whats" name="whatsapp" type="tel" autocomplete="tel" placeholder="(11) 99999-9999" required></div>
-      <div class="campo"><label for="f-email">E-mail</label><input id="f-email" name="email" type="email" autocomplete="email" required></div>
+    <div class="form-topo">
+      <p class="rotulo">Além do Óbvio</p>
+      <div class="progresso" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+      <p class="etapa" id="form-etapa" aria-live="polite">Etapa 1 de 4</p>
     </div>
-    <div class="campo"><label for="f-cidade">Cidade</label><input id="f-cidade" name="city" type="text" autocomplete="address-level2" required></div>
-    <fieldset class="campo"><legend>Profissão</legend><div class="chips">
+    <p class="erro" id="form-erro" role="alert"></p>
+
+    <section class="passo" data-passo="1" aria-labelledby="form-titulo">
+      <h2 id="form-titulo" tabindex="-1">Conte um pouco sobre você</h2>
+      <p class="sub">Quatro etapas curtas. Em seguida, você continua a conversa com a nossa equipe no WhatsApp, sem compromisso.</p>
+      <fieldset class="campo"><legend>Profissão</legend><div class="chips">
       <label><input type="radio" name="profession" value="Dentista" required><span>Dentista</span></label>
       <label><input type="radio" name="profession" value="Biomédico(a)"><span>Biomédico(a)</span></label>
       <label><input type="radio" name="profession" value="Médico(a)"><span>Médico(a)</span></label>
       <label><input type="radio" name="profession" value="Outra"><span>Outra</span></label>
     </div></fieldset>
-    <div class="campo" id="campo-outra" hidden><label for="f-outra">Qual?</label><input id="f-outra" name="professionOther" type="text"></div>
-    <fieldset class="campo"><legend>Há quanto tempo você atua no mercado?</legend><div class="chips">
+      <div class="campo" id="campo-outra" hidden><label for="f-outra">Qual?</label><input id="f-outra" name="professionOther" type="text"></div>
+      <fieldset class="campo"><legend>Há quanto tempo você atua no mercado?</legend><div class="chips">
       <label><input type="radio" name="experience" value="Ainda não atuo" required><span>Ainda não atuo</span></label>
       <label><input type="radio" name="experience" value="Menos de 1 ano"><span>Menos de 1 ano</span></label>
       <label><input type="radio" name="experience" value="1 a 2 anos"><span>1 a 2 anos</span></label>
       <label><input type="radio" name="experience" value="3 a 5 anos"><span>3 a 5 anos</span></label>
       <label><input type="radio" name="experience" value="Mais de 5 anos"><span>Mais de 5 anos</span></label>
     </div></fieldset>
-    <fieldset class="campo"><legend>Você já faz harmonização facial?</legend><div class="chips">
+      <fieldset class="campo"><legend>Você já faz harmonização facial?</legend><div class="chips">
       <label><input type="radio" name="fullFace" value="Ainda não faço" required><span>Ainda não faço</span></label>
       <label><input type="radio" name="fullFace" value="Faço alguns procedimentos"><span>Faço alguns procedimentos</span></label>
       <label><input type="radio" name="fullFace" value="Já faço Full Face"><span>Já faço Full Face</span></label>
     </div></fieldset>
-    <fieldset class="campo"><legend>Qual é a sua maior dificuldade hoje?</legend><div class="chips">
+    </section>
+
+    <section class="passo" data-passo="2" aria-labelledby="form-titulo-2" hidden>
+      <h2 id="form-titulo-2" tabindex="-1">O seu momento hoje</h2>
+      <p class="sub">Assim a equipe já chega na conversa sabendo o que importa para você.</p>
+      <fieldset class="campo"><legend>Qual é a sua maior dificuldade hoje?</legend><div class="chips">
       <label><input type="radio" name="difficulty" value="Segurança técnica" required><span>Segurança técnica</span></label>
       <label><input type="radio" name="difficulty" value="Posicionamento"><span>Posicionamento</span></label>
       <label><input type="radio" name="difficulty" value="Captação de pacientes"><span>Captação de pacientes</span></label>
       <label><input type="radio" name="difficulty" value="Faturamento"><span>Faturamento</span></label>
     </div></fieldset>
-    <fieldset class="campo"><legend>Você já fez algum curso com o Dr. Ritchie?</legend><div class="chips">
+      <fieldset class="campo"><legend>Você já fez algum curso com o Dr. Ritchie?</legend><div class="chips">
       <label><input type="radio" name="attended" value="Sim" required><span>Sim</span></label>
       <label><input type="radio" name="attended" value="Não"><span>Não</span></label>
     </div></fieldset>
-    <div class="dupla">
-      <div class="campo"><label for="f-insta">Instagram <em>(opcional)</em></label><input id="f-insta" name="instagram" type="text" placeholder="@seuperfil"></div>
-      <div class="campo"><label for="f-registro">Registro profissional <em>(opcional)</em></label><input id="f-registro" name="registry" type="text" placeholder="CRO / CRM / CRBM"></div>
+    </section>
+
+    <section class="passo" data-passo="3" aria-labelledby="form-titulo-3" hidden>
+      <h2 id="form-titulo-3" tabindex="-1">Como falamos com você?</h2>
+      <p class="sub">Usamos só para o atendimento sobre o curso.</p>
+      <div class="campo"><label for="f-nome">Nome completo</label><input id="f-nome" name="name" type="text" autocomplete="name" required></div>
+      <div class="campo"><label for="f-whats">WhatsApp</label><input id="f-whats" name="whatsapp" type="tel" inputmode="tel" autocomplete="tel" placeholder="(11) 99999-9999" required></div>
+      <div class="campo"><label for="f-email">E-mail</label><input id="f-email" name="email" type="email" autocomplete="email" required></div>
+    </section>
+
+    <section class="passo" data-passo="4" aria-labelledby="form-titulo-4" hidden>
+      <h2 id="form-titulo-4" tabindex="-1">Para finalizar</h2>
+      <p class="sub">Instagram e registro são opcionais, mas ajudam a equipe a te conhecer antes da conversa.</p>
+      <div class="campo"><label for="f-cidade">Cidade</label><input id="f-cidade" name="city" type="text" autocomplete="address-level2" required></div>
+      <div class="dupla">
+        <div class="campo"><label for="f-insta">Instagram <em>(opcional)</em></label><input id="f-insta" name="instagram" type="text" placeholder="@seuperfil"></div>
+        <div class="campo"><label for="f-registro">Registro profissional <em>(opcional)</em></label><input id="f-registro" name="registry" type="text" placeholder="CRO / CRM / CRBM"></div>
+      </div>
+      <label class="aceite"><input type="checkbox" id="f-aceite" required><span>Aceito receber contato da equipe do Dr. Ritchie pelo WhatsApp sobre o Além do Óbvio.</span></label>
+    </section>
+
+    <div class="form-nav">
+      <button class="voltar" type="button" id="form-voltar" hidden><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M12.5 4.5L7 10l5.5 5.5"/></svg><span>Voltar</span></button>
+      <button class="btn" type="button" id="form-avancar"><span>Continuar</span><span class="btn-mira" aria-hidden="true"><svg viewBox="0 0 20 20"><circle cx="10" cy="10" r="6.2"/><path d="M10 0v4M10 16v4M0 10h4M16 10h4"/><circle class="nucleo" cx="10" cy="10" r="1.7"/></svg></span></button>
+      <button class="btn" type="submit" id="form-enviar" hidden><span>Continuar no WhatsApp</span><span class="btn-mira" aria-hidden="true"><svg viewBox="0 0 20 20"><circle cx="10" cy="10" r="6.2"/><path d="M10 0v4M10 16v4M0 10h4M16 10h4"/><circle class="nucleo" cx="10" cy="10" r="1.7"/></svg></span></button>
     </div>
-    <label class="aceite"><input type="checkbox" id="f-aceite" required><span>Aceito receber contato da equipe do Dr. Ritchie pelo WhatsApp sobre o Além do Óbvio.</span></label>
-    <p class="erro" id="form-erro" role="alert"></p>
-    <button class="btn" type="submit" id="form-enviar"><span>Continuar no WhatsApp</span><span class="btn-mira" aria-hidden="true"><svg viewBox="0 0 20 20"><circle cx="10" cy="10" r="6.2"/><path d="M10 0v4M10 16v4M0 10h4M16 10h4"/><circle class="nucleo" cx="10" cy="10" r="1.7"/></svg></span></button>
   </form>
 </dialog>
 
@@ -792,14 +867,14 @@ fieldset.campo{border:0;padding:0;margin:0 0 22px}
     dualidade: { h1: "Conhecer a técnica é uma coisa. <em>Compreender o raciocínio</em> é outra.", lead: "Três dias de imersão presencial em Full Face com o Dr. Ritchie, com prática em pacientes reais." },
     pergunta: { h1: "Você já atende. <em>Mas o Full Face ainda não sai do papel?</em>", lead: "Em três dias, com o Dr. Ritchie ao seu lado e pacientes reais, você aprende a planejar, avaliar e conduzir." },
     consciencia: { h1: "O resultado do Full Face não está só na técnica. <em>Está na decisão clínica.</em>", lead: "É essa decisão que o Dr. Ritchie ensina de perto, no Além do Óbvio." },
-    historia: { h1: "Três dias ao lado do Dr. Ritchie, <em>com pacientes reais.</em>", lead: "Uma turma de no máximo 12 alunos, para você sair do curso executando com segurança." }
+    historia: { h1: "Três dias ao lado do Dr. Ritchie, <em>com pacientes reais.</em>", lead: "Uma turma de no máximo 13 alunos, para você sair do curso executando com segurança." }
   };
   (function(){
     var bruto = (rastreio.angulo || rastreio.utm_content || rastreio.utm_term || "").toLowerCase();
     var chave = Object.keys(ANGULOS).filter(function(k){ return bruto.indexOf(k) >= 0; })[0];
     if (!chave) return;
     var h1 = document.querySelector(".titulo-abertura"), lead = document.querySelector(".abertura .lead");
-    if (h1) { h1.innerHTML = ANGULOS[chave].h1; h1.removeAttribute("aria-label"); h1.classList.add("titulo-angulo", "credito"); }
+    if (h1) { h1.innerHTML = ANGULOS[chave].h1; h1.removeAttribute("aria-label"); h1.classList.add("titulo-angulo"); }
     if (lead && ANGULOS[chave].lead) lead.textContent = ANGULOS[chave].lead;
     rastreio.angulo = chave;
   })();
@@ -828,21 +903,11 @@ fieldset.campo{border:0;padding:0;margin:0 0 22px}
   }
   camada("ao_page_view", { event_id: idPagina });
 
-  /* --- 1. Créditos de abertura: letras que acendem como película --- */
-  document.querySelectorAll("[data-credito]").forEach(function(linha, li){
-    var texto = linha.textContent; linha.textContent = "";
-    linha.setAttribute("aria-hidden","true");
-    Array.from(texto).forEach(function(ch, i){
-      if (ch === " ") { linha.appendChild(document.createTextNode(" ")); return; }
-      var s = document.createElement("span"); s.className = "letra"; s.textContent = ch;
-      s.style.animationDelay = (380 + li*520 + i*70 + Math.random()*160).toFixed(0) + "ms";
-      linha.appendChild(s);
-    });
-  });
+  /* --- 1. Abertura: o título já chega pronto; o resto entra em sequência curta --- */
   var creditos = document.querySelectorAll(".abertura .credito");
-  creditos.forEach(function(el, i){ el.style.transitionDelay = (1500 + i*140) + "ms"; });
+  creditos.forEach(function(el, i){ el.style.transitionDelay = (250 + i*120) + "ms"; });
   requestAnimationFrame(function(){ requestAnimationFrame(function(){ document.documentElement.classList.add("creditos-prontos"); }); });
-  setTimeout(function(){ creditos.forEach(function(el){ el.style.transitionDelay = ""; }); }, 5200);
+  setTimeout(function(){ creditos.forEach(function(el){ el.style.transitionDelay = ""; }); }, 2600);
 
   /* --- 1b. Títulos: cada linha sobe de trás de uma máscara --- */
   if (!reduzido) document.querySelectorAll("[data-mascara]").forEach(function(h){
@@ -878,13 +943,19 @@ fieldset.campo{border:0;padding:0;margin:0 0 22px}
   /* --- 2. Topo e barra fixa --- */
   var topo = document.getElementById("topo"), barra = document.getElementById("barra");
   var abertura = document.getElementById("abertura"), visao = document.getElementById("visao"), convite = document.getElementById("convite");
-  var noFim = false;
+  var noFim = false, noVoce = false, ctasVisiveis = new Set();
   new IntersectionObserver(function(e){ noFim = e[0].isIntersecting; atualizarTopo(); }, {threshold:.25}).observe(convite);
+  new IntersectionObserver(function(e){ noVoce = e[0].isIntersecting; atualizarTopo(); }, {threshold:0}).observe(document.getElementById("voce"));
+  var olhoCta = new IntersectionObserver(function(es){
+    es.forEach(function(e){ if (e.isIntersecting) ctasVisiveis.add(e.target); else ctasVisiveis.delete(e.target); });
+    atualizarTopo();
+  }, {threshold:.6});
+  document.querySelectorAll("main .btn.abre-form").forEach(function(b){ olhoCta.observe(b); });
   function atualizarTopo(){
     var y = window.scrollY;
     topo.classList.toggle("rolou", y > 40);
     var rv = visao.getBoundingClientRect(), noPico = rv.top < window.innerHeight*0.5 && rv.bottom > window.innerHeight*0.5;
-    barra.classList.toggle("ativa", y > abertura.offsetHeight * 0.9 && !noFim && !noPico && !document.getElementById("form").open);
+    barra.classList.toggle("ativa", y > abertura.offsetHeight * 0.9 && !noFim && !noPico && !noVoce && ctasVisiveis.size === 0 && !document.getElementById("form").open);
   }
   window.addEventListener("scroll", atualizarTopo, {passive:true}); atualizarTopo();
 
@@ -1005,6 +1076,8 @@ fieldset.campo{border:0;padding:0;margin:0 0 22px}
   function ler(){
     var n = 0; marcas.forEach(function(m){ if (m.checked) n++; });
     contagem.textContent = n;
+    document.getElementById("contagem-movel").textContent = n;
+    document.getElementById("ver-resultado").hidden = n === 0;
     arco.style.strokeDashoffset = (C - C*n/8).toFixed(2);
     if (n === 0){ devol.textContent = "Marque ao menos um item para ver o resultado."; devol.classList.add("vazia"); btnDev.hidden = true; return; }
     devol.classList.remove("vazia"); btnDev.hidden = false;
@@ -1031,8 +1104,72 @@ fieldset.campo{border:0;padding:0;margin:0 0 22px}
   dialogo.querySelector("[data-fechar]").addEventListener("click", function(){ dialogo.close(); });
   dialogo.addEventListener("click", function(ev){ if (ev.target === dialogo) dialogo.close(); });
   dialogo.addEventListener("close", atualizarTopo);
+  // voltou do WhatsApp: o botão volta ao normal e as respostas continuam preenchidas
+  window.addEventListener("pageshow", function(){ enviando = false; enviar.disabled = false; rotuloEnviar.textContent = "Continuar no WhatsApp"; });
   form.querySelectorAll('input[name="profession"]').forEach(function(r){
     r.addEventListener("change", function(){ campoOutra.hidden = form.elements.profession.value !== "Outra"; });
+  });
+
+  /* Etapas: 4 telas curtas; cada uma é validada antes de seguir */
+  var passos = Array.prototype.slice.call(form.querySelectorAll(".passo")), total = passos.length, atual = 1;
+  var avancar = document.getElementById("form-avancar"), voltar = document.getElementById("form-voltar");
+  var rotuloEtapa = document.getElementById("form-etapa"), tracos = form.querySelectorAll(".progresso i");
+  function passoDe(el){ var sec = el.closest(".passo"); return sec ? +sec.dataset.passo : total; }
+  function irPara(n, opcoes){
+    opcoes = opcoes || {};
+    var antes = atual; atual = Math.max(1, Math.min(total, n));
+    passos.forEach(function(sec){
+      var este = +sec.dataset.passo === atual;
+      sec.hidden = !este;
+      sec.classList.remove("entra", "de-volta");
+      if (este && antes !== atual && !reduzido) { void sec.offsetWidth; sec.classList.add("entra"); if (atual < antes) sec.classList.add("de-volta"); }
+    });
+    tracos.forEach(function(t, i){ t.classList.toggle("feito", i < atual); });
+    rotuloEtapa.textContent = "Etapa " + atual + " de " + total;
+    voltar.hidden = atual === 1;
+    avancar.hidden = atual === total;
+    enviar.hidden = atual !== total;
+    erro.textContent = "";
+    dialogo.scrollTop = 0;
+    if (opcoes.foco !== false) {
+      var sec = passos[atual - 1], texto = sec.querySelector('input[type=text],input[type=tel],input[type=email]');
+      // nas etapas de digitar, o cursor já vai para o primeiro campo vazio; nas de toque, para o título
+      var vazio = Array.prototype.filter.call(sec.querySelectorAll('input[type=text],input[type=tel],input[type=email]'), function(i){ return !i.closest("[hidden]") && !i.value; })[0];
+      ((texto && vazio) || sec.querySelector("h2")).focus({preventScroll:true});
+    }
+    if (antes !== atual) camada("ao_form_step", { step: atual, cta: ctaAtual });
+  }
+  function mostrarFalhas(falhas){
+    form.querySelectorAll(".erro-campo").forEach(function(p){ p.remove(); });
+    falhas.forEach(function(x, n){ marcarErro(x[0], x[1], n); });
+    erro.textContent = falhas.length === 1 ? "Falta 1 resposta nesta etapa. Ela está marcada abaixo." : "Faltam " + falhas.length + " respostas nesta etapa. Elas estão marcadas abaixo.";
+    falhas[0][0].focus({preventScroll:true});
+    (falhas[0][0].closest(".campo") || falhas[0][0]).scrollIntoView({block:"center", behavior: reduzido ? "auto" : "smooth"});
+  }
+  function falhasDoPasso(n){ return validar().filter(function(x){ return passoDe(x[0]) === n; }); }
+  function seguir(){
+    var f = falhasDoPasso(atual);
+    if (f.length) { mostrarFalhas(f); return; }
+    form.querySelectorAll(".erro-campo").forEach(function(p){ p.remove(); });
+    irPara(atual + 1);
+  }
+  irPara(1, { foco: false });
+  avancar.addEventListener("click", seguir);
+  voltar.addEventListener("click", function(){ irPara(atual - 1); });
+  // Enter num campo de texto avança a etapa, em vez de enviar o formulário inteiro
+  form.addEventListener("keydown", function(ev){
+    if (ev.key === "Enter" && atual < total && ev.target.matches("input") && ev.target.type !== "checkbox") { ev.preventDefault(); seguir(); }
+  });
+  // Etapas só de toque: quando a última pergunta é respondida, segue sozinho
+  var completa = {};
+  function etapaDeToque(n){ return !passos[n - 1].querySelector('input[type=text]:not([name=professionOther]),input[type=tel],input[type=email]'); }
+  form.addEventListener("change", function(ev){
+    if (ev.target.type !== "radio") return;
+    var n = passoDe(ev.target), estava = completa[n], agora = !falhasDoPasso(n).length;
+    completa[n] = agora;
+    if (agora && !estava && n === atual && etapaDeToque(n) && valor("profession") !== "Outra") {
+      setTimeout(function(){ if (atual === n && !falhasDoPasso(n).length) irPara(n + 1); }, reduzido ? 150 : 420);
+    }
   });
 
   function telefone(bruto){
@@ -1043,20 +1180,48 @@ fieldset.campo{border:0;padding:0;margin:0 0 22px}
     if ((d.length === 12 || d.length === 13) && d.indexOf("55") === 0) return d;
     return null;
   }
+  var campoWhats = document.getElementById("f-whats");
+  campoWhats.addEventListener("input", function(){
+    var v = campoWhats.value;
+    if (v.trim().charAt(0) === "+") return; // número internacional: deixa como a pessoa escreveu
+    var d = v.replace(/\D/g, "").slice(0, 11), o = d;
+    if (d.length > 2) o = "(" + d.slice(0,2) + ") " + d.slice(2);
+    if (d.length > 6) o = "(" + d.slice(0,2) + ") " + d.slice(2, d.length - 4) + "-" + d.slice(-4);
+    campoWhats.value = o;
+  });
   function valor(nome){ var c = form.elements[nome]; return c ? String(c.value || "").trim() : ""; }
   function validar(){
-    var escolhas = [["profession"],["experience"],["fullFace"],["difficulty"],["attended"]];
-    if (valor("name").split(/\s+/).filter(Boolean).length < 2) return ["Informe nome e sobrenome.", form.elements.name];
-    if (!telefone(valor("whatsapp"))) return ["Informe um WhatsApp válido, com DDD.", form.elements.whatsapp];
-    if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(valor("email"))) return ["Informe um e-mail válido.", form.elements.email];
-    if (valor("city").length < 2) return ["Informe sua cidade.", form.elements.city];
-    for (var i = 0; i < escolhas.length; i++) {
-      if (!valor(escolhas[i][0])) return ["Escolha uma opção em cada pergunta para continuar.", form.querySelector('input[name="' + escolhas[i][0] + '"]')];
-      if (escolhas[i][0] === "profession" && valor("profession") === "Outra" && !valor("professionOther")) return ["Conte qual é a sua profissão.", form.elements.professionOther];
-    }
-    if (!document.getElementById("f-aceite").checked) return ["Aceite para continuarmos pelo WhatsApp.", document.getElementById("f-aceite")];
-    return null;
+    var f = [], aceite = document.getElementById("f-aceite");
+    if (valor("name").split(/\s+/).filter(Boolean).length < 2) f.push([form.elements.name, "Escreva nome e sobrenome."]);
+    if (!telefone(valor("whatsapp"))) f.push([form.elements.whatsapp, "Escreva o WhatsApp com DDD, por exemplo (11) 99999-9999."]);
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(valor("email"))) f.push([form.elements.email, "Confira o e-mail: falta o @ ou o domínio."]);
+    if (valor("city").length < 2) f.push([form.elements.city, "Escreva a sua cidade."]);
+    [["profession","a sua profissão"],["experience","há quanto tempo você atua"],["fullFace","se você já faz harmonização"],["difficulty","a sua maior dificuldade"],["attended","se já fez curso com o Dr. Ritchie"]].forEach(function(e){
+      if (!valor(e[0])) f.push([form.querySelector('input[name="' + e[0] + '"]'), "Escolha " + e[1] + "."]);
+      else if (e[0] === "profession" && valor("profession") === "Outra" && !valor("professionOther")) f.push([form.elements.professionOther, "Conte qual é a sua profissão."]);
+    });
+    if (!aceite.checked) f.push([aceite, "Marque o aceite para a equipe falar com você pelo WhatsApp."]);
+    return f;
   }
+  function limparErro(campo){
+    var caixa = campo.closest(".campo") || campo.closest(".aceite");
+    if (!caixa) return;
+    var p = caixa.querySelector(".erro-campo") || (caixa.nextElementSibling && caixa.nextElementSibling.classList.contains("erro-campo") ? caixa.nextElementSibling : null);
+    if (p) p.remove();
+    caixa.removeAttribute("aria-invalid"); caixa.classList.remove("invalido");
+    caixa.querySelectorAll("input").forEach(function(i){ i.removeAttribute("aria-invalid"); i.removeAttribute("aria-describedby"); });
+  }
+  function marcarErro(campo, msg, n){
+    var caixa = campo.closest(".campo") || campo.closest(".aceite");
+    limparErro(campo);
+    var p = document.createElement("p"); p.className = "erro-campo"; p.id = "erro-" + n; p.textContent = msg;
+    if (caixa.classList.contains("aceite")) { caixa.classList.add("invalido"); caixa.after(p); }
+    else caixa.appendChild(p);
+    if (caixa.tagName === "FIELDSET") caixa.setAttribute("aria-invalid", "true");
+    caixa.querySelectorAll("input").forEach(function(i){ i.setAttribute("aria-invalid", "true"); i.setAttribute("aria-describedby", p.id); });
+  }
+  form.addEventListener("input", function(ev){ limparErro(ev.target); if (!form.querySelector(".erro-campo")) erro.textContent = ""; });
+  form.addEventListener("change", function(ev){ limparErro(ev.target); if (!form.querySelector(".erro-campo")) erro.textContent = ""; });
 
   // Codifica o rastreio em caracteres de largura zero (4 por byte): nada aparece na mensagem do WhatsApp.
   var LARGURA_ZERO = ["​", "‌", "‍", "⁠"];
@@ -1068,7 +1233,8 @@ fieldset.campo{border:0;padding:0;margin:0 0 22px}
   function urlWhatsapp(d, ref, cta, gravou){
     var ficha = {}, k; for (k in rastreio) ficha[k] = rastreio[k]; ficha.ref = ref; ficha.cta = cta;
     var linhas = [
-      "Olá!" + fichaInvisivel(ficha) + " Quero saber valores e condições do Além do Óbvio.",
+      "EU QUERO - Além do Óbvio (4, 5 e 6 de dezembro)" + fichaInvisivel(ficha),
+      "Quero saber valores e condições.",
       d.name ? "Sou " + d.name + (d.profession ? ", " + d.profession : "") + (d.city ? ", de " + d.city : "") + "." : "",
       d.difficulty ? "Minha maior dificuldade hoje: " + d.difficulty + "." : ""
     ];
@@ -1083,8 +1249,15 @@ fieldset.campo{border:0;padding:0;margin:0 0 22px}
   form.addEventListener("submit", function(ev){
     ev.preventDefault();
     if (enviando) return;
-    var falha = validar();
-    if (falha){ erro.textContent = falha[0]; if (falha[1]) falha[1].focus(); return; }
+    form.querySelectorAll(".erro-campo").forEach(function(p){ p.remove(); });
+    if (atual < total) { seguir(); return; }
+    var falhas = validar();
+    if (falhas.length){
+      var primeiro = passoDe(falhas[0][0]);
+      if (primeiro !== atual) irPara(primeiro, { foco: false });
+      mostrarFalhas(falhas.filter(function(x){ return passoDe(x[0]) === primeiro; }));
+      return;
+    }
     erro.textContent = "";
     var d = {
       name: valor("name"), whatsapp: telefone(valor("whatsapp")), email: valor("email"), city: valor("city"),
@@ -1112,10 +1285,9 @@ fieldset.campo{border:0;padding:0;margin:0 0 22px}
         } catch (e) {}
         if (window.gtag) { try { var g = { cta: cta, event_id: ref }; for (var kg in rastreio) g[kg] = rastreio[kg]; window.gtag("event", "generate_lead", g); } catch (e) {} }
         var destino = urlWhatsapp(d, ref, cta, res.ok);
-        enviando = false; enviar.disabled = false; rotuloEnviar.textContent = "Continuar no WhatsApp";
-        dialogo.close(); form.reset(); campoOutra.hidden = true;
+        rotuloEnviar.textContent = "Abrindo o WhatsApp…";
         // Pequena espera para o Pixel disparar antes de sair da página.
-        setTimeout(function(){ window.location.href = destino; }, 250);
+        setTimeout(function(){ window.location.href = destino; }, 400);
       });
   });
 })();
