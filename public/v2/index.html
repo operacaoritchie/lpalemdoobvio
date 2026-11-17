@@ -436,6 +436,8 @@ fieldset.campo{border:0;padding:0;margin:0 0 22px}
 .voltar:focus-visible{outline:2px solid var(--ouro);outline-offset:3px}
 .fx-reduzido .passo.entra,.fx-reduzido .progresso i::after{animation:none;transition:none}
 @media (prefers-reduced-motion:reduce){.passo.entra{animation:none}.progresso i::after{transition:none}}
+.btn-fantasma .rotulo-curto{display:none}
+@media (max-width:520px){.btn-fantasma .rotulo-longo{display:none}.btn-fantasma .rotulo-curto{display:inline}}
 @media (max-width:560px){.dupla{grid-template-columns:1fr}}
 
 /* ---------- movimento reduzido ---------- */
@@ -456,7 +458,7 @@ fieldset.campo{border:0;padding:0;margin:0 0 22px}
 
 <header class="topo" id="topo">
   <a href="#abertura" aria-label="Dr. Ritchie, A Verdadeira Harmonia — início"><img src="/v2/img/logo-dr-ritchie.png" alt="Dr. Ritchie, A Verdadeira Harmonia" width="900" height="180"></a>
-  <a data-evt="cta_topo" class="btn btn-fantasma abre-form" href="https://wa.me/5511936206406?text=EU%20QUERO%20-%20Al%C3%A9m%20do%20%C3%93bvio%20(4%2C%205%20e%206%20de%20dezembro)">Quero minha vaga</a>
+  <a data-evt="cta_topo" class="btn btn-fantasma abre-form" aria-label="Quero participar da seleção" href="https://wa.me/5511936206406?text=EU%20QUERO%20-%20Al%C3%A9m%20do%20%C3%93bvio%20(4%2C%205%20e%206%20de%20dezembro)"><span class="rotulo-longo">Quero participar da seleção</span><span class="rotulo-curto" aria-hidden="true">Seleção</span></a>
 </header>
 
 <main>
@@ -475,12 +477,12 @@ fieldset.campo{border:0;padding:0;margin:0 0 22px}
     <h1 class="titulo-abertura"><span class="linha">A técnica você aprende.</span><em class="linha">A visão você desenvolve.</em></h1>
     <p class="data-abertura credito">4, 5 e 6 de dezembro, em São Paulo</p>
     <p class="lead credito">Três dias de imersão presencial em Full Face com o Dr. Ritchie, para profissionais da Harmonização Facial que já atendem, com prática em pacientes reais.</p>
-    <a data-evt="cta_hero" class="btn abre-form credito" href="https://wa.me/5511936206406?text=EU%20QUERO%20-%20Al%C3%A9m%20do%20%C3%93bvio%20(4%2C%205%20e%206%20de%20dezembro)"><span>Quero minha vaga em dezembro</span><span class="btn-mira" aria-hidden="true"><svg viewBox="0 0 20 20"><circle cx="10" cy="10" r="6.2"/><path d="M10 0v4M10 16v4M0 10h4M16 10h4"/><circle class="nucleo" cx="10" cy="10" r="1.7"/></svg></span></a>
-    <p class="numeros-linha credito"><span>Última turma de 2026</span><span>Somente <b>13</b> vagas</span></p>
+    <a data-evt="cta_hero" class="btn abre-form credito" href="https://wa.me/5511936206406?text=EU%20QUERO%20-%20Al%C3%A9m%20do%20%C3%93bvio%20(4%2C%205%20e%206%20de%20dezembro)"><span>Quero participar da seleção</span><span class="btn-mira" aria-hidden="true"><svg viewBox="0 0 20 20"><circle cx="10" cy="10" r="6.2"/><path d="M10 0v4M10 16v4M0 10h4M16 10h4"/><circle class="nucleo" cx="10" cy="10" r="1.7"/></svg></span></a>
+    <p class="numeros-linha credito"><span>Última turma de 2026</span><span>Somente <b>12</b> vagas</span></p>
   </div>
   <dl class="ficha credito">
     <dt>Onde</dt><dd>Av. Magalhães de Castro, 4800, Cidade Jardim, São Paulo</dd>
-    <dt>Formato</dt><dd>Presencial, os três dias inteiros, em turma de no máximo 13 alunos</dd>
+    <dt>Formato</dt><dd>Presencial, os três dias inteiros, em turma de no máximo 12 alunos</dd>
   </dl>
 </section>
 
@@ -534,10 +536,6 @@ fieldset.campo{border:0;padding:0;margin:0 0 22px}
         <div class="num"><small>no mínimo</small><span class="alto">3</span></div>
         <span class="leg">pacientes por aluno</span>
       </div>
-      <div>
-        <div class="num"><span>2</span><small>a</small><span class="alto" data-fx="contar" data-fx-inicio="2" data-fx-fim="3" data-fx-duracao="1200">3</span></div>
-        <span class="leg">práticas por dia</span>
-      </div>
     </div>
     <ol class="itens">
       <li><span class="n">01</span><div><h3>Supervisão em cada sala</h3><p>O Dr. Ritchie acompanha as salas e discute com você cada decisão clínica no mesmo dia.</p></div></li>
@@ -566,10 +564,10 @@ fieldset.campo{border:0;padding:0;margin:0 0 22px}
     <div class="dia">
       <div class="grande-num" aria-hidden="true" data-fx="esquerda">06</div>
       <div class="quando"><b>Dia 3</b>06 de dezembro</div>
-      <p>Certificação, troféu e a foto da turma.</p>
+      <p>Certificação e a foto da turma.</p>
     </div>
   </div>
-  <p class="nota">Carga horária: três dias, o dia todo. A programação detalhada de cada dia é enviada aos inscritos.</p>
+  <p class="nota">Carga horária: três dias, o dia todo. A programação detalhada de cada dia é enviada aos selecionados.</p>
 </section>
 
 <!-- CENA 5 — QUEM CONDUZ -->
@@ -618,7 +616,7 @@ fieldset.campo{border:0;padding:0;margin:0 0 22px}
   </div>
 </section>
 
-<section class="cases" id="cases">
+<section class="cases" id="cases" hidden>
   <div class="cases-cabeca">
     <p class="rotulo">Depoimentos da turma de agosto de 2026</p>
     <h2 data-mascara>Quem já viveu, <em>conta.</em></h2>
@@ -654,7 +652,7 @@ fieldset.campo{border:0;padding:0;margin:0 0 22px}
       <li><label><input type="checkbox"><span>Quero aprender de perto, com quem atende e ensina todos os dias.</span></label></li>
     </ul>
     <div class="marcador"><span><b id="contagem-movel">0</b> de 8 marcados</span><a href="#leitura" id="ver-resultado" hidden>Ver resultado</a></div>
-    <p class="pre">O curso é voltado a profissionais da Harmonização Facial que atendem pacientes. A equipe confirma os pré-requisitos na inscrição.</p>
+    <p class="pre">A imersão é voltada a profissionais da Harmonização Facial que atendem pacientes. A equipe confirma os pré-requisitos na seleção.</p>
   </div>
   <aside class="leitura" id="leitura" aria-live="polite">
     <div class="anel" aria-hidden="true">
@@ -662,7 +660,7 @@ fieldset.campo{border:0;padding:0;margin:0 0 22px}
       <div class="contagem"><b id="contagem">0</b><span>de 8</span></div>
     </div>
     <p class="devolutiva vazia" id="devolutiva">Marque ao menos um item para ver o resultado.</p>
-    <a data-evt="cta_checklist" class="btn abre-form" id="btn-devolutiva" hidden href="https://wa.me/5511936206406?text=EU%20QUERO%20-%20Al%C3%A9m%20do%20%C3%93bvio%20(4%2C%205%20e%206%20de%20dezembro)"><span>Quero minha vaga em dezembro</span><span class="btn-mira" aria-hidden="true"><svg viewBox="0 0 20 20"><circle cx="10" cy="10" r="6.2"/><path d="M10 0v4M10 16v4M0 10h4M16 10h4"/><circle class="nucleo" cx="10" cy="10" r="1.7"/></svg></span></a>
+    <a data-evt="cta_checklist" class="btn abre-form" id="btn-devolutiva" hidden href="https://wa.me/5511936206406?text=EU%20QUERO%20-%20Al%C3%A9m%20do%20%C3%93bvio%20(4%2C%205%20e%206%20de%20dezembro)"><span>Quero participar da seleção</span><span class="btn-mira" aria-hidden="true"><svg viewBox="0 0 20 20"><circle cx="10" cy="10" r="6.2"/><path d="M10 0v4M10 16v4M0 10h4M16 10h4"/><circle class="nucleo" cx="10" cy="10" r="1.7"/></svg></span></a>
   </aside>
 </section>
 
@@ -674,27 +672,27 @@ fieldset.campo{border:0;padding:0;margin:0 0 22px}
   </div>
   <div class="grade-inclui">
     <div><span class="n">01</span><h3>Os três dias de imersão</h3><p>Aulas, demonstrações e prática supervisionada.</p></div>
-    <div><span class="n">02</span><h3>Material e kit</h3><p>Material didático impresso e Press Kit personalizado premium. Scrub, jaleco e pantufa entregues a você.</p></div>
+    <div><span class="n">02</span><h3>Material e kit</h3><p>Material didático impresso e Press Kit personalizado premium.</p></div>
     <div><span class="n">03</span><h3>Alimentação</h3><p>Welcome coffee, almoço, lanche da tarde e jantar nos três dias, mais o coquetel exclusivo do dia 1.</p></div>
-    <div><span class="n">04</span><h3>Certificação e troféu</h3><p>Certificado de conclusão e troféu.</p></div>
+    <div><span class="n">04</span><h3>Certificação</h3><p>Certificado de conclusão.</p></div>
   </div>
 </section>
 
 <section class="investimento" id="investimento">
-  <p class="rotulo">Investimento e inscrição</p>
+  <p class="rotulo">Investimento e seleção</p>
   <h2 data-mascara>A última turma de 2026.</h2>
   <div class="investimento-grade">
     <div class="cartao">
       <p class="pergunta">Quer saber o investimento e as condições da última turma de 2026?</p>
       <ul>
         <li>Os três dias, o kit e a alimentação incluídos</li>
-        <li>Somente 13 vagas nesta turma</li>
+        <li>Somente 12 vagas nesta turma</li>
       </ul>
-      <a data-evt="cta_investimento" class="btn abre-form" href="https://wa.me/5511936206406?text=EU%20QUERO%20-%20Al%C3%A9m%20do%20%C3%93bvio%20(4%2C%205%20e%206%20de%20dezembro)"><span>Receber investimento e condições</span><span class="btn-mira" aria-hidden="true"><svg viewBox="0 0 20 20"><circle cx="10" cy="10" r="6.2"/><path d="M10 0v4M10 16v4M0 10h4M16 10h4"/><circle class="nucleo" cx="10" cy="10" r="1.7"/></svg></span></a>
+      <a data-evt="cta_investimento" class="btn abre-form" href="https://wa.me/5511936206406?text=EU%20QUERO%20-%20Al%C3%A9m%20do%20%C3%93bvio%20(4%2C%205%20e%206%20de%20dezembro)"><span>Receber condições da seleção</span><span class="btn-mira" aria-hidden="true"><svg viewBox="0 0 20 20"><circle cx="10" cy="10" r="6.2"/><path d="M10 0v4M10 16v4M0 10h4M16 10h4"/><circle class="nucleo" cx="10" cy="10" r="1.7"/></svg></span></a>
     </div>
     <div class="investimento-lado">
       <p>Turmas pequenas, para que o Dr. Ritchie acompanhe cada sala.</p>
-      <p>A inscrição é feita com a nossa equipe no WhatsApp. Ela confirma sua habilitação profissional, tira dúvidas e apresenta o investimento, as condições e as regras de inscrição e cancelamento.</p>
+      <p>A seleção é feita com a nossa equipe no WhatsApp. Ela confirma sua habilitação profissional, tira dúvidas e apresenta o investimento, as condições e as regras de participação e cancelamento.</p>
       <p>Contato: <a data-evt="cta_contato" class="abre-form" href="https://wa.me/5511936206406?text=EU%20QUERO%20-%20Al%C3%A9m%20do%20%C3%93bvio%20(4%2C%205%20e%206%20de%20dezembro)">(11) 93620-6406</a></p>
     </div>
   </div>
@@ -707,14 +705,14 @@ fieldset.campo{border:0;padding:0;margin:0 0 22px}
   </div>
   <div>
     <details><summary>O que é o Além do Óbvio?</summary><p>Uma imersão presencial de três dias em Full Face com o Dr. Ritchie, para profissionais da Harmonização Facial que querem aprofundar o raciocínio clínico.</p></details>
-    <details><summary>Para quem é indicado?</summary><p>Para profissionais da Harmonização Facial que atendem pacientes e querem evoluir tecnicamente e na visão clínica. A equipe confirma os pré-requisitos na inscrição.</p></details>
+    <details><summary>Para quem é indicado?</summary><p>Para profissionais da Harmonização Facial que atendem pacientes e querem evoluir tecnicamente e na visão clínica. A equipe confirma os pré-requisitos na seleção.</p></details>
     <details><summary>Quando e onde será?</summary><p>Nos dias 4, 5 e 6 de dezembro de 2026, na Av. Magalhães de Castro, 4800, Cidade Jardim, São Paulo. Local sujeito a alterações.</p></details>
     <details><summary>É presencial? Qual é a carga horária?</summary><p>É presencial. São três dias, o dia todo.</p></details>
     <details><summary>Haverá prática com pacientes?</summary><p>Sim. Cada aluno atende no mínimo 3 pacientes reais, com supervisão do Dr. Ritchie.</p></details>
-    <details><summary>Receberei certificado?</summary><p>Sim, certificado de conclusão e troféu.</p></details>
-    <details><summary>O que está incluído?</summary><p>Os três dias de imersão, material didático impresso, Press Kit, scrub, jaleco e pantufa, alimentação (welcome coffee, almoço, lanche da tarde e jantar), coquetel do dia 1, certificado e troféu.</p></details>
-    <details><summary>Qual é o investimento?</summary><p>Clique em “Receber investimento e condições” e a equipe envia o valor e as condições de pagamento pelo WhatsApp.</p></details>
-    <details><summary>Como funcionam transferência e cancelamento?</summary><p>A equipe envia as regras de inscrição, transferência e cancelamento junto com as condições de pagamento, antes de você confirmar.</p></details>
+    <details><summary>Receberei certificado?</summary><p>Sim, certificado de conclusão.</p></details>
+    <details><summary>O que está incluído?</summary><p>Os três dias de imersão, material didático impresso, Press Kit, alimentação (welcome coffee, almoço, lanche da tarde e jantar), coquetel do dia 1 e certificado.</p></details>
+    <details><summary>Qual é o investimento?</summary><p>Clique em “Receber condições da seleção” e a equipe envia o valor e as condições de pagamento pelo WhatsApp.</p></details>
+    <details><summary>Como funcionam transferência e cancelamento?</summary><p>A equipe envia as regras de participação, transferência e cancelamento junto com as condições de pagamento, antes de você confirmar.</p></details>
     <details><summary>Como falo com a equipe e confirmo minha participação?</summary><p>Pelo WhatsApp (11) 93620-6406. Clique em qualquer botão desta página, preencha o formulário rápido e continue a conversa com a equipe no WhatsApp.</p></details>
   </div>
 </section>
@@ -730,7 +728,7 @@ fieldset.campo{border:0;padding:0;margin:0 0 22px}
     <h2 data-mascara>A próxima experiência Além do Óbvio já tem <em>data.</em></h2>
     <p class="datas" data-fx="digitar" data-fx-duracao="1300">4, 5 e 6 de dezembro</p>
     <p class="desc">Três dias para aprofundar seu conhecimento, ampliar sua visão e viver uma experiência presencial com o Dr. Ritchie.</p>
-    <a data-evt="cta_final" class="btn abre-form" href="https://wa.me/5511936206406?text=EU%20QUERO%20-%20Al%C3%A9m%20do%20%C3%93bvio%20(4%2C%205%20e%206%20de%20dezembro)"><span>Quero minha vaga em dezembro</span><span class="btn-mira" aria-hidden="true"><svg viewBox="0 0 20 20"><circle cx="10" cy="10" r="6.2"/><path d="M10 0v4M10 16v4M0 10h4M16 10h4"/><circle class="nucleo" cx="10" cy="10" r="1.7"/></svg></span></a>
+    <a data-evt="cta_final" class="btn abre-form" href="https://wa.me/5511936206406?text=EU%20QUERO%20-%20Al%C3%A9m%20do%20%C3%93bvio%20(4%2C%205%20e%206%20de%20dezembro)"><span>Quero participar da seleção</span><span class="btn-mira" aria-hidden="true"><svg viewBox="0 0 20 20"><circle cx="10" cy="10" r="6.2"/><path d="M10 0v4M10 16v4M0 10h4M16 10h4"/><circle class="nucleo" cx="10" cy="10" r="1.7"/></svg></span></a>
   </div>
 </section>
 
@@ -742,14 +740,14 @@ fieldset.campo{border:0;padding:0;margin:0 0 22px}
     <p class="assina">Dr. Ritchie · Além do Óbvio · A verdadeira harmonia</p>
   </div>
   <div class="legal">
-    <p>Os dados que você informa no formulário (nome, contato e informações profissionais) são usados apenas para o atendimento sobre o curso, conforme a LGPD. Você pode pedir a exclusão a qualquer momento.</p>
+    <p>Os dados que você informa no formulário (nome, contato e informações profissionais) são usados apenas para o atendimento sobre a imersão, conforme a LGPD. Você pode pedir a exclusão a qualquer momento.</p>
     <p>Os aprendizados e resultados variam conforme cada profissional. Este material não promete faturamento nem resultado clínico específico. Imagens de edições anteriores, usadas com autorização.</p>
   </div>
 </footer>
 
-<a data-evt="cta_fixo" class="btn barra abre-form" id="barra" href="https://wa.me/5511936206406?text=EU%20QUERO%20-%20Al%C3%A9m%20do%20%C3%93bvio%20(4%2C%205%20e%206%20de%20dezembro)"><span>Quero minha vaga em dezembro</span><span class="btn-mira" aria-hidden="true"><svg viewBox="0 0 20 20"><circle cx="10" cy="10" r="6.2"/><path d="M10 0v4M10 16v4M0 10h4M16 10h4"/><circle class="nucleo" cx="10" cy="10" r="1.7"/></svg></span></a>
+<a data-evt="cta_fixo" class="btn barra abre-form" id="barra" href="https://wa.me/5511936206406?text=EU%20QUERO%20-%20Al%C3%A9m%20do%20%C3%93bvio%20(4%2C%205%20e%206%20de%20dezembro)"><span>Quero participar da seleção</span><span class="btn-mira" aria-hidden="true"><svg viewBox="0 0 20 20"><circle cx="10" cy="10" r="6.2"/><path d="M10 0v4M10 16v4M0 10h4M16 10h4"/><circle class="nucleo" cx="10" cy="10" r="1.7"/></svg></span></a>
 
-<dialog class="form" id="form" aria-label="Inscrição no Além do Óbvio">
+<dialog class="form" id="form" aria-label="Seleção para o Além do Óbvio">
   <button class="fechar" type="button" aria-label="Fechar formulário" data-fechar><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M4 4l12 12M16 4L4 16"/></svg></button>
   <form class="form-dentro" id="form-lead" novalidate>
     <div class="form-topo">
@@ -800,7 +798,7 @@ fieldset.campo{border:0;padding:0;margin:0 0 22px}
 
     <section class="passo" data-passo="3" aria-labelledby="form-titulo-3" hidden>
       <h2 id="form-titulo-3" tabindex="-1">Como falamos com você?</h2>
-      <p class="sub">Usamos só para o atendimento sobre o curso.</p>
+      <p class="sub">Usamos só para o atendimento sobre a imersão.</p>
       <div class="campo"><label for="f-nome">Nome completo</label><input id="f-nome" name="name" type="text" autocomplete="name" required></div>
       <div class="campo"><label for="f-whats">WhatsApp</label><input id="f-whats" name="whatsapp" type="tel" inputmode="tel" autocomplete="tel" placeholder="(11) 99999-9999" required></div>
       <div class="campo"><label for="f-email">E-mail</label><input id="f-email" name="email" type="email" autocomplete="email" required></div>
@@ -867,7 +865,7 @@ fieldset.campo{border:0;padding:0;margin:0 0 22px}
     dualidade: { h1: "Conhecer a técnica é uma coisa. <em>Compreender o raciocínio</em> é outra.", lead: "Três dias de imersão presencial em Full Face com o Dr. Ritchie, com prática em pacientes reais." },
     pergunta: { h1: "Você já atende. <em>Mas o Full Face ainda não sai do papel?</em>", lead: "Em três dias, com o Dr. Ritchie ao seu lado e pacientes reais, você aprende a planejar, avaliar e conduzir." },
     consciencia: { h1: "O resultado do Full Face não está só na técnica. <em>Está na decisão clínica.</em>", lead: "É essa decisão que o Dr. Ritchie ensina de perto, no Além do Óbvio." },
-    historia: { h1: "Três dias ao lado do Dr. Ritchie, <em>com pacientes reais.</em>", lead: "Uma turma de no máximo 13 alunos, para você sair do curso executando com segurança." }
+    historia: { h1: "Três dias ao lado do Dr. Ritchie, <em>com pacientes reais.</em>", lead: "Uma turma de no máximo 12 alunos, para você sair da imersão executando com segurança." }
   };
   (function(){
     var bruto = (rastreio.angulo || rastreio.utm_content || rastreio.utm_term || "").toLowerCase();
