@@ -790,6 +790,13 @@ fieldset.campo{border:0;padding:0;margin:0 0 22px}
       <label><input type="radio" name="difficulty" value="Captação de pacientes"><span>Captação de pacientes</span></label>
       <label><input type="radio" name="difficulty" value="Faturamento"><span>Faturamento</span></label>
     </div></fieldset>
+      <fieldset class="campo"><legend>Qual é a média do seu faturamento anual?</legend><div class="chips">
+      <label><input type="radio" name="revenue" value="Até R$ 100 mil" required><span>Até R$ 100 mil</span></label>
+      <label><input type="radio" name="revenue" value="De R$ 100 mil a R$ 300 mil"><span>De R$ 100 mil a R$ 300 mil</span></label>
+      <label><input type="radio" name="revenue" value="De R$ 300 mil a R$ 600 mil"><span>De R$ 300 mil a R$ 600 mil</span></label>
+      <label><input type="radio" name="revenue" value="De R$ 600 mil a R$ 1 milhão"><span>De R$ 600 mil a R$ 1 milhão</span></label>
+      <label><input type="radio" name="revenue" value="Acima de R$ 1 milhão"><span>Acima de R$ 1 milhão</span></label>
+    </div></fieldset>
       <fieldset class="campo"><legend>Você já fez algum curso com o Dr. Ritchie?</legend><div class="chips">
       <label><input type="radio" name="attended" value="Sim" required><span>Sim</span></label>
       <label><input type="radio" name="attended" value="Não"><span>Não</span></label>
@@ -1194,7 +1201,7 @@ fieldset.campo{border:0;padding:0;margin:0 0 22px}
     if (!telefone(valor("whatsapp"))) f.push([form.elements.whatsapp, "Escreva o WhatsApp com DDD, por exemplo (11) 99999-9999."]);
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(valor("email"))) f.push([form.elements.email, "Confira o e-mail: falta o @ ou o domínio."]);
     if (valor("city").length < 2) f.push([form.elements.city, "Escreva a sua cidade."]);
-    [["profession","a sua profissão"],["experience","há quanto tempo você atua"],["fullFace","se você já faz harmonização"],["difficulty","a sua maior dificuldade"],["attended","se já fez curso com o Dr. Ritchie"]].forEach(function(e){
+    [["profession","a sua profissão"],["experience","há quanto tempo você atua"],["fullFace","se você já faz harmonização"],["difficulty","a sua maior dificuldade"],["revenue","a média do seu faturamento anual"],["attended","se já fez curso com o Dr. Ritchie"]].forEach(function(e){
       if (!valor(e[0])) f.push([form.querySelector('input[name="' + e[0] + '"]'), "Escolha " + e[1] + "."]);
       else if (e[0] === "profession" && valor("profession") === "Outra" && !valor("professionOther")) f.push([form.elements.professionOther, "Conte qual é a sua profissão."]);
     });
@@ -1238,7 +1245,7 @@ fieldset.campo{border:0;padding:0;margin:0 0 22px}
     ];
     if (!gravou) linhas.push( // o envio automático falhou: as respostas seguem na própria mensagem
       "WhatsApp: " + d.whatsapp, "E-mail: " + d.email, "Tempo de atuação: " + d.experience,
-      "Harmonização facial: " + d.fullFace, "Já fez curso com o Dr. Ritchie: " + d.attended,
+      "Harmonização facial: " + d.fullFace, "Faturamento anual: " + d.revenue, "Já fez curso com o Dr. Ritchie: " + d.attended,
       d.instagram ? "Instagram: " + d.instagram : "", d.registry ? "Registro profissional: " + d.registry : "");
     linhas.push("Ref: " + ref);
     return WA + "?text=" + encodeURIComponent(linhas.filter(Boolean).join("\n"));
@@ -1260,7 +1267,7 @@ fieldset.campo{border:0;padding:0;margin:0 0 22px}
     var d = {
       name: valor("name"), whatsapp: telefone(valor("whatsapp")), email: valor("email"), city: valor("city"),
       profession: valor("profession") === "Outra" ? "Outra: " + valor("professionOther") : valor("profession"),
-      experience: valor("experience"), fullFace: valor("fullFace"), difficulty: valor("difficulty"), attended: valor("attended"),
+      experience: valor("experience"), fullFace: valor("fullFace"), difficulty: valor("difficulty"), revenue: valor("revenue"), attended: valor("attended"),
       instagram: valor("instagram"), registry: valor("registry")
     };
     var corpo = { type: "lead", reference: referencia, cta: ctaAtual, tracking: rastreio, page: window.location.href, consent: true }, k;

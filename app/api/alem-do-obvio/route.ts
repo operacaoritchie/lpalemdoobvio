@@ -49,6 +49,7 @@ export async function POST(request: Request) {
     tempo_de_atuacao: text('experience'),
     faz_harmonizacao_facial: text('fullFace'),
     maior_dificuldade: text('difficulty'),
+    faturamento_anual: text('revenue'),
     ja_fez_curso_com_dr_ritchie: text('attended'),
     instagram: text('instagram'),
     registro_profissional: text('registry'),
